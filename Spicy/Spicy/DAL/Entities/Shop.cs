@@ -7,20 +7,18 @@ using MySql.Data.MySqlClient;
 
 namespace Spicy.DAL.Entities
 {
-    class User
+    class Shop
     {
         #region Properties
         public int Id { get; set; }
-        public string Nickname { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
         #endregion
 
         #region Constructors
-        public User(MySqlDataReader reader)
+        public Shop(MySqlDataReader reader)
         {
-            Id = int.Parse(reader["id_u"].ToString());
-            Nickname = reader["nickname"].ToString();
-            Password = reader["password"].ToString();
+            Id = int.Parse(reader["id_s"].ToString());
+            Name = reader["name"].ToString();
         }
         #endregion
     }
