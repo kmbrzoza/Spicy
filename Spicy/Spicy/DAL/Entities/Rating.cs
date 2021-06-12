@@ -22,6 +22,13 @@ namespace Spicy.DAL.Entities
             Id_d = int.Parse(reader["id_d"].ToString());
             Rate = int.Parse(reader["rate"].ToString());
         }
+
+        public Rating(int rate)
+        {
+            Id_u = null;
+            Id_d = null;
+            Rate = rate;
+        }
         #endregion
     }
 }

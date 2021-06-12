@@ -22,6 +22,13 @@ namespace Spicy.DAL.Entities
             Nickname = reader["nickname"].ToString();
             Password = reader["password"].ToString();
         }
+
+        public User(string nickname, string password)
+        {
+            Id = null;
+            Nickname = nickname;
+            Password = password;
+        }
         #endregion
     }
 }

@@ -20,6 +20,12 @@ namespace Spicy.DAL.Entities
             Id = int.Parse(reader["id_s"].ToString());
             Name = reader["name"].ToString();
         }
+
+        public Shop(string name)
+        {
+            Id = null;
+            Name = name;
+        }
         #endregion
     }
 }
