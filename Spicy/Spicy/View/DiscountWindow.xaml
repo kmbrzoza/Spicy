@@ -1,0 +1,62 @@
+﻿<Window x:Class="Spicy.View.DiscountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spicy.View"
+        mc:Ignorable="d"
+        Title="DiscountWindow" Height="500" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.75*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Grid.RowSpan="3"></Image>
+
+        <Button Grid.Column="1" Content="-" Width="50" Height="30"></Button>
+        <Label Grid.Column="2" Content="+128" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Button Grid.Column="3" Content="+" Width="50" Height="30"></Button>
+
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Tytul produktu" VerticalAlignment="Center"></Label>
+
+        <Button Grid.Row="2" Grid.Column="1" Content="Idź do okazji" Width="120" Height="30"></Button>
+        <Label Grid.Row="2" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="12345" VerticalAlignment="Center"></TextBlock>
+
+        <Label Grid.Row="3" Content="Od kiedy:"></Label>
+        <Label Grid.Row="3" Grid.Column="1" Content="12-06-2021"></Label>
+        <Label Grid.Row="3" Grid.Column="2" Content="Do kiedy:"></Label>
+        <Label Grid.Row="3" Grid.Column="3" Content="14-06-2021"></Label>
+
+        <TabControl Grid.Row="4" Grid.ColumnSpan="4">
+            <TabItem Header="Opis">
+                <TextBlock Margin="10" Text="Tutaj opis produktu"></TextBlock>
+            </TabItem>
+            <TabItem Header="Komentarze">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="0.6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListBox></ListBox>
+                    <TextBox Grid.Row="1" Text="Komentarz"></TextBox>
+                    <Button Grid.Row="2" Width="150" Height="35" Content="Dodaj komentarz"></Button>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>
