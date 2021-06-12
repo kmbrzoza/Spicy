@@ -63,6 +63,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\Entities\Comment.cs" />
+    <Compile Include="DAL\Entities\Discount.cs" />
+    <Compile Include="DAL\Entities\Rating.cs" />
+    <Compile Include="DAL\Entities\Shop.cs" />
+    <Compile Include="DAL\Entities\User.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -96,8 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
