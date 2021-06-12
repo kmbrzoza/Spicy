@@ -12,15 +12,15 @@ namespace Spicy.DAL.Entities
         #region Properties
         public int Id_u { get; set; }
         public int Id_d { get; set; }
-        public string Comment { get; set; }
+        public string CommentText { get; set; }
         #endregion
 
         #region Constructors
         public Comment(MySqlDataReader reader)
         {
             Id_u = int.Parse(reader["id_u"].ToString());
-            Id_p = int.Parse(reader["id_d"].ToString());
-            Comment = reader["comment"].ToString());
+            Id_d = int.Parse(reader["id_d"].ToString());
+            CommentText = reader["comment"].ToString();
         }
         #endregion
     }
