@@ -1,0 +1,68 @@
+﻿<Window x:Class="Spicy.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spicy.View"
+        mc:Ignorable="d"
+        Title="Logowanie" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="20 50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.ColumnSpan="2" Content="Zarejestruj się" HorizontalContentAlignment="Center"></Label>
+            
+            <Label Content="Login:" Grid.Row="1"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+
+            <Label Content="Hasło:" Grid.Row="2"></Label>
+            <PasswordBox Grid.Row="2" Grid.Column="1"></PasswordBox>
+
+            <Label Content="Powtórz hasło:" Grid.Row="3"></Label>
+            <PasswordBox Grid.Row="3" Grid.Column="1"></PasswordBox>
+
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj"></Button>
+        </Grid>
+
+        <Grid Margin="20 50" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.ColumnSpan="2" Content="Zaloguj się" HorizontalContentAlignment="Center"></Label>
+
+            <Label Content="Login:" Grid.Row="1"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+
+            <Label Content="Hasło:" Grid.Row="2"></Label>
+            <PasswordBox Grid.Row="2" Grid.Column="1"></PasswordBox>
+
+
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zaloguj"></Button>
+        </Grid>
+
+    </Grid>
+</Window>
