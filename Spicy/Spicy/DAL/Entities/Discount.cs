@@ -26,7 +26,17 @@ namespace Spicy.DAL.Entities
             Description = reader["description"].ToString();
             Link = reader["link"].ToString();
             Start_Date = DateTime.Parse(reader["start_Date"].ToString());
-            Start_Date = DateTime.Parse(reader["end_Date"].ToString());
+            End_Date = DateTime.Parse(reader["end_Date"].ToString());
+        }
+
+        public Discount(string name, string description, string link)
+        {
+            Id = null;
+            Name = name;
+            Description = description;
+            Link = link;
+            Start_Date = DateTime.Now;
+            End_Date = DateTime.Now;
         }
         #endregion
     }

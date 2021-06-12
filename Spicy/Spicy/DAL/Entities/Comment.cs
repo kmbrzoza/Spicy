@@ -22,6 +22,13 @@ namespace Spicy.DAL.Entities
             Id_d = int.Parse(reader["id_d"].ToString());
             CommentText = reader["comment"].ToString();
         }
+
+        public Comment(string commenttext)
+        {
+            Id_u = null;
+            Id_d = null;
+            CommentText = commenttext;
+        }
         #endregion
     }
 }
