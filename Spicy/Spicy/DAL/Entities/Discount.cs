@@ -38,6 +38,33 @@ namespace Spicy.DAL.Entities
             Start_Date = start;
             End_Date = end;
         }
+
+        public Discount(Discount discount)
+        {
+            Id = discount.Id;
+            Name = discount.Name;
+            Description = discount.Description;
+            Link = discount.Description;
+            Start_Date = discount.Start_Date;
+            End_Date = discount.End_Date;
+        }
+        #endregion
+
+        #region Methods
+        public override bool Equals(object obj)
+        {
+            Discount dsc = obj as Discount;
+            if ( dsc is null ) return false;
+            if (Name.ToLower() != dsc.Name.ToLower()) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #endregion
     }
 }

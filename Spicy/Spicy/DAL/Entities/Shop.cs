@@ -27,5 +27,23 @@ namespace Spicy.DAL.Entities
             Name = name;
         }
         #endregion
+
+        #region Methods
+        public override bool Equals(object obj)
+        {
+            Shop shop = obj as Shop;
+            if (shop is null) return false;
+            if (Name.ToLower() != shop.Name.ToLower()) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        #endregion
+        //Sklepy możnaby dodawać
     }
 }

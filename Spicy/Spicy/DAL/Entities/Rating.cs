@@ -30,5 +30,22 @@ namespace Spicy.DAL.Entities
             Rate = rate;
         }
         #endregion
+
+        #region Methods
+        public override bool Equals(object obj)
+        {
+            Rating rating = obj as Rating;
+            if (rating is null) return false;
+            if (Id_u != rating.Id_u) return false;
+            if (Id_d != rating.Id_d) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        #endregion
     }
 }
