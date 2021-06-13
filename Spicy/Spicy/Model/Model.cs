@@ -27,7 +27,7 @@ namespace Spicy.Model
 
         #region Users
 
-        public bool AddUser(User user)
+        public bool RegisterUser(User user)
         {
             if (!UserExists(user))
             {
@@ -55,13 +55,12 @@ namespace Spicy.Model
             return Users.FirstOrDefault(u => u.Id == id);
         }
 
+        public User GetOwnerOfComment(Comment comment)
+        {
+            return Users.FirstOrDefault(u => u.Id == comment.Id_u);
+        }
+
         // GetOwnerOFDiscount
-        // GetOwnerOfComment
-        //public User GetOwnerOfComment(Comment comment)
-        //{
-        //    User user = null;
-        //    Comments.FirstOrDefault(c => c.Id_u == comment.Id_u);
-        //}
 
         #endregion
 
@@ -80,7 +79,19 @@ namespace Spicy.Model
 
         public bool DiscountExists(Discount discount) => Discounts.Contains(discount);
 
-        // GetActualDiscounts
+        public ObservableCollection<Discount> GetActualDiscounts()
+        {
+            var actualDiscounts = new ObservableCollection<Discount>();
+            var dtNow = DateTime.Now;
+
+            foreach(var disc in Discounts)
+            {
+                if (disc.End_Date > dtNow)
+                    actualDiscounts.Add(disc);
+            }
+
+            return actualDiscounts;
+        }
         // GetShopOfDiscount
 
         #endregion
@@ -128,12 +139,21 @@ namespace Spicy.Model
             return true;
         }
 
-        // GetCommentsFromDiscount
-        //public ObservableCollection<Comment> GetCommentsFromDiscount(Discount discount)
-        //{
+        
+        public ObservableCollection<Comment> GetCommentsOfDiscount(Discount discount)
+        {
+            var comments = new ObservableCollection<Comment>();
 
-        //}
+            foreach (var comm in Comments)
+            {
+                if (comm.Id_d == discount.Id)
+                    comments.Add(comm);
+            }
+
+            return comments;
+        }
         #endregion
+
 
         public void ExampleData()
         {
