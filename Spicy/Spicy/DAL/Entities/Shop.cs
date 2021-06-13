@@ -10,14 +10,14 @@ namespace Spicy.DAL.Entities
     class Shop
     {
         #region Properties
-        public int Id { get; set; }
+        public uint? Id { get; set; }
         public string Name { get; set; }
         #endregion
 
         #region Constructors
         public Shop(MySqlDataReader reader)
         {
-            Id = int.Parse(reader["id_s"].ToString());
+            Id = uint.Parse(reader["id_s"].ToString());
             Name = reader["name"].ToString();
         }
 
