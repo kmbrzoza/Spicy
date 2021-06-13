@@ -1,0 +1,43 @@
+﻿<Window x:Class="Spicy.View.AddDiscountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spicy.View"
+        mc:Ignorable="d"
+        Title="Dodaj promocję" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <TextBox Text="Tytul" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center"></TextBox>
+
+        <Label Content="Url promocji:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <TextBox Text="Url link" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center"></TextBox>
+
+        <!-- ADD HERE SENDING FILE -->
+        <Label Content="Zdjęcie:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="sciezka pliku" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"></Label>
+        <Button Content="Dodaj zdjęcie" Grid.Row="2" Grid.Column="3" Width="120" Height="30"></Button>
+        
+        <Label Content="Od kiedy" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <DatePicker Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"></DatePicker>
+        <Label Content="Do kiedy" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <DatePicker Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"></DatePicker>
+
+        <TextBox Grid.Row="4" Grid.ColumnSpan="4" Text="Tutaj opis"></TextBox>
+
+    </Grid>
+</Window>
