@@ -20,7 +20,137 @@ namespace Spicy.Model
 
         public Model()
         {
-            // get database from repository
+            // get data from repository
+            ExampleData();
+        }
+
+
+        #region Users
+
+        public bool AddUser(User user)
+        {
+            if (!UserExists(user))
+            {
+                // ADD USER TO DB
+                Users.Add(user);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UserExists(User user) => Users.Contains(user);
+
+        public bool LoginUser(User user)
+        {
+            var existingUser = Users.FirstOrDefault(
+                u => u.Nickname == user.Nickname
+                && u.Password == user.Password);
+
+            if (existingUser != null) return true;
+            return false;
+        }
+
+        public User GetUserById(uint id)
+        {
+            return Users.FirstOrDefault(u => u.Id == id);
+        }
+
+        // GetOwnerOFDiscount
+        // GetOwnerOfComment
+        //public User GetOwnerOfComment(Comment comment)
+        //{
+        //    User user = null;
+        //    Comments.FirstOrDefault(c => c.Id_u == comment.Id_u);
+        //}
+
+        #endregion
+
+        #region Discounts
+
+        public bool AddDiscount(Discount discount)
+        {
+            if (!DiscountExists(discount))
+            {
+                // ADD DISCOUNT TO DB
+                Discounts.Add(discount);
+                return true;
+            }
+            return false;
+        }
+
+        public bool DiscountExists(Discount discount) => Discounts.Contains(discount);
+
+        // GetActualDiscounts
+        // GetShopOfDiscount
+
+        #endregion
+
+        #region Shops
+
+        public bool AddShop(Shop shop)
+        {
+            if (!ShopExists(shop))
+            {
+                // ADD SHOP TO DB
+                Shops.Add(shop);
+                return true;
+            }
+            return false;
+        }
+
+        public bool ShopExists(Shop shop) => Shops.Contains(shop);
+
+        #endregion
+
+        #region Rates
+
+        public bool AddRate(Rating rate)
+        {
+            if (!RateExists(rate))
+            {
+                // ADD RATE TO DB
+                Ratings.Add(rate);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RateExists(Rating rate) => Ratings.Contains(rate);
+
+        #endregion
+
+        #region Comments
+
+        public bool AddComment(Comment comment)
+        {
+            // ADD COMMENT TO DB
+            Comments.Add(comment);
+            return true;
+        }
+
+        // GetCommentsFromDiscount
+        //public ObservableCollection<Comment> GetCommentsFromDiscount(Discount discount)
+        //{
+
+        //}
+        #endregion
+
+        public void ExampleData()
+        {
+            var user1 = new User("test1", "test1") { Id = 1 };
+            var user2 = new User("test2", "test2") { Id = 2 };
+            Users.Add(user1);
+            Users.Add(user2);
+
+            var discount1 = new Discount("laptop", "fajny laptop w fajnej cenie", "www.pepper.pl", new DateTime(2021, 06, 14), new DateTime(2021, 06, 20)) { Id = 1 };
+            var discount2 = new Discount("sluchawki", "fajne sluchawki w fajnej cenie", "www.pepper.pl", new DateTime(2021, 06, 14), new DateTime(2021, 06, 22)) { Id = 2 };
+            Discounts.Add(discount1);
+            Discounts.Add(discount2);
+
+            var shop1 = new Shop("x-kom") { Id = 1 };
+            var shop2 = new Shop("Media Expert") { Id = 2 };
+            Shops.Add(shop1);
+            Shops.Add(shop2);
         }
 
     }
