@@ -10,16 +10,16 @@ namespace Spicy.DAL.Entities
     class Comment
     {
         #region Properties
-        public int Id_u { get; set; }
-        public int Id_d { get; set; }
+        public uint? Id_u { get; set; }
+        public uint? Id_d { get; set; }
         public string CommentText { get; set; }
         #endregion
 
         #region Constructors
         public Comment(MySqlDataReader reader)
         {
-            Id_u = int.Parse(reader["id_u"].ToString());
-            Id_d = int.Parse(reader["id_d"].ToString());
+            Id_u = uint.Parse(reader["id_u"].ToString());
+            Id_d = uint.Parse(reader["id_d"].ToString());
             CommentText = reader["comment"].ToString();
         }
 

@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
 	class Discount
 	{
         #region Properties
-        public int Id { get; set; }
+        public uint? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
@@ -21,7 +21,7 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public Discount(MySqlDataReader reader)
         {
-            Id = int.Parse(reader["id_d"].ToString());
+            Id = uint.Parse(reader["id_d"].ToString());
             Name = reader["name"].ToString();
             Description = reader["description"].ToString();
             Link = reader["link"].ToString();

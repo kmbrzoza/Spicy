@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class User
     {
         #region Properties
-        public int Id { get; set; }
+        public uint? Id { get; set; }
         public string Nickname { get; set; }
         public string Password { get; set; }
         #endregion
@@ -18,7 +18,7 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public User(MySqlDataReader reader)
         {
-            Id = int.Parse(reader["id_u"].ToString());
+            Id = uint.Parse(reader["id_u"].ToString());
             Nickname = reader["nickname"].ToString();
             Password = reader["password"].ToString();
         }
