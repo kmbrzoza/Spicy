@@ -124,6 +124,7 @@
     <Compile Include="DAL\Entities\Comment.cs" />
     <Compile Include="DAL\Entities\Discount.cs" />
     <Compile Include="DAL\Entities\Rating.cs" />
+    <Compile Include="DAL\Entities\Category.cs" />
     <Compile Include="DAL\Entities\Shop.cs" />
     <Compile Include="DAL\Entities\User.cs" />
     <Compile Include="Model\Model.cs" />

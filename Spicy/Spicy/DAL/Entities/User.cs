@@ -30,5 +30,22 @@ namespace Spicy.DAL.Entities
             Password = password;
         }
         #endregion
+
+        #region Methods
+        public override bool Equals(object obj)
+        {
+            User user = obj as User;
+            if (user is null) return false;
+            if (Nickname.ToLower() != user.Nickname.ToLower()) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        #endregion
     }
 }

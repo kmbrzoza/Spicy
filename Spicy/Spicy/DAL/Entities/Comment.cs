@@ -13,6 +13,7 @@ namespace Spicy.DAL.Entities
         public uint? Id_u { get; set; }
         public uint? Id_d { get; set; }
         public string CommentText { get; set; }
+        public DateTime Date { get; set; }
         #endregion
 
         #region Constructors
@@ -21,6 +22,7 @@ namespace Spicy.DAL.Entities
             Id_u = uint.Parse(reader["id_u"].ToString());
             Id_d = uint.Parse(reader["id_d"].ToString());
             CommentText = reader["comment"].ToString();
+            Date = DateTime.Parse(reader["id_d"].ToString());
         }
 
         public Comment(string commenttext)
