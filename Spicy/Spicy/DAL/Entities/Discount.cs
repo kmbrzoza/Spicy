@@ -29,14 +29,14 @@ namespace Spicy.DAL.Entities
             End_Date = DateTime.Parse(reader["end_Date"].ToString());
         }
 
-        public Discount(string name, string description, string link)
+        public Discount(string name, string description, string link, DateTime start, DateTime end)
         {
             Id = null;
             Name = name;
             Description = description;
             Link = link;
-            Start_Date = DateTime.Now;
-            End_Date = DateTime.Now;
+            Start_Date = start;
+            End_Date = end;
         }
         #endregion
     }
