@@ -10,8 +10,9 @@ namespace Spicy.DAL.Entities
     class Comment
     {
         #region Properties
-        public uint? Id_u { get; set; }
-        public uint? Id_d { get; set; }
+        public uint Id_comment { get; set; }
+        public uint Id_u { get; set; }
+        public uint Id_d { get; set; }
         public string CommentText { get; set; }
         public DateTime Date { get; set; }
         #endregion
@@ -19,6 +20,7 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public Comment(MySqlDataReader reader)
         {
+            Id_comment = uint.Parse(reader["id_comment"].ToString());
             Id_u = uint.Parse(reader["id_u"].ToString());
             Id_d = uint.Parse(reader["id_d"].ToString());
             CommentText = reader["comment"].ToString();
@@ -27,8 +29,8 @@ namespace Spicy.DAL.Entities
 
         public Comment(string commenttext)
         {
-            Id_u = null;
-            Id_d = null;
+            Id_u = Id_u;
+            Id_d = Id_d;
             CommentText = commenttext;
         }
         #endregion
