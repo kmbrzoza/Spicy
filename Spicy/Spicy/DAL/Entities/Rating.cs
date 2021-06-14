@@ -7,12 +7,12 @@ using MySql.Data.MySqlClient;
 
 namespace Spicy.DAL.Entities
 {
-	class Rating
+    class Rating
 	{
         #region Properties
-        public uint? Id_u { get; set; }
-        public uint? Id_d { get; set; }
-        public int Rate { get; set; }
+        public uint Id_u { get; set; }
+        public uint Id_d { get; set; }
+        public Rate Rate;
         #endregion
 
         #region Constructors
@@ -20,13 +20,13 @@ namespace Spicy.DAL.Entities
         {
             Id_u = uint.Parse(reader["id_u"].ToString());
             Id_d = uint.Parse(reader["id_d"].ToString());
-            Rate = int.Parse(reader["rate"].ToString());
+            Rate = (Rate)Enum.Parse(typeof(Rate), reader["rate"].ToString());
         }
 
-        public Rating(int rate)
+        public Rating(Rate rate)
         {
-            Id_u = null;
-            Id_d = null;
+            Id_u = Id_u;
+            Id_d = Id_d;
             Rate = rate;
         }
         #endregion
@@ -48,4 +48,7 @@ namespace Spicy.DAL.Entities
         }
         #endregion
     }
+    enum Rate { negative, positive }
+
+
 }

@@ -17,7 +17,7 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public Category(MySqlDataReader reader)
         {
-            Id = uint.Parse(reader["id_k"].ToString());
+            Id = uint.Parse(reader["id_c"].ToString());
             Name = reader["name"].ToString();
         }
 

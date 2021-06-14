@@ -14,6 +14,7 @@ namespace Spicy.DAL.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
+        public string Code { get; set; }
         public DateTime Start_Date { get; set; }
         public DateTime End_Date { get; set; }
         #endregion
@@ -25,8 +26,20 @@ namespace Spicy.DAL.Entities
             Name = reader["name"].ToString();
             Description = reader["description"].ToString();
             Link = reader["link"].ToString();
+            Code = reader["code"].ToString();
             Start_Date = DateTime.Parse(reader["start_Date"].ToString());
             End_Date = DateTime.Parse(reader["end_Date"].ToString());
+        }
+
+        public Discount(string name, string description, string link, string code, DateTime start, DateTime end)
+        {
+            Id = null;
+            Name = name;
+            Description = description;
+            Link = link;
+            Code = code;
+            Start_Date = start;
+            End_Date = end;
         }
 
         public Discount(string name, string description, string link, DateTime start, DateTime end)
@@ -35,6 +48,7 @@ namespace Spicy.DAL.Entities
             Name = name;
             Description = description;
             Link = link;
+            Code = null;
             Start_Date = start;
             End_Date = end;
         }
