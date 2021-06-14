@@ -1,0 +1,26 @@
+﻿<Window x:Class="Spicy.View.AddShopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spicy.View"
+        mc:Ignorable="d"
+        Title="Dodaj sklep" Height="400" Width="600" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.ColumnSpan="2" Content="Podaj nazwe sklepu:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center"></TextBox>
+        <Button Content="Dodaj" Grid.Row="2" Width="120" Height="35"></Button>
+        <Button Content="Anuluj" Grid.Row="2" Grid.Column="1" Width="120" Height="35"></Button>
+
+    </Grid>
+</Window>
