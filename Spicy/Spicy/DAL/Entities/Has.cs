@@ -11,14 +11,14 @@ namespace Spicy.DAL.Entities
     {
         #region Properties
         public uint? Id_s { get; set; }
-        public uint? Id_p { get; set; }
+        public uint? Id_d { get; set; }
         #endregion
 
         #region Constructors
         public Has(MySqlDataReader reader)
         {
             Id_s = uint.Parse(reader["id_s"].ToString());
-            Id_p = uint.Parse(reader["id_p"].ToString());
+            Id_d = uint.Parse(reader["id_d"].ToString());
         }
         #endregion
     }

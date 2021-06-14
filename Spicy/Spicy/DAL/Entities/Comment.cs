@@ -22,7 +22,7 @@ namespace Spicy.DAL.Entities
             Id_u = uint.Parse(reader["id_u"].ToString());
             Id_d = uint.Parse(reader["id_d"].ToString());
             CommentText = reader["comment"].ToString();
-            Date = DateTime.Parse(reader["id_d"].ToString());
+            Date = DateTime.Parse(reader["date"].ToString());
         }
 
         public Comment(string commenttext)
