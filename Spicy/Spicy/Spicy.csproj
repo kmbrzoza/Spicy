@@ -125,8 +125,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DAL\Entities\IsIn.cs" />
     <Compile Include="DAL\Entities\Has.cs" />
+    <Compile Include="DAL\Entities\IsIn.cs" />
     <Compile Include="DAL\Entities\Published.cs" />
     <Compile Include="DAL\Entities\Comment.cs" />
     <Compile Include="DAL\Entities\Discount.cs" />
