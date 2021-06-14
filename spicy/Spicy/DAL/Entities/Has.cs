@@ -7,22 +7,21 @@ using MySql.Data.MySqlClient;
 
 namespace Spicy.DAL.Entities
 {
-    class Published
+    class Has
     {
         #region Properties
-        public uint? Id_published { get; set; }
-        public uint Id_user { get; set; }
+        public uint? Id_has { get; set; }
+        public uint Id_shop { get; set; }
         public uint Id_discount { get; set; }
         #endregion
 
         #region Constructors
-        public Published(MySqlDataReader reader)
+        public Has(MySqlDataReader reader)
         {
-            Id_published = uint.Parse(reader["id_published"].ToString());
-            Id_user = uint.Parse(reader["id_user"].ToString());
+            Id_has = uint.Parse(reader["id_has"].ToString());
+            Id_shop = uint.Parse(reader["id_shop"].ToString());
             Id_discount = uint.Parse(reader["id_discount"].ToString());
         }
         #endregion
-
     }
 }

@@ -10,17 +10,17 @@ namespace Spicy.DAL.Entities
     class IsIn
     {
         #region Properties
-        public uint? Id_i { get; set; }
-        public uint? Id_d { get; set; }
-        public uint? Id_c { get; set; }
+        public uint? Id_isin { get; set; }
+        public uint Id_discount { get; set; }
+        public uint Id_category { get; set; }
         #endregion
 
         #region Constructors
         public IsIn(MySqlDataReader reader)
         {
-            Id_i = uint.Parse(reader["id_i"].ToString());
-            Id_d = uint.Parse(reader["id_d"].ToString());
-            Id_c = uint.Parse(reader["id_c"].ToString());
+            Id_isin = uint.Parse(reader["id_in"].ToString());
+            Id_discount = uint.Parse(reader["id_discount"].ToString());
+            Id_category = uint.Parse(reader["id_category"].ToString());
         }
         #endregion
     }
