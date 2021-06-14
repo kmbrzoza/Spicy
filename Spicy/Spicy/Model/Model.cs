@@ -61,17 +61,16 @@ namespace Spicy.Model
 
         public User GetOwnerOfComment(Comment comment)
         {
-            return Users.FirstOrDefault(u => u.Id == comment.Id_u);
+            return Users.FirstOrDefault(u => u.Id == comment.Id_user);
         }
 
         // GetOwnerOFDiscount
         public User GetOwnerOfDiscount(Discount discount)
         {
             User owner = null;
-            var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_p == discount.Id);
-            // =====> CHANGE WHEN IN PUBLISHED ID FIXED <=====
-            //if (published != null)
-            //    owner = GetUserById(published.Id_u);
+            var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_discount == discount.Id);
+            if (published != null)
+                owner = GetUserById(published.Id_user);
             return owner;
         }
 
@@ -110,7 +109,6 @@ namespace Spicy.Model
 
             return actualDiscounts;
         }
-        // GetShopOfDiscount
 
         #endregion
 
@@ -132,9 +130,9 @@ namespace Spicy.Model
         public Shop GetShopOfDiscount(Discount discount)
         {
             Shop shop = null;
-            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_d == discount.Id);
+            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id);
             if (has != null)
-                shop = Shops.FirstOrDefault(s => s.Id == has.Id_s);
+                shop = Shops.FirstOrDefault(s => s.Id == has.Id_shop);
             return shop;
         }
 
@@ -157,7 +155,7 @@ namespace Spicy.Model
 
         public Rating GetUserRateOfDiscount(User user, Discount discount)
         {
-            return Ratings.FirstOrDefault(r => r.Id_u == user.Id && r.Id_d == discount.Id);
+            return Ratings.FirstOrDefault(r => r.Id_user == user.Id && r.Id_discount == discount.Id);
         }
 
         // GetOverallRateOfDiscount
@@ -180,7 +178,7 @@ namespace Spicy.Model
 
             foreach (var comm in Comments)
             {
-                if (comm.Id_d == discount.Id)
+                if (comm.Id_discount == discount.Id)
                     comments.Add(comm);
             }
 
@@ -193,10 +191,9 @@ namespace Spicy.Model
         public Category GetCategoryOfDiscount(Discount discount)
         {
             Category cat = null;
-            // =====> CHANGE WHEN ISIN FIXED <=====
-            //var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_p = discount.Id);
-            //if (isin != null)
-            //    cat = Categories.FirstOrDefault(c => c.Id == isin.Id_k);
+            var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_discount == discount.Id);
+            if (isin != null)
+                cat = Categories.FirstOrDefault(c => c.Id == isin.Id_category);
             return cat;
         }
 
