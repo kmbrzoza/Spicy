@@ -105,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddShopWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DiscountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +139,9 @@
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="View\AddDiscountWindow.xaml.cs">
       <DependentUpon>AddDiscountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddShopWindow.xaml.cs">
+      <DependentUpon>AddShopWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DiscountWindow.xaml.cs">
       <DependentUpon>DiscountWindow.xaml</DependentUpon>
