@@ -7,7 +7,21 @@ using System.Threading.Tasks;
 namespace Spicy.ViewModel
 {
     using BaseClass;
-    class MainViewModel : BaseViewModel
+    using Navigation;
+    public class MainViewModel : BaseViewModel
     {
+        public BaseViewModel CurrentViewModel => NavigationVM.CurrentViewModel;
+        private readonly Navigation NavigationVM;
+        public MainViewModel()
+        {
+            NavigationVM = Navigation.Instance;
+            NavigationVM.CurrentVMChanged += OnCurrentViewModelChanged;
+            NavigationVM.CurrentViewModel = new LoginViewModel();
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            onPropertyChanged(nameof(CurrentViewModel));
+        }
     }
 }

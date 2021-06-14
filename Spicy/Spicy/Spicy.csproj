@@ -139,6 +139,7 @@
     <Compile Include="DAL\Entities\Shop.cs" />
     <Compile Include="DAL\Entities\User.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Navigation\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />
     <Compile Include="ViewModel\AddShopViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />

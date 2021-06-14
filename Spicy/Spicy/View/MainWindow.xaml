@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Spicy"
+        xmlns:vm="clr-namespace:Spicy.ViewModel"
+        xmlns:view="clr-namespace:Spicy.View"
         mc:Ignorable="d"
         Title="Spicy - Promocje" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <vm:MainViewModel x:Key="mainVM"/>
+    </Window.Resources>
 
-    </Grid>
+    <ContentControl Content="{Binding CurrentViewModel}" DataContext="{StaticResource mainVM}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type vm:AddDiscountViewModel}">
+                <view:AddDiscountView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AddShopViewModel}">
+                <view:AddShopView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DiscountViewModel}">
+                <view:DiscountView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
 </Window>
