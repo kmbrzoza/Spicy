@@ -30,7 +30,9 @@
 
         <Label Content="Sklep:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="150"></ComboBox>
-        
+        <Label Content="Kategoria:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Width="150"></ComboBox>
+
         <!-- ADD HERE SENDING FILE -->
         <Label Content="Zdjęcie:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <Label Content="sciezka pliku" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"></Label>
