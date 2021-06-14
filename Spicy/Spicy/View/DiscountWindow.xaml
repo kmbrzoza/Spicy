@@ -18,6 +18,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
             <RowDefinition Height="0.75*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -39,7 +40,12 @@
         <Label Grid.Row="3" Grid.Column="2" Content="Do kiedy:"></Label>
         <Label Grid.Row="3" Grid.Column="3" Content="14-06-2021"></Label>
 
-        <TabControl Grid.Row="4" Grid.ColumnSpan="4">
+        <Label Grid.Row="4" Content="Kategoria:"></Label>
+        <Label Grid.Row="4" Grid.Column="1" Content="Elektronika"></Label>
+        <Label Grid.Row="4" Grid.Column="2" Content="Kto dodał promocje:"></Label>
+        <Label Grid.Row="4" Grid.Column="3" Content="Nazwa użytkownika"></Label>
+
+        <TabControl Grid.Row="5" Grid.ColumnSpan="4">
             <TabItem Header="Opis">
                 <TextBlock Margin="10" Text="Tutaj opis produktu"></TextBlock>
             </TabItem>
@@ -51,7 +57,7 @@
                         <RowDefinition Height="0.6*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <ListBox></ListBox>
-                    <TextBox Grid.Row="1" Text="Komentarz"></TextBox>
+                    <TextBox Grid.Row="1" Text="Komentarz" Margin="0 2"></TextBox>
                     <Button Grid.Row="2" Width="150" Height="35" Content="Dodaj komentarz"></Button>
                 </Grid>
             </TabItem>
