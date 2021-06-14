@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Spicy.View
 {
     /// <summary>
-    /// Interaction logic for AddShopWindow.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class AddShopWindow : Window
+    public partial class LoginView : UserControl
     {
-        public AddShopWindow()
+        public LoginView()
         {
             InitializeComponent();
         }
