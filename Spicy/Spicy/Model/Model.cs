@@ -132,7 +132,7 @@ namespace Spicy.Model
         public Shop GetShopOfDiscount(Discount discount)
         {
             Shop shop = null;
-            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_p == discount.Id);
+            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_d == discount.Id);
             if (has != null)
                 shop = Shops.FirstOrDefault(s => s.Id == has.Id_s);
             return shop;
