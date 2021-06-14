@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MiniTC.ViewModel.BaseClass
+namespace Spicy.ViewModel.BaseClass
 {
     class RelayCommand : ICommand
     {
