@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Spicy.View
 {
     /// <summary>
-    /// Interaction logic for AddDiscountWindow.xaml
+    /// Interaction logic for AddDiscountView.xaml
     /// </summary>
-    public partial class AddDiscountWindow : Window
+    public partial class AddDiscountView : UserControl
     {
-        public AddDiscountWindow()
+        public AddDiscountView()
         {
             InitializeComponent();
         }

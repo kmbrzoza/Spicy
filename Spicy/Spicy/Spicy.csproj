@@ -101,19 +101,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\AddDiscountWindow.xaml">
+    <Page Include="View\AddDiscountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddShopWindow.xaml">
+    <Page Include="View\AddShopView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DiscountWindow.xaml">
+    <Page Include="View\DiscountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LoginWindow.xaml">
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,17 +141,20 @@
     <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
-    <Compile Include="View\AddDiscountWindow.xaml.cs">
-      <DependentUpon>AddDiscountWindow.xaml</DependentUpon>
+    <Compile Include="View\AddDiscountView.xaml.cs">
+      <DependentUpon>AddDiscountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AddShopWindow.xaml.cs">
-      <DependentUpon>AddShopWindow.xaml</DependentUpon>
+    <Compile Include="View\AddShopView.xaml.cs">
+      <DependentUpon>AddShopView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DiscountWindow.xaml.cs">
-      <DependentUpon>DiscountWindow.xaml</DependentUpon>
+    <Compile Include="View\DiscountView.xaml.cs">
+      <DependentUpon>DiscountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
