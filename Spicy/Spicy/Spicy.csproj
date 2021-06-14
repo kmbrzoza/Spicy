@@ -139,8 +139,14 @@
     <Compile Include="DAL\Entities\Shop.cs" />
     <Compile Include="DAL\Entities\User.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="ViewModel\AddDiscountViewModel.cs" />
+    <Compile Include="ViewModel\AddShopViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
+    <Compile Include="ViewModel\DiscountViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\AddDiscountView.xaml.cs">
       <DependentUpon>AddDiscountView.xaml</DependentUpon>
     </Compile>

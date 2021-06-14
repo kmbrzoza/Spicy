@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniTC.ViewModel.BaseClass
+namespace Spicy.ViewModel.BaseClass
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
