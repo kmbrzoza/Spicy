@@ -11,11 +11,15 @@ namespace Spicy.Model
     class Model
     {
         // state of data base
-        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
-        public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
-        public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
-        public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
+        public ObservableCollection<Category> Categories { get; set; } = new ObservableCollection<Category>();
         public ObservableCollection<Comment> Comments { get; set; } = new ObservableCollection<Comment>();
+        public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
+        public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
+        public ObservableCollection<IsIn> DiscountIsInCategory { get; set; } = new ObservableCollection<IsIn>();
+        public ObservableCollection<Published> UserPublishedDiscounts { get; set; } = new ObservableCollection<Published>();
+        public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
+        public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
+        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
 
 
         public Model()
@@ -61,6 +65,15 @@ namespace Spicy.Model
         }
 
         // GetOwnerOFDiscount
+        public User GetOwnerOfDiscount(Discount discount)
+        {
+            User owner = null;
+            var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_p == discount.Id);
+            // =====> CHANGE WHEN IN PUBLISHED ID FIXED <=====
+            //if (published != null)
+            //    owner = GetUserById(published.Id_u);
+            return owner;
+        }
 
         #endregion
 
@@ -78,6 +91,11 @@ namespace Spicy.Model
         }
 
         public bool DiscountExists(Discount discount) => Discounts.Contains(discount);
+
+        public Discount GetDiscountById(uint id)
+        {
+            return Discounts.FirstOrDefault(d => d.Id == id);
+        }
 
         public ObservableCollection<Discount> GetActualDiscounts()
         {
@@ -111,6 +129,15 @@ namespace Spicy.Model
 
         public bool ShopExists(Shop shop) => Shops.Contains(shop);
 
+        public Shop GetShopOfDiscount(Discount discount)
+        {
+            Shop shop = null;
+            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_p == discount.Id);
+            if (has != null)
+                shop = Shops.FirstOrDefault(s => s.Id == has.Id_s);
+            return shop;
+        }
+
         #endregion
 
         #region Rates
@@ -127,6 +154,13 @@ namespace Spicy.Model
         }
 
         public bool RateExists(Rating rate) => Ratings.Contains(rate);
+
+        public Rating GetUserRateOfDiscount(User user, Discount discount)
+        {
+            return Ratings.FirstOrDefault(r => r.Id_u == user.Id && r.Id_d == discount.Id);
+        }
+
+        // GetOverallRateOfDiscount
 
         #endregion
 
@@ -154,6 +188,19 @@ namespace Spicy.Model
         }
         #endregion
 
+        #region Categories
+
+        public Category GetCategoryOfDiscount(Discount discount)
+        {
+            Category cat = null;
+            // =====> CHANGE WHEN ISIN FIXED <=====
+            //var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_p = discount.Id);
+            //if (isin != null)
+            //    cat = Categories.FirstOrDefault(c => c.Id == isin.Id_k);
+            return cat;
+        }
+
+        #endregion
 
         public void ExampleData()
         {
