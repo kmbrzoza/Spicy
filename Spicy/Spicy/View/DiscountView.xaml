@@ -14,7 +14,7 @@
 
     <Grid Margin="10" DataContext="{StaticResource discountVM}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -29,7 +29,9 @@
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Image Grid.RowSpan="3"></Image>
+        <Button Content="&lt;--" Width="50" Height="30"></Button>
+
+        <Image Grid.Row="1" Grid.RowSpan="2"></Image>
 
         <Button Grid.Column="1" Content="-" Width="50" Height="30"></Button>
         <Label Grid.Column="2" Content="+128" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>

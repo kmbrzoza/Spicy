@@ -26,6 +26,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="4.5*"></RowDefinition>
+            <RowDefinition Height="0.85*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
@@ -50,6 +51,10 @@
         <DatePicker Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"></DatePicker>
 
         <TextBox Grid.Row="5" Grid.ColumnSpan="4" Text="Tutaj opis"></TextBox>
+
+        <Button Content="Dodaj" Grid.Row="6" Grid.Column="1" Width="120" Height="30"></Button>
+        <Button Content="Anuluj" Grid.Row="6" Grid.Column="2" Width="120" Height="30"></Button>
+
 
     </Grid>
 </UserControl>
