@@ -16,6 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -23,12 +24,13 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.ColumnSpan="2">
+        <ListBox Grid.ColumnSpan="3">
 
         </ListBox>
 
         <Button Grid.Row="1" Width="120" Height="30" Content="Dodaj promocje" Command="{Binding AddDiscount}"></Button>
         <Button Grid.Row="1" Grid.Column="1" Width="120" Height="30" Content="Dodaj Sklep"></Button>
+        <Button Grid.Row="1" Grid.Column="2" Width="120" Height="30" Content="Wyloguj"></Button>
 
     </Grid>
 </UserControl>
