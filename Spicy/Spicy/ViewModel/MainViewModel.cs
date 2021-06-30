@@ -8,10 +8,12 @@ namespace Spicy.ViewModel
 {
     using BaseClass;
     using Navigation;
-    public class MainViewModel : BaseViewModel
+    using Model;
+    class MainViewModel : BaseViewModel
     {
         public BaseViewModel CurrentViewModel => NavigationVM.CurrentViewModel;
         private readonly Navigation NavigationVM;
+        private Model model = Model.Instance;
         public MainViewModel()
         {
             NavigationVM = Navigation.Instance;

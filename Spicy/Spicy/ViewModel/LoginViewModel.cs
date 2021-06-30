@@ -9,32 +9,44 @@ namespace Spicy.ViewModel
     using BaseClass;
     using System.Windows.Input;
     using Navigation;
+    using Model;
 
     class LoginViewModel : BaseViewModel
     {
         private readonly Navigation NavigationVM;
+        private Model model = Model.Instance;
         public LoginViewModel()
         {
             NavigationVM = Navigation.Instance;
         }
 
+        #region PUBLIC PROPERTIES
+        public string Login { get; set; }
+        public string Password { get; set; }
+
+        public string RegisterLogin { get; set; }
+        public string RegisterPassword { get; set; }
+        public string RegisterPasswordRepeat { get; set; }
+
+        #endregion
+
         #region COMMANDS
-        private ICommand login = null;
-        public ICommand Login
+        private ICommand signIn= null;
+        public ICommand SignIn
         {
             get
             {
-                if (login == null)
+                if (signIn == null)
                 {
-                    login = new RelayCommand(
+                    signIn = new RelayCommand(
                         arg =>
                         {
-                            //NavigationVM.CurrentViewModel = new HomeViewModel(); // TESTING
+                            //Console.WriteLine(Login + " " + Password);
                         },
                         arg => true
                         );
                 }
-                return login;
+                return signIn;
             }
         }
         #endregion

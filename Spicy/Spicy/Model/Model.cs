@@ -21,13 +21,14 @@ namespace Spicy.Model
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
 
+        private static Model instance;
+        public static Model Instance => instance ?? (instance = new Model());
 
-        public Model()
+        private Model()
         {
             // get data from repository
             ExampleData();
         }
-
 
         #region Users
 
