@@ -141,6 +141,15 @@
     <Compile Include="DAL\Entities\Category.cs" />
     <Compile Include="DAL\Entities\Shop.cs" />
     <Compile Include="DAL\Entities\User.cs" />
+    <Compile Include="DAL\Repositories\CategoryRepo.cs" />
+    <Compile Include="DAL\Repositories\UserRepo.cs" />
+    <Compile Include="DAL\Repositories\ShopRepo.cs" />
+    <Compile Include="DAL\Repositories\RatingRepo.cs" />
+    <Compile Include="DAL\Repositories\PublishedRepo.cs" />
+    <Compile Include="DAL\Repositories\IsInRepo.cs" />
+    <Compile Include="DAL\Repositories\HasRepo.cs" />
+    <Compile Include="DAL\Repositories\CommentRepo.cs" />
+    <Compile Include="DAL\Repositories\DiscountRepo.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Navigation\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />
