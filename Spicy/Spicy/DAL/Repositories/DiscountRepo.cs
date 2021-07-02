@@ -26,6 +26,7 @@ namespace Spicy.DAL.Repositories
                                                             INNER JOIN has h ON h.id_discount=d.id_discount
                                                             INNER JOIN shop s ON s.id_shop=h.id_shop
                                                             WHERE c.name=";
+
         private const string ADD_DISCOUNT = @"INSERT INTO `discount`(`name`, `description`, `discount_code`, `start_date`, `end_date`, `curr_price`, `prev_price`) VALUES "; //nwm jeszcze od której strony sie za to zabrać póki co jest jak jest ^^
         #endregion
     }

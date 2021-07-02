@@ -43,6 +43,11 @@ namespace Spicy.DAL.Entities
             return base.GetHashCode();
         }
 
+        public string ToInsert()
+        {
+            return $"('{Name}')";
+        }
+
         #endregion
         //Sklepy możnaby dodawać
     }
