@@ -53,6 +53,9 @@
     <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.25\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="MySqlConnector, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.1.3.10\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -138,6 +141,15 @@
     <Compile Include="DAL\Entities\Category.cs" />
     <Compile Include="DAL\Entities\Shop.cs" />
     <Compile Include="DAL\Entities\User.cs" />
+    <Compile Include="DAL\Repositories\CategoryRepo.cs" />
+    <Compile Include="DAL\Repositories\UserRepo.cs" />
+    <Compile Include="DAL\Repositories\ShopRepo.cs" />
+    <Compile Include="DAL\Repositories\RatingRepo.cs" />
+    <Compile Include="DAL\Repositories\PublishedRepo.cs" />
+    <Compile Include="DAL\Repositories\IsInRepo.cs" />
+    <Compile Include="DAL\Repositories\HasRepo.cs" />
+    <Compile Include="DAL\Repositories\CommentRepo.cs" />
+    <Compile Include="DAL\Repositories\DiscountRepo.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Navigation\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />
