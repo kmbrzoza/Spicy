@@ -8,5 +8,6 @@ namespace Spicy.DAL.Repositories
 {
     class UserRepo
     {
+
     }
 }
