@@ -46,6 +46,11 @@ namespace Spicy.DAL.Entities
             return base.GetHashCode();
         }
 
+        public string ToInsert()
+        {
+            return $"('{Nickname}', '{Password}')";
+        }
+
         #endregion
     }
 }
