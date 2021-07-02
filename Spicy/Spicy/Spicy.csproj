@@ -132,6 +132,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\Entities\Has.cs" />
     <Compile Include="DAL\Entities\IsIn.cs" />
     <Compile Include="DAL\Entities\Published.cs" />
