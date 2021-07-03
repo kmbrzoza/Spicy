@@ -16,7 +16,7 @@ namespace Spicy.ViewModel
     class LoginViewModel : BaseViewModel
     {
         private readonly Navigation NavigationVM;
-        private Model model;
+        private readonly Model model;
         public LoginViewModel(Model model)
         {
             this.model = model;

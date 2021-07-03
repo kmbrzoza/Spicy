@@ -25,6 +25,8 @@ namespace Spicy.View
             InitializeComponent();
         }
 
+        bool isPasswordChanging;
+
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string),
                 typeof(BindablePasswordBox), new PropertyMetadata(string.Empty, PasswordPropertyChanged));
@@ -37,7 +39,8 @@ namespace Spicy.View
 
         private void UpdatePassword()
         {
-            passwordBox.Password = Password;
+            if(!isPasswordChanging)
+                passwordBox.Password = Password;
         }
 
         public string Password
@@ -48,7 +51,9 @@ namespace Spicy.View
 
         private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            isPasswordChanging = true;
             Password = passwordBox.Password;
+            isPasswordChanging = false;
         }
     }
 }
