@@ -34,7 +34,7 @@
             <Label Grid.ColumnSpan="2" Content="Zarejestruj się" HorizontalContentAlignment="Center"></Label>
 
             <Label Content="Login:" Grid.Row="1"></Label>
-            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterLogin}"></TextBox>
 
             <Label Content="Hasło:" Grid.Row="2"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding RegisterPassword, Mode=TwoWay}"></local:BindablePasswordBox>
@@ -42,7 +42,7 @@
             <Label Content="Powtórz hasło:" Grid.Row="3"></Label>
             <local:BindablePasswordBox Grid.Row="3" Grid.Column="1" Password="{Binding RegisterPasswordRepeat, Mode=TwoWay}"></local:BindablePasswordBox>
 
-            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj"></Button>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj" Command="{Binding Register}"></Button>
         </Grid>
 
         <Grid Margin="20 50" Grid.Column="1">
