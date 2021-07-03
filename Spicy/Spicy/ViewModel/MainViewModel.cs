@@ -18,7 +18,7 @@ namespace Spicy.ViewModel
         {
             NavigationVM = Navigation.Instance;
             NavigationVM.CurrentVMChanged += OnCurrentViewModelChanged;
-            NavigationVM.CurrentViewModel = new LoginViewModel();
+            NavigationVM.CurrentViewModel = new LoginViewModel(model);
         }
 
         private void OnCurrentViewModelChanged()
