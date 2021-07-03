@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spicy.Navigation
+namespace Spicy.Services
 {
     using System.ComponentModel;
     using ViewModel.BaseClass;

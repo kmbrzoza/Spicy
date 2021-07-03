@@ -8,11 +8,11 @@
         xmlns:view="clr-namespace:Spicy.View"
         mc:Ignorable="d"
         Title="Spicy - Promocje" Height="450" Width="800">
-    <Window.Resources>
-        <vm:MainViewModel x:Key="mainVM"/>
-    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="mainVM"/>
+    </Window.DataContext>
 
-    <ContentControl Content="{Binding CurrentViewModel}" DataContext="{StaticResource mainVM}">
+    <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type vm:AddDiscountViewModel}">
                 <view:AddDiscountView/>

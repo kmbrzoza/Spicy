@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Spicy.Model
 {
     using DAL.Entities;
+    using Spicy.Services;
     using System.Collections.ObjectModel;
     class Model
     {
@@ -19,50 +20,18 @@ namespace Spicy.Model
         public ObservableCollection<Published> UserPublishedDiscounts { get; set; } = new ObservableCollection<Published>();
         public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
-        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
 
-        private static Model instance;
-        public static Model Instance => instance ?? (instance = new Model());
-
-        private Model()
+        private AccountManager accManager = AccountManager.Instance;
+        public Model()
         {
             // get data from repository
             ExampleData();
         }
 
         #region Users
-
-        public bool RegisterUser(User user)
-        {
-            if (!UserExists(user))
-            {
-                // ADD USER TO DB
-                Users.Add(user);
-                return true;
-            }
-            return false;
-        }
-
-        public bool UserExists(User user) => Users.Contains(user);
-
-        public bool LoginUser(User user)
-        {
-            var existingUser = Users.FirstOrDefault(
-                u => u.Nickname == user.Nickname
-                && u.Password == user.Password);
-
-            if (existingUser != null) return true;
-            return false;
-        }
-
-        public User GetUserById(uint id)
-        {
-            return Users.FirstOrDefault(u => u.Id == id);
-        }
-
         public User GetOwnerOfComment(Comment comment)
         {
-            return Users.FirstOrDefault(u => u.Id == comment.Id_user);
+            return accManager.GetUserById(comment.Id_user);
         }
 
         // GetOwnerOFDiscount
@@ -71,7 +40,7 @@ namespace Spicy.Model
             User owner = null;
             var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_discount == discount.Id);
             if (published != null)
-                owner = GetUserById(published.Id_user);
+                owner = accManager.GetUserById(published.Id_user);
             return owner;
         }
 
@@ -202,11 +171,6 @@ namespace Spicy.Model
 
         public void ExampleData()
         {
-            var user1 = new User("test1", "test1") { Id = 1 };
-            var user2 = new User("test2", "test2") { Id = 2 };
-            Users.Add(user1);
-            Users.Add(user2);
-
             var discount1 = new Discount("laptop", "fajny laptop w fajnej cenie", "www.pepper.pl", new DateTime(2021, 06, 14), new DateTime(2021, 06, 20)) { Id = 1 };
             var discount2 = new Discount("sluchawki", "fajne sluchawki w fajnej cenie", "www.pepper.pl", new DateTime(2021, 06, 14), new DateTime(2021, 06, 22)) { Id = 2 };
             Discounts.Add(discount1);

@@ -4,15 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Spicy.View"
-             xmlns:vm="clr-namespace:Spicy.ViewModel"
+             xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
-    <Control.Resources>
-        <vm:LoginViewModel x:Key="loginVM"/>
-    </Control.Resources>
-    
-    <Grid DataContext="{StaticResource loginVM}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -34,7 +30,7 @@
             <Label Grid.ColumnSpan="2" Content="Zarejestruj się" HorizontalContentAlignment="Center"></Label>
 
             <Label Content="Login:" Grid.Row="1"></Label>
-            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterLogin}"></TextBox>
 
             <Label Content="Hasło:" Grid.Row="2"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding RegisterPassword, Mode=TwoWay}"></local:BindablePasswordBox>
@@ -42,7 +38,7 @@
             <Label Content="Powtórz hasło:" Grid.Row="3"></Label>
             <local:BindablePasswordBox Grid.Row="3" Grid.Column="1" Password="{Binding RegisterPasswordRepeat, Mode=TwoWay}"></local:BindablePasswordBox>
 
-            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj"></Button>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj" Command="{Binding Register}"></Button>
         </Grid>
 
         <Grid Margin="20 50" Grid.Column="1">
