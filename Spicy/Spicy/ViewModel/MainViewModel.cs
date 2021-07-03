@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Spicy.ViewModel
 {
     using BaseClass;
-    using Navigation;
+    using Services;
     using Model;
     class MainViewModel : BaseViewModel
     {

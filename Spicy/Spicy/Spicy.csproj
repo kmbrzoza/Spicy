@@ -155,9 +155,9 @@
     <Compile Include="DAL\Repositories\HasRepo.cs" />
     <Compile Include="DAL\Repositories\CommentRepo.cs" />
     <Compile Include="DAL\Repositories\DiscountRepo.cs" />
-    <Compile Include="Model\AccountManager.cs" />
+    <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Model\Model.cs" />
-    <Compile Include="Navigation\Navigation.cs" />
+    <Compile Include="Services\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />
     <Compile Include="ViewModel\AddShopViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />

@@ -8,7 +8,7 @@ namespace Spicy.ViewModel
 {
     using BaseClass;
     using System.Windows.Input;
-    using Navigation;
+    using Services;
     using Model;
     using DAL.Entities;
     using System.Windows;

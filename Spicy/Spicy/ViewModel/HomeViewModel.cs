@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Spicy.ViewModel
 {
     using BaseClass;
-    using Navigation;
+    using Services;
     using System.Windows.Input;
     using Model;
 
@@ -15,10 +15,12 @@ namespace Spicy.ViewModel
     {
         private readonly Navigation NavigationVM;
         private readonly Model model;
+        private readonly AccountManager accountManager;
         public HomeViewModel(Model model)
         {
             this.model = model;
             NavigationVM = Navigation.Instance;
+            accountManager = AccountManager.Instance;
         }
 
         #region COMMANDS
@@ -38,6 +40,26 @@ namespace Spicy.ViewModel
                         );
                 }
                 return addDiscount;
+            }
+        }
+
+        private ICommand logOut = null;
+        public ICommand LogOut
+        {
+            get
+            {
+                if (logOut == null)
+                {
+                    logOut = new RelayCommand(
+                        arg =>
+                        {
+                            if (accountManager.LogOut())
+                                NavigationVM.CurrentViewModel = new LoginViewModel(model);
+                        },
+                        arg => true
+                        );
+                }
+                return logOut;
             }
         }
         #endregion
