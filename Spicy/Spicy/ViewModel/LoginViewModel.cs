@@ -17,10 +17,12 @@ namespace Spicy.ViewModel
     {
         private readonly Navigation NavigationVM;
         private readonly Model model;
+        private readonly AccountManager accountManager;
         public LoginViewModel(Model model)
         {
             this.model = model;
             NavigationVM = Navigation.Instance;
+            accountManager = AccountManager.Instance;
         }
 
         #region PUBLIC PROPERTIES
@@ -60,8 +62,8 @@ namespace Spicy.ViewModel
                     signIn = new RelayCommand(
                         arg =>
                         {
-                            if (model.LoginUser(new User(Login, Password)))
-                                NavigationVM.CurrentViewModel = new HomeViewModel();
+                            if (accountManager.LoginUser(new User(Login, Password)))
+                                NavigationVM.CurrentViewModel = new HomeViewModel(model);
                             else
                                 MessageBox.Show("Nieprawidłowe dane logowania!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
                         },
@@ -87,7 +89,7 @@ namespace Spicy.ViewModel
                                 MessageBox.Show("Hasła muszą być takie same!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 return;
                             }
-                            if (model.RegisterUser(new User(RegisterLogin, RegisterPassword)))
+                            if (accountManager.RegisterUser(new User(RegisterLogin, RegisterPassword)))
                             {
                                 MessageBox.Show("Rejestracja udana!\nMożesz się teraz zalogować.", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
                                 ClearRegisterInputs();

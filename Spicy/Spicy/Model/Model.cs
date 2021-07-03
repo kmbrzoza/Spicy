@@ -28,30 +28,6 @@ namespace Spicy.Model
         }
 
         #region Users
-
-        public bool RegisterUser(User user)
-        {
-            if (!UserExists(user))
-            {
-                // ADD USER TO DB
-                Users.Add(user);
-                return true;
-            }
-            return false;
-        }
-
-        public bool UserExists(User user) => Users.Contains(user);
-
-        public bool LoginUser(User user)
-        {
-            var existingUser = Users.FirstOrDefault(
-                u => u.Nickname == user.Nickname
-                && u.Password == user.Password);
-
-            if (existingUser != null) return true;
-            return false;
-        }
-
         public User GetUserById(uint id)
         {
             return Users.FirstOrDefault(u => u.Id == id);

@@ -9,12 +9,15 @@ namespace Spicy.ViewModel
     using BaseClass;
     using Navigation;
     using System.Windows.Input;
+    using Model;
 
     class HomeViewModel: BaseViewModel
     {
         private readonly Navigation NavigationVM;
-        public HomeViewModel()
+        private readonly Model model;
+        public HomeViewModel(Model model)
         {
+            this.model = model;
             NavigationVM = Navigation.Instance;
         }
 
