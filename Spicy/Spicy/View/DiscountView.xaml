@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Spicy.View"
-             xmlns:vm="clr-namespace:Spicy.ViewModel"
+             xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:DiscountViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
@@ -17,15 +17,16 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.6*"></RowDefinition>
-            <RowDefinition Height="0.75*"></RowDefinition>
-            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
+            <RowDefinition Height="5.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Content="&lt;--" Width="50" Height="30"></Button>
+        <Button Content="&lt;--" Width="50" Height="30" Command="{Binding Back}"></Button>
 
         <Image Grid.Row="1" Grid.RowSpan="2"></Image>
 
@@ -33,36 +34,66 @@
         <Label Grid.Column="2" Content="+128" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <Button Grid.Column="3" Content="+" Width="50" Height="30"></Button>
 
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Tytul produktu" VerticalAlignment="Center"></Label>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
+               VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
 
         <Button Grid.Row="2" Grid.Column="1" Content="Idź do okazji" Width="120" Height="30"></Button>
         <Label Grid.Row="2" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="12345" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center"></TextBlock>
 
         <Label Grid.Row="3" Content="Od kiedy:"></Label>
-        <Label Grid.Row="3" Grid.Column="1" Content="12-06-2021"></Label>
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding PresentingDiscount.Start_Date}"></Label>
         <Label Grid.Row="3" Grid.Column="2" Content="Do kiedy:"></Label>
-        <Label Grid.Row="3" Grid.Column="3" Content="14-06-2021"></Label>
+        <Label Grid.Row="3" Grid.Column="3" Content="{Binding PresentingDiscount.End_Date}"></Label>
 
         <Label Grid.Row="4" Content="Kategoria:"></Label>
-        <Label Grid.Row="4" Grid.Column="1" Content="Elektronika"></Label>
+        <Label Grid.Row="4" Grid.Column="1" Content="{Binding CategoryOfDiscount.Name}"></Label>
         <Label Grid.Row="4" Grid.Column="2" Content="Kto dodał promocje:"></Label>
-        <Label Grid.Row="4" Grid.Column="3" Content="Nazwa użytkownika"></Label>
+        <Label Grid.Row="4" Grid.Column="3" Content="{Binding OwnerOfDiscount.Nickname}"></Label>
 
-        <TabControl Grid.Row="5" Grid.ColumnSpan="4">
+        <Label Grid.Row="5" Content="Sklep:"></Label>
+        <Label Grid.Row="5" Grid.Column="1" Content="{Binding ShopOfDiscount.Name}"></Label>
+        
+        <TabControl Grid.Row="6" Grid.ColumnSpan="4">
             <TabItem Header="Opis">
-                <TextBlock Margin="10" Text="Tutaj opis produktu"></TextBlock>
+                <ScrollViewer>
+                    <TextBlock Margin="10" Text="{Binding PresentingDiscount.Description}"></TextBlock>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Komentarze">
-                <Grid Margin="10">
+                <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="0.6*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox></ListBox>
+                    <ListBox ItemsSource="{Binding UserCommentsOfDiscounts}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="{Binding ElementName=CommentText, Path=ActualHeight}" Width="720">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding ElementName=Nickname, Path=Width}"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Nickname}" x:Name="Nickname" FontWeight="Bold"></TextBlock>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Date.Year}"></TextBlock>
+                                        <TextBlock Text="-"></TextBlock>
+                                        <TextBlock Text="{Binding Date.Month}"></TextBlock>
+                                        <TextBlock Text="-"></TextBlock>
+                                        <TextBlock Text="{Binding Date.Day}"></TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding CommentText}" x:Name="CommentText"  Grid.Column="1" Grid.RowSpan="2"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <TextBox Grid.Row="1" Text="Komentarz" Margin="0 2"></TextBox>
-                    <Button Grid.Row="2" Width="150" Height="35" Content="Dodaj komentarz"></Button>
+                    <Button Grid.Row="2" Width="150" Height="30" Content="Dodaj komentarz"></Button>
                 </Grid>
             </TabItem>
 

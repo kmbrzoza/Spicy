@@ -17,7 +17,7 @@ namespace Spicy.Services
             CurrentUser = null;
             //TODO: get users from DB
             var user1 = new User("test1", "test1") { Id = 1 };
-            var user2 = new User("test2", "test2") { Id = 2 };
+            var user2 = new User("test210987654321", "test2") { Id = 2 };
             Users.Add(user1);
             Users.Add(user2);
         }
