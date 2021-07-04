@@ -35,7 +35,7 @@ namespace Spicy.DAL.Entities
             End_Date = DateTime.Parse(reader["end_Date"].ToString());
         }
         //not nulls
-        public Discount(string name, string description, float currentPrice, float previousPrice, string link, string code, DateTime start, DateTime end)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end)
         {
             Id = null;
             Name = name;
