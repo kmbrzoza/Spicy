@@ -72,7 +72,7 @@ namespace Spicy.Model
             var actualDiscounts = new ObservableCollection<Discount>();
             var dtNow = DateTime.Now;
 
-            foreach(var disc in Discounts)
+            foreach (var disc in Discounts)
             {
                 if (disc.End_Date > dtNow)
                     actualDiscounts.Add(disc);
@@ -142,7 +142,7 @@ namespace Spicy.Model
             return true;
         }
 
-        
+
         public ObservableCollection<Comment> GetCommentsOfDiscount(Discount discount)
         {
             var comments = new ObservableCollection<Comment>();
@@ -184,6 +184,9 @@ namespace Spicy.Model
 
             Categories.Add(new Category("Laptopy"));
             Categories.Add(new Category("Smartfony"));
+
+            Comments.Add(new Comment("fajny") { Date = DateTime.Now, Id_discount = 2, Id_user = 1 });
+            Comments.Add(new Comment("super!\nNaprawde\nPOLECAM!!!") { Date = DateTime.Now, Id_discount = 2, Id_user = 2 });
 
         }
 

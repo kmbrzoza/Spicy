@@ -85,6 +85,28 @@ namespace Spicy.ViewModel
                 return logOut;
             }
         }
+
+        private ICommand goToDiscount = null;
+        public ICommand GoToDiscount
+        {
+            get
+            {
+                if (goToDiscount == null)
+                {
+                    goToDiscount = new RelayCommand(
+                        arg =>
+                        {
+                            Console.WriteLine("test");
+
+                            //if(IndexOfSelectedDiscount > -1)
+                            NavigationVM.CurrentViewModel = new DiscountViewModel(model, ActualDiscounts.ElementAt(IndexOfSelectedDiscount));
+                        },
+                        arg => true
+                        );
+                }
+                return goToDiscount;
+            }
+        }
         #endregion
     }
 }
