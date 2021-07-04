@@ -50,6 +50,7 @@ namespace Spicy.Model
 
         public bool AddDiscount(Discount discount)
         {
+            // TODO: dodac że dana promke dodaje uzytkownik i do jakiego sklepu i kategorii należy
             if (!DiscountExists(discount))
             {
                 // ADD DISCOUNT TO DB
@@ -180,6 +181,10 @@ namespace Spicy.Model
             var shop2 = new Shop("Media Expert") { Id = 2 };
             Shops.Add(shop1);
             Shops.Add(shop2);
+
+            Categories.Add(new Category("Laptopy"));
+            Categories.Add(new Category("Smartfony"));
+
         }
 
     }

@@ -57,7 +57,7 @@ namespace Spicy.ViewModel
                     addDiscount = new RelayCommand(
                         arg =>
                         {
-                            //NavigationVM.CurrentViewModel = new LoginViewModel(); // TESTING
+                            NavigationVM.CurrentViewModel = new AddDiscountViewModel(model);
                         },
                         arg => true
                         );
