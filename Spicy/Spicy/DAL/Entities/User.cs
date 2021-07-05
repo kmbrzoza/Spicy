@@ -18,7 +18,7 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public User(MySqlDataReader reader)
         {
-            Id = uint.Parse(reader["id_u"].ToString());
+            Id = uint.Parse(reader["id_user"].ToString());
             Nickname = reader["nickname"].ToString();
             Password = reader["password"].ToString();
         }

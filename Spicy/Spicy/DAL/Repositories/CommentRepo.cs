@@ -12,17 +12,17 @@ namespace Spicy.DAL.Repositories
     {
         //#region QUERIES
         //private const string GET_COMMENTS_FOR_DISCOUNT = "";
-        //private const string ADD_COMMENT_TO_DISCOUNT = "";
+        private const string ADD_COMMENT_FOR_DISCOUNT = "INSERT INTO `comments`(`comment_text`, `id_user`, 'id_discount', 'date') VALUES ";
         //#endregion
 
         #region METHODS
         //tu będzie sie działy inne rzeczy do tych komentarzy związków itd
-        public List<Comment> GetCommentsForDiscount(Discount discount)
+        public List<Comment> GetComments(Discount discount)
         {
             List<Comment> comments = new List<Comment>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c INNER JOIN user u ON u.id_user = c.id_user WHERE id_discount={discount.Id}", connection);
+                MySqlCommand command = new MySqlCommand($"SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -30,6 +30,21 @@ namespace Spicy.DAL.Repositories
                 connection.Close();
             }
             return comments;
+        }
+
+        public bool AddComment(Comment comment)
+        {
+            bool status = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"{ADD_COMMENT_FOR_DISCOUNT} {comment.ToInsert()}", connection);
+                connection.Open();
+                var id = command.ExecuteNonQuery();
+                status = true;
+                comment.Id_comment = (uint)command.LastInsertedId;
+                connection.Close();
+            }
+            return status;
         }
 
         #endregion
