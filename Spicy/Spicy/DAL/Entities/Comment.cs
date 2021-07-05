@@ -18,13 +18,32 @@ namespace Spicy.DAL.Entities
         #endregion
 
         #region Constructors
+        //DATA POWINNA BYĆ PODANA W ODPOWIEDNIM DLA MYSQL FORMACIE
         public Comment(MySqlDataReader reader)
         {
             Id_comment = uint.Parse(reader["id_comment"].ToString());
             Id_user = uint.Parse(reader["id_user"].ToString());
             Id_discount = uint.Parse(reader["id_discount"].ToString());
-            CommentText = reader["comment"].ToString();
+            CommentText = reader["comment_text"].ToString();
             Date = DateTime.Parse(reader["date"].ToString());
+        }
+
+        public Comment(uint id_comment, uint id_user, uint id_discount, string commenttext, DateTime date)
+        {
+            Id_comment = id_comment;
+            Id_user = id_user;
+            Id_discount = id_discount;
+            CommentText = commenttext;
+            Date = date;
+        }
+
+        public Comment(uint id_user, uint id_discount, string commenttext, DateTime date)
+        {
+            Id_comment = null;
+            Id_user = id_user;
+            Id_discount = id_discount;
+            CommentText = commenttext;
+            Date = date;
         }
 
         public Comment(string commenttext)
@@ -33,6 +52,14 @@ namespace Spicy.DAL.Entities
             Id_user = Id_user;
             Id_discount = Id_discount;
             CommentText = commenttext;
+            Date = Date;
+        }
+        #endregion
+
+        #region Methods
+        public string ToInsert()
+        {
+            return $"('{CommentText}', '{Id_user}', '{Id_discount}', '{Date}')";
         }
         #endregion
     }

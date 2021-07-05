@@ -16,11 +16,32 @@ namespace Spicy.DAL.Entities
         #endregion
 
         #region Constructors
+        public Published(uint id_user, uint id_discount)
+        {
+            Id_published = null;
+            Id_user = id_user;
+            Id_discount = id_discount;
+        }
+
+        public Published(uint id_published, uint id_user, uint id_discount)
+        {
+            Id_published = id_published;
+            Id_user = id_user;
+            Id_discount = id_discount;
+        }
+        #endregion
+
+        #region Methods
         public Published(MySqlDataReader reader)
         {
             Id_published = uint.Parse(reader["id_published"].ToString());
             Id_user = uint.Parse(reader["id_user"].ToString());
             Id_discount = uint.Parse(reader["id_discount"].ToString());
+        }
+
+        public string ToInsert()
+        {
+            return $"('{Id_user}', '{Id_discount}')";
         }
         #endregion
 

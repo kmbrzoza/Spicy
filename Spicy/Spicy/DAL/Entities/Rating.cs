@@ -25,11 +25,19 @@ namespace Spicy.DAL.Entities
             Rate = (Rate)Enum.Parse(typeof(Rate), reader["rate"].ToString());
         }
 
-        public Rating(Rate rate)
+        public Rating(Rate rate, uint id_user, uint id_discount)
         {
             Id_rate = null;
-            Id_user = Id_user;
-            Id_discount = Id_discount;
+            Id_user = id_user;
+            Id_discount = id_discount;
+            Rate = rate;
+        }
+
+        public Rating(uint id_rate, Rate rate, uint id_user, uint id_discount)
+        {
+            Id_rate = id_rate;
+            Id_user = id_user;
+            Id_discount = id_discount;
             Rate = rate;
         }
         #endregion
@@ -48,6 +56,11 @@ namespace Spicy.DAL.Entities
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public string ToInsert()
+        {
+            return $"('{Id_user}', '{Id_discount}', '{Rate}')";
         }
         #endregion
     }

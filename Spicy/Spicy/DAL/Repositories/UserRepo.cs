@@ -13,11 +13,25 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_USERS = "SELECT * FROM user";
-        private const string GET_USERS_WITH_USERNAME = "SELECT * FROM user WHERE name =";
         private const string ADD_USER = "INSERT INTO `user`(`name`, `password`) VALUES ";
         #endregion
 
         #region METHODS
+        public static List<User> GetUsers()
+        {
+            List<User> users = new List<User>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(GET_USERS, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    users.Add(new User(reader));
+                connection.Close();
+            }
+            return users;
+        }
+
         public static bool AddUser(User user)
         {
             bool status = false;
