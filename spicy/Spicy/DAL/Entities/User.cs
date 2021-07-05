@@ -7,33 +7,36 @@ using MySql.Data.MySqlClient;
 
 namespace Spicy.DAL.Entities
 {
-    class Shop
+    class User
     {
         #region Properties
         public uint? Id { get; set; }
-        public string Name { get; set; }
+        public string Nickname { get; set; }
+        public string Password { get; set; }
         #endregion
 
         #region Constructors
-        public Shop(MySqlDataReader reader)
+        public User(MySqlDataReader reader)
         {
-            Id = uint.Parse(reader["id_shop"].ToString());
-            Name = reader["name"].ToString();
+            Id = uint.Parse(reader["id_user"].ToString());
+            Nickname = reader["name"].ToString();
+            Password = reader["password"].ToString();
         }
 
-        public Shop(string name)
+        public User(string nickname, string password)
         {
             Id = null;
-            Name = name;
+            Nickname = nickname;
+            Password = password;
         }
         #endregion
 
         #region Methods
         public override bool Equals(object obj)
         {
-            Shop shop = obj as Shop;
-            if (shop is null) return false;
-            if (Name.ToLower() != shop.Name.ToLower()) return false;
+            User user = obj as User;
+            if (user is null) return false;
+            if (Nickname.ToLower() != user.Nickname.ToLower()) return false;
 
             return true;
         }
@@ -45,10 +48,9 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}')";
+            return $"('{Nickname}', '{Password}')";
         }
 
         #endregion
-        //Sklepy możnaby dodawać
     }
 }

@@ -16,6 +16,20 @@ namespace Spicy.DAL.Entities
         #endregion
 
         #region Constructors
+        public IsIn(uint id_discount, uint id_category)
+        {
+            Id_isin = null;
+            Id_discount = id_discount;
+            Id_category = id_category;
+        }
+
+        public IsIn(uint id_isin, uint id_discount, uint id_category)
+        {
+            Id_isin = id_isin;
+            Id_discount = id_discount;
+            Id_category = id_category;
+        }
+
         public IsIn(MySqlDataReader reader)
         {
             Id_isin = uint.Parse(reader["id_in"].ToString());

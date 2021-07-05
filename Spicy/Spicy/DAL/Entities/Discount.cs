@@ -24,17 +24,19 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public Discount(MySqlDataReader reader)
         {
-            Id = uint.Parse(reader["id_d"].ToString());
+            Id = uint.Parse(reader["id_discount"].ToString());
             Name = reader["name"].ToString();
             Description = reader["description"].ToString();
             CurrentPrice = float.Parse(reader["curr_price"].ToString());
             PreviousPrice = float.Parse(reader["prev_price"].ToString());
             Link = reader["link"].ToString();
-            Code = reader["code"].ToString();
-            Start_Date = DateTime.Parse(reader["start_Date"].ToString());
-            End_Date = DateTime.Parse(reader["end_Date"].ToString());
+            Code = reader["discount_code"].ToString();
+            Start_Date = DateTime.Parse(reader["start_date"].ToString());
+            End_Date = DateTime.Parse(reader["end_date"].ToString());
         }
+
         //not nulls
+
         public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end)
         {
             Id = null;
@@ -47,7 +49,9 @@ namespace Spicy.DAL.Entities
             Start_Date = start;
             End_Date = end;
         }
+
         //only code null
+
         public Discount(string name, string description, float currentPrice, float previousPrice, string link, DateTime start, DateTime end)
         {
             Id = null;
@@ -61,31 +65,33 @@ namespace Spicy.DAL.Entities
             End_Date = end;
         }
         //nullables are null
-        public Discount(string name, string description, string link, DateTime start, DateTime end)
-        {
-            Id = null;
-            Name = name;
-            Description = description;
-            CurrentPrice = null;
-            PreviousPrice = null;
-            Link = link;
-            Code = null;
-            Start_Date = start;
-            End_Date = end;
-        }
+        //public Discount(string name, string description, string link, DateTime start, DateTime end)
+        //{
+        //    Id = null;
+        //    Name = name;
+        //    Description = description;
+        //    CurrentPrice = null;
+        //    PreviousPrice = null;
+        //    Link = link;
+        //    Code = null;
+        //    Start_Date = start;
+        //    End_Date = end;
+        //}
+
         //prices are null
-        public Discount(string name, string description, string link, string code, DateTime start, DateTime end)
-        {
-            Id = null;
-            Name = name;
-            Description = description;
-            CurrentPrice = null;
-            PreviousPrice = null;
-            Link = link;
-            Code = code;
-            Start_Date = start;
-            End_Date = end;
-        }
+
+        //public Discount(string name, string description, string link, string code, DateTime start, DateTime end)
+        //{
+        //    Id = null;
+        //    Name = name;
+        //    Description = description;
+        //    CurrentPrice = null;
+        //    PreviousPrice = null;
+        //    Link = link;
+        //    Code = code;
+        //    Start_Date = start;
+        //    End_Date = end;
+        //}
 
         public Discount(Discount discount)
         {

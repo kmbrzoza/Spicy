@@ -23,8 +23,24 @@ namespace Spicy.DAL.Entities
             Id_comment = uint.Parse(reader["id_comment"].ToString());
             Id_user = uint.Parse(reader["id_user"].ToString());
             Id_discount = uint.Parse(reader["id_discount"].ToString());
-            CommentText = reader["comment"].ToString();
+            CommentText = reader["comment_text"].ToString();
             Date = DateTime.Parse(reader["date"].ToString());
+        }
+
+        public Comment(uint id_comment, uint id_user, uint id_discount, string commenttext)
+        {
+            Id_comment = id_comment;
+            Id_user = id_user;
+            Id_discount = id_discount;
+            CommentText = commenttext;
+        }
+
+        public Comment(uint id_user, uint id_discount, string commenttext)
+        {
+            Id_comment = null;
+            Id_user = id_user;
+            Id_discount = id_discount;
+            CommentText = commenttext;
         }
 
         public Comment(string commenttext)
