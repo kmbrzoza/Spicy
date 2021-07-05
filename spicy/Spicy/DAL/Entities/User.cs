@@ -19,7 +19,7 @@ namespace Spicy.DAL.Entities
         public User(MySqlDataReader reader)
         {
             Id = uint.Parse(reader["id_user"].ToString());
-            Nickname = reader["name"].ToString();
+            Nickname = reader["nickname"].ToString();
             Password = reader["password"].ToString();
         }
 

@@ -13,7 +13,6 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_USERS = "SELECT * FROM user";
-        private const string GET_USERS_WITH_USERNAME = "SELECT * FROM user WHERE name =";
         private const string ADD_USER = "INSERT INTO `user`(`name`, `password`) VALUES ";
         #endregion
 

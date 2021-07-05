@@ -29,12 +29,19 @@ namespace Spicy.DAL.Entities
             Id_discount = id_discount;
             Id_category = id_category;
         }
+        #endregion
 
+        #region Methods
         public IsIn(MySqlDataReader reader)
         {
             Id_isin = uint.Parse(reader["id_in"].ToString());
             Id_discount = uint.Parse(reader["id_discount"].ToString());
             Id_category = uint.Parse(reader["id_category"].ToString());
+        }
+
+        public string ToInsert()
+        {
+            return $"('{Id_discount}', '{Id_category}')";
         }
         #endregion
     }

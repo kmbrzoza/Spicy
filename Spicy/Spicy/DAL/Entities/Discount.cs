@@ -122,6 +122,10 @@ namespace Spicy.DAL.Entities
             return base.GetHashCode();
         }
 
+        public string ToInsert()
+        {
+            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
+        }
         #endregion
     }
 }
