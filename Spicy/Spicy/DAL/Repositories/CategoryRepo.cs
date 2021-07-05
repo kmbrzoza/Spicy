@@ -12,8 +12,6 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_ALL_CATEGORIES = "SELECT * FROM category";
-        //private const string GET_CATEGORIES_NAMES = "SELECT name FROM category"; // nwm co miałam na myśli xD
-        //private const string ADD_CATEGORY = "INSERT INTO `category`(`name`) VALUES ";//nwm czy to sie przyda ale jes
         #endregion
 
         #region METHODS
@@ -31,8 +29,6 @@ namespace Spicy.DAL.Repositories
             }
             return categories;
         }
-
-
         #endregion
     }
 }

@@ -13,11 +13,25 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_SHOPS = "SELECT * FROM shop";
-        private const string GET_SHOP_NAMES = "SELECT name FROM shop";
         private const string ADD_SHOP = "INSERT INTO `shop`(`name`) VALUES ";
         #endregion
 
         #region METHODS
+        public static List<Shop> GetShops()
+        {
+            List<Shop> shops = new List<Shop>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(GET_SHOPS, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    shops.Add(new Shop(reader));
+                connection.Close();
+            }
+            return shops;
+        }
+
         public static bool AddShop(Shop shop)
         {
             bool status = false;

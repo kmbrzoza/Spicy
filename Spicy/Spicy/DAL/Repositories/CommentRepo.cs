@@ -4,25 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-//Część zapytań może być pusta bo jeszcze ich sb nie opracowałam do końca ;__;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
     class CommentRepo
     {
-        //#region QUERIES
-        //private const string GET_COMMENTS_FOR_DISCOUNT = "";
+        #region QUERIES
+        private const string GET_COMMENTS = "SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c";
         private const string ADD_COMMENT_FOR_DISCOUNT = "INSERT INTO `comments`(`comment_text`, `id_user`, 'id_discount', 'date') VALUES ";
-        //#endregion
+        #endregion
 
         #region METHODS
-        //tu będzie sie działy inne rzeczy do tych komentarzy związków itd
-        public List<Comment> GetComments(Discount discount)
+        public static List<Comment> GetComments(Discount discount)
         {
             List<Comment> comments = new List<Comment>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c", connection);
+                MySqlCommand command = new MySqlCommand(GET_COMMENTS, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -32,7 +30,7 @@ namespace Spicy.DAL.Repositories
             return comments;
         }
 
-        public bool AddComment(Comment comment)
+        public static bool AddComment(Comment comment)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)

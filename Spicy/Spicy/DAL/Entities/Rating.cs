@@ -57,6 +57,11 @@ namespace Spicy.DAL.Entities
         {
             return base.GetHashCode();
         }
+
+        public string ToInsert()
+        {
+            return $"('{Id_user}', '{Id_discount}', '{Rate}')";
+        }
         #endregion
     }
     enum Rate { negative, positive }

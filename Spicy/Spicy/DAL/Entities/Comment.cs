@@ -18,6 +18,7 @@ namespace Spicy.DAL.Entities
         #endregion
 
         #region Constructors
+        //DATA POWINNA BYĆ PODANA W ODPOWIEDNIM DLA MYSQL FORMACIE
         public Comment(MySqlDataReader reader)
         {
             Id_comment = uint.Parse(reader["id_comment"].ToString());
@@ -53,7 +54,9 @@ namespace Spicy.DAL.Entities
             CommentText = commenttext;
             Date = Date;
         }
+        #endregion
 
+        #region Methods
         public string ToInsert()
         {
             return $"('{CommentText}', '{Id_user}', '{Id_discount}', '{Date}')";

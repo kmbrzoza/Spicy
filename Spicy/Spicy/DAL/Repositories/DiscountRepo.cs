@@ -18,7 +18,7 @@ namespace Spicy.DAL.Repositories
         #endregion
 
         #region METHODS
-        public List<Discount> GetDiscounts()
+        public static List<Discount> GetDiscounts()
         {
             List<Discount> discounts = new List<Discount>();
             using (var connection = DBConnection.Instance.Connection)

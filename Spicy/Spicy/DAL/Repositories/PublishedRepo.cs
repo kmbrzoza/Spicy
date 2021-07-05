@@ -16,7 +16,7 @@ namespace Spicy.DAL.Repositories
         #endregion
 
         #region METHODS
-        public List<Published> GetPublished()
+        public static List<Published> GetPublished()
         {
             List<Published> published = new List<Published>();
             using (var connection = DBConnection.Instance.Connection)
@@ -31,19 +31,20 @@ namespace Spicy.DAL.Repositories
             return published;
         }
 
-        public bool AddHas(Has has)
+        public static bool AddPublished(Published published)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"{ADD_HAS} {has.ToInsert()}", connection);
+                MySqlCommand command = new MySqlCommand($"{ADD_PUBLISHED} {published.ToInsert()}", connection);
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 status = true;
-                has.Id_has = (uint)command.LastInsertedId;
+                published.Id_published = (uint)command.LastInsertedId;
                 connection.Close();
             }
             return status;
         }
+        #endregion
     }
 }

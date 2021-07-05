@@ -17,7 +17,7 @@ namespace Spicy.DAL.Repositories
         #endregion
 
         #region METHODS
-        public List<Has> GetHas()
+        public static List<Has> GetHas()
         {
             List<Has> has = new List<Has>();
             using (var connection = DBConnection.Instance.Connection)
@@ -32,7 +32,7 @@ namespace Spicy.DAL.Repositories
             return has;
         }
 
-        public bool AddHas(Has has)
+        public static bool AddHas(Has has)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
