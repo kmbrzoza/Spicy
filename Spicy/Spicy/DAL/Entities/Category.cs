@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class Category
     {
         #region Properties
-        public uint? Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         #endregion
 
@@ -23,7 +23,6 @@ namespace Spicy.DAL.Entities
 
         public Category(string name)
         {
-            Id = null;
             Name = name;
         }
         #endregion

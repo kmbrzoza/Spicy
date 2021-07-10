@@ -10,16 +10,15 @@ namespace Spicy.DAL.Entities
     class Has
     {
         #region Properties
-        public uint? Id_has { get; set; }
-        public uint? Id_shop { get; set; }
-        public uint? Id_discount { get; set; }
+        public uint Id_has { get; set; }
+        public uint Id_shop { get; set; }
+        public uint Id_discount { get; set; }
         #endregion
 
         #region Constructors
 
         public Has(uint id_shop, uint id_discount)
         {
-            Id_has = null;
             Id_shop = id_shop;
             Id_discount = id_discount;
         }

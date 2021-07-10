@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class Comment
     {
         #region Properties
-        public uint? Id_comment { get; set; }
+        public uint Id_comment { get; set; }
         public uint Id_user { get; set; }
         public uint Id_discount { get; set; }
         public string CommentText { get; set; }
@@ -39,7 +39,6 @@ namespace Spicy.DAL.Entities
 
         public Comment(uint id_user, uint id_discount, string commenttext, DateTime date)
         {
-            Id_comment = null;
             Id_user = id_user;
             Id_discount = id_discount;
             CommentText = commenttext;
@@ -48,7 +47,6 @@ namespace Spicy.DAL.Entities
 
         public Comment(string commenttext)
         {
-            Id_comment = null;
             Id_user = Id_user;
             Id_discount = Id_discount;
             CommentText = commenttext;

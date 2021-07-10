@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
 	class Discount
 	{
         #region Properties
-        public uint? Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public float? CurrentPrice { get; set;}
@@ -39,7 +39,6 @@ namespace Spicy.DAL.Entities
 
         public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end)
         {
-            Id = null;
             Name = name;
             Description = description;
             CurrentPrice = currentPrice;
@@ -54,7 +53,6 @@ namespace Spicy.DAL.Entities
 
         public Discount(string name, string description, float currentPrice, float previousPrice, string link, DateTime start, DateTime end)
         {
-            Id = null;
             Name = name;
             Description = description;
             CurrentPrice = currentPrice;

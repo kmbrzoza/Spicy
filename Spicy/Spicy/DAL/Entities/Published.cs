@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class Published
     {
         #region Properties
-        public uint? Id_published { get; set; }
+        public uint Id_published { get; set; }
         public uint Id_user { get; set; }
         public uint Id_discount { get; set; }
         #endregion
@@ -18,7 +18,6 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public Published(uint id_user, uint id_discount)
         {
-            Id_published = null;
             Id_user = id_user;
             Id_discount = id_discount;
         }
