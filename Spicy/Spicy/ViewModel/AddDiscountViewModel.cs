@@ -16,9 +16,9 @@ namespace Spicy.ViewModel
 
     class AddDiscountViewModel : BaseViewModel
     {
-        private Model model;
-        private Navigation NavigationVM;
-        private AccountManager accountManager;
+        private readonly Model model;
+        private readonly Navigation NavigationVM;
+        private readonly AccountManager accountManager;
 
         public AddDiscountViewModel(Model model)
         {
@@ -143,7 +143,7 @@ namespace Spicy.ViewModel
                                 prevPrice = pp;
 
                             model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To),
-                                Categories.ElementAt(IndexOfSelectedCategory), Shops.ElementAt(IndexOfSelectedShop));
+                                Categories.ElementAt(IndexOfSelectedCategory), Shops.ElementAt(IndexOfSelectedShop), accountManager.CurrentUser);
                             NavigationVM.CurrentViewModel = new HomeViewModel(model);
                         },
                         arg => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Link) && !string.IsNullOrEmpty(Description)

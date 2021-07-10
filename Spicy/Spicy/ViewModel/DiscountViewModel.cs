@@ -15,9 +15,9 @@ namespace Spicy.ViewModel
 
     class DiscountViewModel : BaseViewModel
     {
-        private Model model;
-        private Navigation NavigationVM;
-        private AccountManager accountManager;
+        private readonly Model model;
+        private readonly Navigation NavigationVM;
+        private readonly AccountManager accountManager;
 
         public DiscountViewModel(Model model, Discount discount)
         {
@@ -107,7 +107,7 @@ namespace Spicy.ViewModel
                             UserCommentsOfDiscounts.Add(new UserComment(accountManager.GetUserById(comment.Id_user).Nickname, comment.CommentText, comment.Date));
                             NewCommentText = "";
                         },
-                        arg => NewCommentText.Length > 0
+                        arg => !string.IsNullOrEmpty(NewCommentText)
                         );
                 }
                 return addComment;
