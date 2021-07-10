@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class IsIn
     {
         #region Properties
-        public uint? Id_isin { get; set; }
+        public uint Id_isin { get; set; }
         public uint Id_discount { get; set; }
         public uint Id_category { get; set; }
         #endregion
@@ -18,7 +18,6 @@ namespace Spicy.DAL.Entities
         #region Constructors
         public IsIn(uint id_discount, uint id_category)
         {
-            Id_isin = null;
             Id_discount = id_discount;
             Id_category = id_category;
         }

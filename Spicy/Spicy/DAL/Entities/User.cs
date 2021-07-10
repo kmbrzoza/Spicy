@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class User
     {
         #region Properties
-        public uint? Id { get; set; }
+        public uint Id { get; set; }
         public string Nickname { get; set; }
         public string Password { get; set; }
         #endregion
@@ -25,7 +25,6 @@ namespace Spicy.DAL.Entities
 
         public User(string nickname, string password)
         {
-            Id = null;
             Nickname = nickname;
             Password = password;
         }

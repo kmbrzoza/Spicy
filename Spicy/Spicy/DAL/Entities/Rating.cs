@@ -10,7 +10,7 @@ namespace Spicy.DAL.Entities
     class Rating
 	{
         #region Properties
-        public uint? Id_rate { get; set; }
+        public uint Id_rate { get; set; }
         public uint Id_user { get; set; }
         public uint Id_discount { get; set; }
         public Rate Rate;
@@ -27,7 +27,6 @@ namespace Spicy.DAL.Entities
 
         public Rating(Rate rate, uint id_user, uint id_discount)
         {
-            Id_rate = null;
             Id_user = id_user;
             Id_discount = id_discount;
             Rate = rate;
