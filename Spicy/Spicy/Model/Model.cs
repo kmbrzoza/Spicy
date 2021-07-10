@@ -16,8 +16,8 @@ namespace Spicy.Model
         public ObservableCollection<Comment> Comments { get; set; } = new ObservableCollection<Comment>();
         public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
         public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
-        public ObservableCollection<IsIn> DiscountIsInCategory { get; set; } = new ObservableCollection<IsIn>();
-        public ObservableCollection<Published> UserPublishedDiscounts { get; set; } = new ObservableCollection<Published>();
+        //public ObservableCollection<IsIn> DiscountIsInCategory { get; set; } = new ObservableCollection<IsIn>();
+        //public ObservableCollection<Published> UserPublishedDiscounts { get; set; } = new ObservableCollection<Published>();
         public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
 
@@ -35,14 +35,14 @@ namespace Spicy.Model
         }
 
         // GetOwnerOFDiscount
-        public User GetOwnerOfDiscount(Discount discount)
-        {
-            User owner = null;
-            var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_discount == discount.Id);
-            if (published != null)
-                owner = accManager.GetUserById(published.Id_user);
-            return owner;
-        }
+        //public User GetOwnerOfDiscount(Discount discount)
+        //{
+        //    User owner = null;
+        //    var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_discount == discount.Id);
+        //    if (published != null)
+        //        owner = accManager.GetUserById(published.Id_user);
+        //    return owner;
+        //}
 
         #endregion
 
@@ -173,14 +173,14 @@ namespace Spicy.Model
 
         #region Categories
 
-        public Category GetCategoryOfDiscount(Discount discount)
-        {
-            Category cat = null;
-            var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_discount == discount.Id);
-            if (isin != null)
-                cat = Categories.FirstOrDefault(c => c.Id == isin.Id_category);
-            return cat;
-        }
+        //public Category GetCategoryOfDiscount(Discount discount)
+        //{
+        //    Category cat = null;
+        //    var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_discount == discount.Id);
+        //    if (isin != null)
+        //        cat = Categories.FirstOrDefault(c => c.Id == isin.Id_category);
+        //    return cat;
+        //}
 
         #endregion
 
