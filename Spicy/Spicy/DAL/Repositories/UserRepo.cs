@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class UserRepo
+    static class UserRepo
     {
         #region QUERIES
         private const string GET_USERS = "SELECT * FROM user";
@@ -32,7 +32,7 @@ namespace Spicy.DAL.Repositories
             return users;
         }
 
-        public static bool AddUser(ref User user)
+        public static bool AddUser(User user)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)

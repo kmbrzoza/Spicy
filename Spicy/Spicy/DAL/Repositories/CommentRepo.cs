@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class CommentRepo
+    static class CommentRepo
     {
         #region QUERIES
         private const string GET_COMMENTS = "SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c";
@@ -15,7 +15,7 @@ namespace Spicy.DAL.Repositories
         #endregion
 
         #region METHODS
-        public static List<Comment> GetComments(Discount discount)
+        public static List<Comment> GetComments()
         {
             List<Comment> comments = new List<Comment>();
             using (var connection = DBConnection.Instance.Connection)

@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class CategoryRepo
+    static class CategoryRepo
     {
         #region QUERIES
         private const string GET_ALL_CATEGORIES = "SELECT * FROM category";

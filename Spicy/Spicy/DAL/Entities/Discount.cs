@@ -36,14 +36,14 @@ namespace Spicy.DAL.Entities
             Code = reader["discount_code"].ToString();
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
             End_Date = DateTime.Parse(reader["end_date"].ToString());
-            Image = (Byte[])(reader["image"]);
+            Image = (byte[])(reader["image"]);
             Id_category = uint.Parse(reader["id_category"].ToString()); 
             Id_user = uint.Parse(reader["id_user"].ToString());     
         }
 
         //not nulls
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image/*, uint id_category, uint id_user*/)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user)
         {
             Name = name;
             Description = description;
@@ -54,22 +54,21 @@ namespace Spicy.DAL.Entities
             Start_Date = start;
             End_Date = end;
             Image = image;
-            //Id_category = id_category;
-            //Id_user = id_user;
+            Id_category = id_category;
+            Id_user = id_user;
         }
 
-        //only code null
-
-        public Discount(string name, string description, float currentPrice, float previousPrice, string link, DateTime start, DateTime end)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
         {
             Name = name;
             Description = description;
             CurrentPrice = currentPrice;
             PreviousPrice = previousPrice;
             Link = link;
-            Code = null;
+            Code = code;
             Start_Date = start;
             End_Date = end;
+            Image = image;
         }
         //nullables are null
         //public Discount(string name, string description, string link, DateTime start, DateTime end)
