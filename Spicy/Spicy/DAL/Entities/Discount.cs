@@ -20,6 +20,8 @@ namespace Spicy.DAL.Entities
         public DateTime Start_Date { get; set; }
         public DateTime End_Date { get; set; }
         public byte[] Image { get; set; }
+        public uint Id_category { get; set; }
+        public uint Id_user { get; set; }
         #endregion
 
         #region Constructors
@@ -34,11 +36,14 @@ namespace Spicy.DAL.Entities
             Code = reader["discount_code"].ToString();
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
             End_Date = DateTime.Parse(reader["end_date"].ToString());
+            Image = (Byte[])(reader["image"]);
+            Id_category = uint.Parse(reader["id_category"].ToString()); 
+            Id_user = uint.Parse(reader["id_user"].ToString());     
         }
 
         //not nulls
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image/*, uint id_category, uint id_user*/)
         {
             Name = name;
             Description = description;
@@ -49,6 +54,8 @@ namespace Spicy.DAL.Entities
             Start_Date = start;
             End_Date = end;
             Image = image;
+            //Id_category = id_category;
+            //Id_user = id_user;
         }
 
         //only code null
@@ -104,6 +111,9 @@ namespace Spicy.DAL.Entities
             Code = discount.Code;
             Start_Date = discount.Start_Date;
             End_Date = discount.End_Date;
+            Image = discount.Image;
+            Id_category = discount.Id_category;
+            Id_user = discount.Id_user;
         }
         #endregion
 
@@ -124,7 +134,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
+            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
         }
         #endregion
     }

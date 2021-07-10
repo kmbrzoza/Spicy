@@ -25,9 +25,9 @@ namespace Spicy.ViewModel
             NavigationVM = Navigation.Instance;
             accountManager = AccountManager.Instance;
             PresentingDiscount = discount;
-            CategoryOfDiscount = model.GetCategoryOfDiscount(PresentingDiscount);
+            //CategoryOfDiscount = model.GetCategoryOfDiscount(PresentingDiscount);
             ShopOfDiscount = model.GetShopOfDiscount(PresentingDiscount);
-            OwnerOfDiscount = model.GetOwnerOfDiscount(PresentingDiscount);
+            //OwnerOfDiscount = model.GetOwnerOfDiscount(PresentingDiscount);
             LoadRatesOfDiscount();
             UserRate = model.GetUserRateOfDiscount(accountManager.CurrentUser, PresentingDiscount);
 
