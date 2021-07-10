@@ -14,16 +14,19 @@ namespace Spicy.Services
         public static AccountManager Instance => instance ?? (instance = new AccountManager());
         private AccountManager()
         {
-            CurrentUser = null;
+            currentUser = null;
             //TODO: get users from DB
             var user1 = new User("test1", "test1") { Id = 1 };
             var user2 = new User("test210987654321", "test2") { Id = 2 };
+            var user3 = new User("test2", "test2") { Id = 3 };
             Users.Add(user1);
             Users.Add(user2);
+            Users.Add(user3);
         }
 
         private ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
-        public User CurrentUser { get; private set; }
+        private User currentUser { get; set; }
+        public User CurrentUser { get => new User() { Id = currentUser.Id, Nickname = currentUser.Nickname }; }
 
         private bool UserExists(User user) => Users.Contains(user);
 
@@ -46,23 +49,25 @@ namespace Spicy.Services
 
             if (existingUser != null)
             {
-                existingUser.Password = null;
-                CurrentUser = existingUser;
+                currentUser = existingUser;
                 return true;
             }
             return false;
         }
         public bool LogOut()
         {
-            CurrentUser = null;
+            currentUser = null;
             return true;
         }
 
         public User GetUserById(uint id)
         {
+            User userToReturn = null;
             var user = Users.FirstOrDefault(u => u.Id == id);
-            if (user != null) user.Password = null;
-            return user;
+            if (user != null)
+                userToReturn = new User() { Id = user.Id, Nickname = user.Nickname };
+            
+            return userToReturn;
         }
     }
 }

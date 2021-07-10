@@ -28,6 +28,10 @@ namespace Spicy.DAL.Entities
             Nickname = nickname;
             Password = password;
         }
+        public User()
+        {
+
+        }
         #endregion
 
         #region Methods

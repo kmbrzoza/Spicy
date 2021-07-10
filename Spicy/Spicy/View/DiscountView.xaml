@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"></RowDefinition>
             <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition></RowDefinition>
             <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
@@ -30,9 +30,9 @@
 
         <Image Grid.Row="1" Grid.RowSpan="2"></Image>
 
-        <Button Grid.Column="1" Content="-" Width="50" Height="30"></Button>
-        <Label Grid.Column="2" Content="+128" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <Button Grid.Column="3" Content="+" Width="50" Height="30"></Button>
+        <Button Grid.Column="1" Content="-" Width="50" Height="30" Command="{Binding AddNegativeRate}"></Button>
+        <Label Grid.Column="2" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Button Grid.Column="3" Content="+" Width="50" Height="30" Command="{Binding AddPositiveRate}"></Button>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
                VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
@@ -67,7 +67,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="0.6*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox ItemsSource="{Binding UserCommentsOfDiscounts}">
+                    <ListBox ItemsSource="{Binding UserCommentsOfDiscounts, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="{Binding ElementName=CommentText, Path=ActualHeight}" Width="720">
@@ -87,13 +87,15 @@
                                         <TextBlock Text="-"></TextBlock>
                                         <TextBlock Text="{Binding Date.Day}"></TextBlock>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding CommentText}" x:Name="CommentText"  Grid.Column="1" Grid.RowSpan="2"></TextBlock>
+                                    <TextBlock Text="{Binding CommentText}" x:Name="CommentText" Margin="10 0 0 0" Grid.Column="1" Grid.RowSpan="2"></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <TextBox Grid.Row="1" Text="Komentarz" Margin="0 2"></TextBox>
-                    <Button Grid.Row="2" Width="150" Height="30" Content="Dodaj komentarz"></Button>
+                    <TextBox Grid.Row="1" Text="{Binding NewCommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0 2"></TextBox>
+                    <Button Grid.Row="2" Width="150" Height="30" Content="Dodaj komentarz"
+                            Command="{Binding AddComment}"></Button>
                 </Grid>
             </TabItem>
 
