@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.75*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
@@ -26,13 +26,13 @@
             <RowDefinition Height="5.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Content="&lt;--" Width="50" Height="30" Command="{Binding Back}"></Button>
+        <Button Content="&lt;--" Width="40" Height="25" Command="{Binding Back}"></Button>
 
-        <Image Grid.Row="1" Grid.RowSpan="2"></Image>
+        <Image Grid.Row="1" Grid.RowSpan="2" Source="{Binding PresentingDiscount.Image}"></Image>
 
-        <Button Grid.Column="1" Content="-" Width="50" Height="30" Command="{Binding AddNegativeRate}"></Button>
+        <Button Grid.Column="1" Content="-" Width="40" Height="25" Command="{Binding AddNegativeRate}"></Button>
         <Label Grid.Column="2" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <Button Grid.Column="3" Content="+" Width="50" Height="30" Command="{Binding AddPositiveRate}"></Button>
+        <Button Grid.Column="3" Content="+" Width="40" Height="25" Command="{Binding AddPositiveRate}"></Button>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
                VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
@@ -42,9 +42,21 @@
         <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center"></TextBlock>
 
         <Label Grid.Row="3" Content="Od kiedy:"></Label>
-        <Label Grid.Row="3" Grid.Column="1" Content="{Binding PresentingDiscount.Start_Date}"></Label>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Year}"></TextBlock>
+            <TextBlock Text="-"></TextBlock>
+            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Month}"></TextBlock>
+            <TextBlock Text="-"></TextBlock>
+            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Day}"></TextBlock>
+        </StackPanel>
         <Label Grid.Row="3" Grid.Column="2" Content="Do kiedy:"></Label>
-        <Label Grid.Row="3" Grid.Column="3" Content="{Binding PresentingDiscount.End_Date}"></Label>
+        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="{Binding PresentingDiscount.End_Date.Year}"></TextBlock>
+            <TextBlock Text="-"></TextBlock>
+            <TextBlock Text="{Binding PresentingDiscount.End_Date.Month}"></TextBlock>
+            <TextBlock Text="-"></TextBlock>
+            <TextBlock Text="{Binding PresentingDiscount.End_Date.Day}"></TextBlock>
+        </StackPanel>
 
         <Label Grid.Row="4" Content="Kategoria:"></Label>
         <Label Grid.Row="4" Grid.Column="1" Content="{Binding CategoryOfDiscount.Name}"></Label>
