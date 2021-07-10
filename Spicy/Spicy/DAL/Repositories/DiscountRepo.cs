@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class DiscountRepo
+    static class DiscountRepo
     {
         #region QUERIES
         private const string GET_ALL_DISCOUNTS = @"SELECT * from discount";
@@ -32,7 +32,7 @@ namespace Spicy.DAL.Repositories
             return discounts;
         }
 
-        public bool AddDiscount(ref Discount discount)
+        public static bool AddDiscount(Discount discount)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)

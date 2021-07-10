@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class ShopRepo
+    static class ShopRepo
     {
         #region QUERIES
         private const string GET_SHOPS = "SELECT * FROM shop";
@@ -32,7 +32,7 @@ namespace Spicy.DAL.Repositories
             return shops;
         }
 
-        public static bool AddShop(ref Shop shop)
+        public static bool AddShop(Shop shop)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)

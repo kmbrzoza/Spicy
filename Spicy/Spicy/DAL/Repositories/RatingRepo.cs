@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 namespace Spicy.DAL.Repositories
 {
     using Entities;
-    class RatingRepo
+    static class RatingRepo
     {
         #region QUERIES
         private const string GET_RATING = @"SELECT * from rating";

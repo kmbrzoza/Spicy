@@ -9,7 +9,7 @@ namespace Spicy.DAL.Repositories
 {
     using Entities;
 
-    class HasRepo
+    static class HasRepo
     {
         #region QUERIES
         private const string GET_HAS = @"SELECT * from has";

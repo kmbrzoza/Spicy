@@ -8,6 +8,7 @@ namespace Spicy.Model
 {
     using DAL.Entities;
     using Spicy.Services;
+    using DAL.Repositories;
     using System.Collections.ObjectModel;
     class Model
     {
@@ -16,8 +17,6 @@ namespace Spicy.Model
         public ObservableCollection<Comment> Comments { get; set; } = new ObservableCollection<Comment>();
         public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
         public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
-        //public ObservableCollection<IsIn> DiscountIsInCategory { get; set; } = new ObservableCollection<IsIn>();
-        //public ObservableCollection<Published> UserPublishedDiscounts { get; set; } = new ObservableCollection<Published>();
         public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
 
@@ -25,6 +24,30 @@ namespace Spicy.Model
         public Model()
         {
             // get data from repository
+            //var categories = CategoryRepo.GetCategories();
+            //foreach (var category in categories)
+            //    Categories.Add(category);
+
+            //var comments = CommentRepo.GetComments();
+            //foreach (var comment in comments)
+            //    Comments.Add(comment);
+
+            //var discounts = DiscountRepo.GetDiscounts();
+            //foreach (var discount in discounts)
+            //    Discounts.Add(discount);
+
+            //var hases = HasRepo.GetHas();
+            //foreach (var has in hases)
+            //    ShopHasDiscount.Add(has);
+
+            //var ratings = RatingRepo.GetRating();
+            //foreach (var rating in ratings)
+            //    Ratings.Add(rating);
+
+            //var shops = ShopRepo.GetShops();
+            //foreach (var shop in shops)
+            //    Shops.Add(shop);
+
             ExampleData();
         }
 
@@ -34,15 +57,13 @@ namespace Spicy.Model
             return accManager.GetUserById(comment.Id_user);
         }
 
-        // GetOwnerOFDiscount
-        //public User GetOwnerOfDiscount(Discount discount)
-        //{
-        //    User owner = null;
-        //    var published = UserPublishedDiscounts.FirstOrDefault(p => p.Id_discount == discount.Id);
-        //    if (published != null)
-        //        owner = accManager.GetUserById(published.Id_user);
-        //    return owner;
-        //}
+        public User GetOwnerOfDiscount(Discount discount)
+        {
+            User owner = null;
+            if (discount != null)
+                owner = accManager.GetUserById(discount.Id_user);
+            return owner;
+        }
 
         #endregion
 
@@ -53,8 +74,13 @@ namespace Spicy.Model
             // TODO: dodac że dana promke dodaje uzytkownik i do jakiego sklepu i kategorii należy
             if (!DiscountExists(discount))
             {
-                // ADD DISCOUNT TO DB
+                discount.Id_category = category.Id;
+                discount.Id_user = user.Id;
+                //DiscountRepo.AddDiscount(discount);
                 Discounts.Add(discount);
+                //var has = new Has(shop.Id, discount.Id);
+                //HasRepo.AddHas(has);
+                //ShopHasDiscount.Add(has);
                 return true;
             }
             return false;
@@ -90,6 +116,7 @@ namespace Spicy.Model
             if (!ShopExists(shop))
             {
                 // ADD SHOP TO DB
+                //ShopRepo.AddShop(shop);
                 Shops.Add(shop);
                 return true;
             }
@@ -115,7 +142,7 @@ namespace Spicy.Model
         {
             if (!RateExists(rate))
             {
-                // ADD RATE TO DB
+                //RatingRepo.AddRating(rate);
                 Ratings.Add(rate);
                 return true;
             }
@@ -126,6 +153,7 @@ namespace Spicy.Model
         {
             if (RateExists(rate))
             {
+                //TODO: Dodać do bazy
                 Ratings.FirstOrDefault(r => r.Id_discount == rate.Id_discount && r.Id_user == rate.Id_user).Rate = rate.Rate;
                 return true;
             }
@@ -151,7 +179,7 @@ namespace Spicy.Model
 
         public bool AddComment(Comment comment)
         {
-            // ADD COMMENT TO DB
+            //CommentRepo.AddComment(comment);
             Comments.Add(comment);
             return true;
         }
@@ -173,24 +201,15 @@ namespace Spicy.Model
 
         #region Categories
 
-        //public Category GetCategoryOfDiscount(Discount discount)
-        //{
-        //    Category cat = null;
-        //    var isin = DiscountIsInCategory.FirstOrDefault(i => i.Id_discount == discount.Id);
-        //    if (isin != null)
-        //        cat = Categories.FirstOrDefault(c => c.Id == isin.Id_category);
-        //    return cat;
-        //}
+        public Category GetCategoryOfDiscount(Discount discount)
+        {
+            return Categories.FirstOrDefault(i => i.Id == discount.Id_category);
+        }
 
         #endregion
 
         public void ExampleData()
         {
-            var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f, "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null) { Id = 1 };
-            var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null) { Id = 2 };
-            Discounts.Add(discount1);
-            Discounts.Add(discount2);
-
             var shop1 = new Shop("x-kom") { Id = 1 };
             var shop2 = new Shop("Media Expert") { Id = 2 };
             Shops.Add(shop1);
@@ -198,6 +217,18 @@ namespace Spicy.Model
 
             Categories.Add(new Category("Laptopy"));
             Categories.Add(new Category("Smartfony"));
+
+            var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f,
+            "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 1, 1)
+            { Id = 1 };
+            var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2",
+                new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 2, 2)
+            { Id = 2 };
+            Discounts.Add(discount1);
+            Discounts.Add(discount2);
+
+            ShopHasDiscount.Add(new Has(1, 1));
+            ShopHasDiscount.Add(new Has(2, 2));
 
             Comments.Add(new Comment("fajny") { Date = DateTime.Now, Id_discount = 2, Id_user = 1 });
             Comments.Add(new Comment("super!\nNaprawde\nPOLECAM!!!") { Date = DateTime.Now, Id_discount = 2, Id_user = 2 });
