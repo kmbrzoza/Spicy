@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Spicy.View"
-             xmlns:vm="clr-namespace:Spicy.ViewModel"
+             xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:AddShopViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
@@ -17,12 +17,19 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+
         </Grid.RowDefinitions>
 
         <Label Grid.ColumnSpan="2" Content="Podaj nazwe sklepu:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-        <TextBox Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center"></TextBox>
-        <Button Content="Dodaj" Grid.Row="2" Width="120" Height="35"></Button>
-        <Button Content="Anuluj" Grid.Row="2" Grid.Column="1" Width="120" Height="35"></Button>
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                 Text="{Binding ShopName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Grid.Row="2" Grid.ColumnSpan="2" Content="Podaj opis sklepu:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ShopDescription, UpdateSourceTrigger=PropertyChanged}" 
+                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"></TextBox>
+        <Button Content="Dodaj" Grid.Row="4" Width="120" Height="35" Command="{Binding Add}"></Button>
+        <Button Content="Anuluj" Grid.Row="4" Grid.Column="1" Width="120" Height="35" Command="{Binding Cancel}"></Button>
 
     </Grid>
 </UserControl>

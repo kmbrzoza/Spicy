@@ -48,7 +48,7 @@ namespace Spicy.Model
 
         #region Discounts
 
-        public bool AddDiscount(Discount discount, Category category, Shop shop)
+        public bool AddDiscount(Discount discount, Category category, Shop shop, User user)
         {
             // TODO: dodac że dana promke dodaje uzytkownik i do jakiego sklepu i kategorii należy
             if (!DiscountExists(discount))

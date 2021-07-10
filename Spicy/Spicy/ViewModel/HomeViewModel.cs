@@ -107,6 +107,25 @@ namespace Spicy.ViewModel
                 return goToDiscount;
             }
         }
+
+        private ICommand addShop = null;
+        public ICommand AddShop
+        {
+            get
+            {
+                if (addShop == null)
+                {
+                    addShop = new RelayCommand(
+                        arg =>
+                        {
+                            NavigationVM.CurrentViewModel = new AddShopViewModel(model);
+                        },
+                        arg => true
+                        );
+                }
+                return addShop;
+            }
+        }
         #endregion
     }
 }
