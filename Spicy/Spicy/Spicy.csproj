@@ -164,6 +164,7 @@
     <Compile Include="Model\UserComment.cs" />
     <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Services\Consts.cs" />
     <Compile Include="Services\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />
     <Compile Include="ViewModel\AddShopViewModel.cs" />

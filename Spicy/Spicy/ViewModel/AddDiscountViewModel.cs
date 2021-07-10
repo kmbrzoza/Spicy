@@ -16,8 +16,6 @@ namespace Spicy.ViewModel
 
     class AddDiscountViewModel : BaseViewModel
     {
-        private const int MAX_TITLE_LENGTH = 50;
-
         private Model model;
         private Navigation NavigationVM;
         private AccountManager accountManager;
@@ -49,7 +47,7 @@ namespace Spicy.ViewModel
             get { return title; }
             set
             {
-                if (value.Length <= MAX_TITLE_LENGTH)
+                if (value.Length <= Consts.MAX_DISCOUNT_TITLE_LENGTH)
                     title = value;
                 onPropertyChanged(nameof(Title));
 
@@ -144,7 +142,8 @@ namespace Spicy.ViewModel
                                 if (float.TryParse(PreviousPrice.Replace(",", "."), out float pp))
                                 prevPrice = pp;
 
-                            model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To));
+                            model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To),
+                                Categories.ElementAt(IndexOfSelectedCategory), Shops.ElementAt(IndexOfSelectedShop));
                             NavigationVM.CurrentViewModel = new HomeViewModel(model);
                         },
                         arg => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Link) && !string.IsNullOrEmpty(Description)

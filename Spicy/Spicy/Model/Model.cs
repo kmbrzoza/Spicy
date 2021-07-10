@@ -48,7 +48,7 @@ namespace Spicy.Model
 
         #region Discounts
 
-        public bool AddDiscount(Discount discount)
+        public bool AddDiscount(Discount discount, Category category, Shop shop)
         {
             // TODO: dodac że dana promke dodaje uzytkownik i do jakiego sklepu i kategorii należy
             if (!DiscountExists(discount))
@@ -122,14 +122,28 @@ namespace Spicy.Model
             return false;
         }
 
+        public bool UpdateRate(Rating rate)
+        {
+            if (RateExists(rate))
+            {
+                Ratings.FirstOrDefault(r => r.Id_discount == rate.Id_discount && r.Id_user == rate.Id_user).Rate = rate.Rate;
+                return true;
+            }
+            return false;
+        }
+
         public bool RateExists(Rating rate) => Ratings.Contains(rate);
 
         public Rating GetUserRateOfDiscount(User user, Discount discount)
         {
             return Ratings.FirstOrDefault(r => r.Id_user == user.Id && r.Id_discount == discount.Id);
         }
-
-        // GetOverallRateOfDiscount
+        public long GetOverallRateOfDiscount(Discount discount)
+        {
+            long negativeRates = Ratings.Where(r => r.Rate == Rate.negative && r.Id_discount == discount.Id).Count();
+            long positiveRates = Ratings.Where(r => r.Rate == Rate.positive && r.Id_discount == discount.Id).Count();
+            return (-1 * negativeRates) + positiveRates;
+        }
 
         #endregion
 
