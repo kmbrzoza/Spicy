@@ -39,9 +39,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_HAS} {has.ToInsert()}", connection);
                 connection.Open();
-                var id = command.ExecuteNonQuery();
-                status = true;
-                has.Id_has = (uint)command.LastInsertedId;
+                status = true;    
                 connection.Close();
             }
             return status;

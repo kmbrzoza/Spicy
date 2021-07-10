@@ -13,8 +13,7 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_ALL_DISCOUNTS = @"SELECT * from discount";
-        //TU BĘDZIE JESZCZE LINK DO BAZY ALE TA KOLUMNA NIE ISTNIEJE W BAZIE JESZCZE
-        private const string ADD_DISCOUNT = @"INSERT INTO `discount`(`name`, `description`, `curr_price`, `prev_price`, `discount_code`, `start_date`, `end_date`) VALUES ";
+        private const string ADD_DISCOUNT = @"INSERT INTO `discount`(`name`, `description`, `curr_price`, `prev_price`, `discount_code`, `start_date`, `end_date`, `link`, `image`, `id_category`, `id_user`) VALUES ";
         #endregion
 
         #region METHODS
@@ -33,14 +32,13 @@ namespace Spicy.DAL.Repositories
             return discounts;
         }
 
-        public bool AddDiscount(Discount discount)
+        public bool AddDiscount(ref Discount discount)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} {discount.ToInsert()}", connection);
                 connection.Open();
-                var id = command.ExecuteNonQuery();
                 status = true;
                 discount.Id = (uint)command.LastInsertedId;
                 connection.Close();

@@ -37,9 +37,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_COMMENT_FOR_DISCOUNT} {comment.ToInsert()}", connection);
                 connection.Open();
-                var id = command.ExecuteNonQuery();
                 status = true;
-                comment.Id_comment = (uint)command.LastInsertedId;
                 connection.Close();
             }
             return status;

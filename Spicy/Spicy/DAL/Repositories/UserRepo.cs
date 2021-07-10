@@ -32,14 +32,13 @@ namespace Spicy.DAL.Repositories
             return users;
         }
 
-        public static bool AddUser(User user)
+        public static bool AddUser(ref User user)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_USER} {user.ToInsert()}", connection);
                 connection.Open();
-                var id = command.ExecuteNonQuery();
                 status = true;
                 user.Id = (uint)command.LastInsertedId;
                 connection.Close();

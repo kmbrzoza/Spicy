@@ -32,14 +32,13 @@ namespace Spicy.DAL.Repositories
             return shops;
         }
 
-        public static bool AddShop(Shop shop)
+        public static bool AddShop(ref Shop shop)
         {
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_SHOP} {shop.ToInsert()}", connection);
                 connection.Open();
-                var id = command.ExecuteNonQuery();
                 status = true;
                 shop.Id = (uint)command.LastInsertedId;
                 connection.Close();
