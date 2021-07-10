@@ -13,6 +13,7 @@ namespace Spicy.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using System.Text.RegularExpressions;
+    using System.Windows.Media.Imaging;
 
     class AddDiscountViewModel : BaseViewModel
     {
@@ -39,6 +40,9 @@ namespace Spicy.ViewModel
         private ObservableCollection<Category> categories;
         private DateTime since;
         private DateTime to;
+        private const string imageExtensions = Consts.IMAGE_EXTENSIONS;
+        private string imagePath;
+        private byte[] imageInBytes;
         #endregion
 
         #region PROPS FOR VIEW
@@ -50,7 +54,6 @@ namespace Spicy.ViewModel
                 if (value.Length <= Consts.MAX_DISCOUNT_TITLE_LENGTH)
                     title = value;
                 onPropertyChanged(nameof(Title));
-
             }
         }
         public string Link
@@ -89,7 +92,6 @@ namespace Spicy.ViewModel
             get { return shops; }
             set { shops = value; onPropertyChanged(nameof(Shops)); }
         }
-        //public ObservableCollection<Shop> SelectedShop { get; set; }
         public int IndexOfSelectedShop { get; set; }
         public ObservableCollection<Category> Categories
         {
@@ -119,6 +121,27 @@ namespace Spicy.ViewModel
         }
         public string Code { get; set; }
         public string Description { get; set; }
+        public string ImageExtensions { get => imageExtensions; }
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                if (ImageManager.ImageExist(value))
+                {
+                    imagePath = value;
+                    ImageInBytes = ImageManager.GetBytesFromImagePath(value);
+                }
+                else
+                    imagePath = Consts.IMAGE_NOT_SELECTED;
+                onPropertyChanged(nameof(ImagePath));
+            }
+        }
+        public byte[] ImageInBytes
+        {
+            get { return imageInBytes; }
+            set { imageInBytes = value; onPropertyChanged(nameof(ImageInBytes)); }
+        }
         #endregion
 
         #region COMMANDS
@@ -133,16 +156,16 @@ namespace Spicy.ViewModel
                         arg =>
                         {
                             float? currPrice = null;
-                            if(!string.IsNullOrEmpty(CurrentPrice))
+                            if (!string.IsNullOrEmpty(CurrentPrice))
                                 if (float.TryParse(CurrentPrice.Replace(",", "."), out float cp))
                                     currPrice = cp;
 
                             float? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
                                 if (float.TryParse(PreviousPrice.Replace(",", "."), out float pp))
-                                prevPrice = pp;
+                                    prevPrice = pp;
 
-                            model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To),
+                            model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes),
                                 Categories.ElementAt(IndexOfSelectedCategory), Shops.ElementAt(IndexOfSelectedShop), accountManager.CurrentUser);
                             NavigationVM.CurrentViewModel = new HomeViewModel(model);
                         },
@@ -196,6 +219,7 @@ namespace Spicy.ViewModel
                     PreviousPrice = CurrentPrice;
             }
         }
+
         #endregion
     }
 }

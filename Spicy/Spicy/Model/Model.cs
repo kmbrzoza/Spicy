@@ -186,8 +186,8 @@ namespace Spicy.Model
 
         public void ExampleData()
         {
-            var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f, "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20)) { Id = 1 };
-            var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20)) { Id = 2 };
+            var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f, "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null) { Id = 1 };
+            var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null) { Id = 2 };
             Discounts.Add(discount1);
             Discounts.Add(discount2);
 

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Spicy.View"
              xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:AddDiscountViewModel}"
              mc:Ignorable="d" 
@@ -28,25 +29,32 @@
         </Grid.RowDefinitions>
 
         <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center"></TextBox>
+        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"></TextBox>
 
         <Label Content="Url promocji:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center"></TextBox>
+        <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"></TextBox>
 
-        <Label Content="Aktualna cena:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <StackPanel Grid.Row="2" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
+        <Label Content="Zdjęcie:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <TextBox Text="{Binding ImagePath}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsEnabled="False"></TextBox>
+        <local:FileDialog Grid.Row="2" Grid.Column="2" Width="120" Height="30" 
+                          ButtonText="Dodaj zdjęcie" Extentions="{Binding ImageExtensions, Mode=OneWay}" 
+                          SelectedFile="{Binding ImagePath, Mode=OneWayToSource}"></local:FileDialog>
+        <Image Grid.Column="3" Grid.RowSpan="3" Source="{Binding ImageInBytes, TargetNullValue={x:Null}}"></Image>
+        
+        <Label Content="Aktualna cena:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
             <TextBox Text="{Binding CurrentPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="170"></TextBox>
             <Label Content="zł"></Label>
         </StackPanel>
 
-        <Label Content="Poprzednia cena:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <StackPanel Grid.Row="2" Grid.Column="3"  Orientation="Horizontal" VerticalAlignment="Center">
+        <Label Content="Poprzednia cena:" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <StackPanel Grid.Row="3" Grid.Column="3"  Orientation="Horizontal" VerticalAlignment="Center">
             <TextBox Text="{Binding PreviousPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="170"></TextBox>
             <Label Content="zł"></Label>
         </StackPanel>
 
-        <Label Content="Sklep:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <ComboBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="150"
+        <Label Content="Sklep:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Width="150"
                   ItemsSource="{Binding Shops}" SelectedIndex="{Binding IndexOfSelectedShop}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -54,8 +62,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Label Content="Kategoria:" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <ComboBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Width="150"
+        <Label Content="Kategoria:" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Width="150"
                   ItemsSource="{Binding Categories}" SelectedIndex="{Binding IndexOfSelectedCategory}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -63,11 +71,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-
-        <!-- ADD HERE SENDING FILE -->
-        <Label Content="Zdjęcie:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <Label Content="sciezka pliku" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"></Label>
-        <Button Content="Dodaj zdjęcie" Grid.Row="4" Grid.Column="3" Width="120" Height="30"></Button>
 
         <Label Content="Od kiedy:" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <DatePicker Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center"

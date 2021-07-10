@@ -19,6 +19,7 @@ namespace Spicy.DAL.Entities
         public string Code { get; set; }
         public DateTime Start_Date { get; set; }
         public DateTime End_Date { get; set; }
+        public byte[] Image { get; set; }
         #endregion
 
         #region Constructors
@@ -37,7 +38,7 @@ namespace Spicy.DAL.Entities
 
         //not nulls
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
         {
             Name = name;
             Description = description;
@@ -47,6 +48,7 @@ namespace Spicy.DAL.Entities
             Code = code;
             Start_Date = start;
             End_Date = end;
+            Image = image;
         }
 
         //only code null
