@@ -87,9 +87,9 @@
                  TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"></TextBox>
 
         <Button Content="Dodaj" Grid.Row="8" Grid.Column="1" Width="120" Height="30"
-                Command="{Binding Add}"></Button>
+                Command="{Binding Add}" Style="{StaticResource RoundedButton}"></Button>
         <Button Content="Anuluj" Grid.Row="8" Grid.Column="2" Width="120" Height="30"
-                Command="{Binding Cancel}"></Button>
+                Command="{Binding Cancel}" Style="{StaticResource RoundedButton}"></Button>
 
 
     </Grid>

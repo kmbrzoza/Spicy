@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:Spicy"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Background" Value="#FFF0F0F0"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="14" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFDADADA"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="White"></Setter>
+                    <Setter Property="Foreground" Value="#FF5D5D5D"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>
