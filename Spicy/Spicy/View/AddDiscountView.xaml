@@ -89,7 +89,7 @@
                     SelectedDate="{Binding To, Mode=TwoWay}" Style="{StaticResource NotRoundedDatePicker}"></DatePicker>
 
         <Label Grid.Row="6" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource RoundedTextBox}"></TextBox>
+        <TextBox Text="{Binding Code}" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource RoundedTextBox}"></TextBox>
         
         <Label Grid.Row="6" Content="Opis" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.ColumnSpan="4" 

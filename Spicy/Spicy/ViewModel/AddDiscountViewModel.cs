@@ -31,6 +31,24 @@ namespace Spicy.ViewModel
             Since = DateTime.Now;
         }
 
+        public AddDiscountViewModel(Model model, Discount discount): this(model)
+        {
+            editingMode = true;
+            discountToEdit = discount;
+            Title = discountToEdit.Name;
+            Link = discountToEdit.Link;
+            CurrentPrice = discountToEdit.CurrentPrice.ToString();
+            PreviousPrice = discountToEdit.PreviousPrice.ToString();
+            Since = discountToEdit.Start_Date;
+            To = discountToEdit.End_Date;
+            Code = discountToEdit.Code;
+            Description = discountToEdit.Description;
+            ImageInBytes = discountToEdit.Image;
+
+            IndexOfSelectedShop = Shops.IndexOf(model.GetShopOfDiscount(discountToEdit));
+            IndexOfSelectedCategory = Categories.IndexOf(model.GetCategoryOfDiscount(discountToEdit));
+        }
+
         #region PRIVATE Components
         private string title;
         private string link;
@@ -43,6 +61,9 @@ namespace Spicy.ViewModel
         private const string imageExtensions = Consts.IMAGE_EXTENSIONS;
         private string imagePath;
         private byte[] imageInBytes;
+
+        private bool editingMode = false;
+        private Discount discountToEdit = null;
         #endregion
 
         #region PROPS FOR VIEW
@@ -157,16 +178,26 @@ namespace Spicy.ViewModel
                         {
                             float? currPrice = null;
                             if (!string.IsNullOrEmpty(CurrentPrice))
-                                if (float.TryParse(CurrentPrice.Replace(",", "."), out float cp))
+                                if (float.TryParse(CurrentPrice.Replace(".", ","), out float cp))
                                     currPrice = cp;
 
                             float? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
-                                if (float.TryParse(PreviousPrice.Replace(",", "."), out float pp))
+                                if (float.TryParse(PreviousPrice.Replace(".", ","), out float pp))
                                     prevPrice = pp;
 
-                            model.AddDiscount(new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes),
-                                Categories.ElementAt(IndexOfSelectedCategory), Shops.ElementAt(IndexOfSelectedShop), accountManager.CurrentUser);
+                            var discount = new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes);
+                            var category = Categories.ElementAt(IndexOfSelectedCategory);
+                            var shop = Shops.ElementAt(IndexOfSelectedShop);
+                            if (!editingMode)
+                            {
+                                model.AddDiscount(discount, category, shop, accountManager.CurrentUser);
+                            }
+                            else
+                            {
+                                discount.Id = discountToEdit.Id;
+                                model.UpdateDiscount(discount, category, shop);
+                            }
                             NavigationVM.CurrentViewModel = new HomeViewModel(model);
                         },
                         arg => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Link) && !string.IsNullOrEmpty(Description)

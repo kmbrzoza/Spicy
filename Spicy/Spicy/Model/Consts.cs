@@ -15,5 +15,8 @@ namespace Spicy.Services
         public const int MAX_SHOP_DESCRIPTION = 400;
         public const string IMAGE_EXTENSIONS = "Image Files(*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
         public const string IMAGE_NOT_SELECTED = "Nie wybrano zdjecia";
+        public const string MONEY_UNIT = "zł";
+        public const string DISCOUNT_CODE = "Kod rabatowy:";
+        public const string DISCOUNT_ONLY_TO = "Tylko do:";
     }
 }

@@ -25,9 +25,9 @@ namespace Spicy.ViewModel
             NavigationVM = Navigation.Instance;
             accountManager = AccountManager.Instance;
             PresentingDiscount = discount;
-            //CategoryOfDiscount = model.GetCategoryOfDiscount(PresentingDiscount);
+            CategoryOfDiscount = model.GetCategoryOfDiscount(PresentingDiscount);
             ShopOfDiscount = model.GetShopOfDiscount(PresentingDiscount);
-            //OwnerOfDiscount = model.GetOwnerOfDiscount(PresentingDiscount);
+            OwnerOfDiscount = model.GetOwnerOfDiscount(PresentingDiscount);
             LoadRatesOfDiscount();
             UserRate = model.GetUserRateOfDiscount(accountManager.CurrentUser, PresentingDiscount);
 
@@ -69,6 +69,11 @@ namespace Spicy.ViewModel
                     newCommentText = value;
                 onPropertyChanged(nameof(NewCommentText));
             }
+        }
+
+        public string EditDiscountVisibility
+        {
+            get => OwnerOfDiscount.Id == accountManager.CurrentUser.Id ? "Visible" : "Hidden";
         }
         #endregion
 
@@ -169,6 +174,25 @@ namespace Spicy.ViewModel
                         );
                 }
                 return addNegativeRate;
+            }
+        }
+
+        private ICommand editDiscount = null;
+        public ICommand EditDiscount
+        {
+            get
+            {
+                if (editDiscount == null)
+                {
+                    editDiscount = new RelayCommand(
+                        arg =>
+                        {
+                            NavigationVM.CurrentViewModel = new AddDiscountViewModel(model, PresentingDiscount);
+                        },
+                        arg => OwnerOfDiscount.Id == accountManager.CurrentUser.Id
+                        );
+                }
+                return editDiscount;
             }
         }
         #endregion

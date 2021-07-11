@@ -31,11 +31,21 @@
 
         <Image Grid.Row="1" Grid.RowSpan="2" Source="{Binding PresentingDiscount.Image, TargetNullValue={x:Null}}"></Image>
 
-        <Button Grid.Column="1" Content="-" Width="40" Height="28" Command="{Binding AddNegativeRate}"
+        <Grid Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.65*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="-" Width="40" Height="28" Command="{Binding AddNegativeRate}"
                 Style="{StaticResource RoundedButton}" Background="#FFFF7575"></Button>
-        <Label Grid.Column="2" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <Button Grid.Column="3" Content="+" Width="40" Height="28" Command="{Binding AddPositiveRate}"
+            <Label Grid.Column="1" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <Button Grid.Column="2" Content="+" Width="40" Height="28" Command="{Binding AddPositiveRate}"
                 Style="{StaticResource RoundedButton}" Background="#FF76B476"></Button>
+        </Grid>
+
+        <Button Content="Edytuj" Grid.Column="3" Style="{StaticResource RoundedButton}" Height="28" 
+                Visibility="{Binding EditDiscountVisibility}" Command="{Binding EditDiscount}"></Button>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
                VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>

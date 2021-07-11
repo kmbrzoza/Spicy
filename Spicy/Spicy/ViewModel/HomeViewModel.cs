@@ -24,7 +24,11 @@ namespace Spicy.ViewModel
             NavigationVM = Navigation.Instance;
             accountManager = AccountManager.Instance;
 
-            ActualDiscounts = model.GetActualDiscounts();
+            actualDiscounts = model.GetActualDiscounts();
+            ActualDiscounts = new ObservableCollection<DiscountItem>();
+            foreach (var adiscount in actualDiscounts)
+                ActualDiscounts.Add(new DiscountItem(adiscount.Id, adiscount.Name, adiscount.Image, adiscount.CurrentPrice,
+                    adiscount.PreviousPrice, adiscount.End_Date));
         }
 
         #region PRIVATE Components
@@ -33,12 +37,8 @@ namespace Spicy.ViewModel
         #endregion
 
         #region PROPS FOR VIEW
-        public ObservableCollection<Discount> ActualDiscounts
-        {
-            get { return actualDiscounts; }
-            set { actualDiscounts = value; onPropertyChanged(nameof(ActualDiscounts)); }
-        }
-        public Discount SelectedDiscount { get; set; }
+        public ObservableCollection<DiscountItem> ActualDiscounts { get; set; }
+        public DiscountItem SelectedDiscount { get; set; }
         public int IndexOfSelectedDiscount
         {
             get { return indexOfSelectedDiscount; }
@@ -96,10 +96,10 @@ namespace Spicy.ViewModel
                     goToDiscount = new RelayCommand(
                         arg =>
                         {
-                            Console.WriteLine("test");
-
                             //if(IndexOfSelectedDiscount > -1)
-                            NavigationVM.CurrentViewModel = new DiscountViewModel(model, ActualDiscounts.ElementAt(IndexOfSelectedDiscount));
+                            var discount = model.GetDiscountById(ActualDiscounts.ElementAt(IndexOfSelectedDiscount).DiscountId);
+                            if (discount != null)
+                                NavigationVM.CurrentViewModel = new DiscountViewModel(model, discount);
                         },
                         arg => true
                         );
