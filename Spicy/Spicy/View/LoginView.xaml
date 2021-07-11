@@ -30,7 +30,8 @@
             <Label Grid.ColumnSpan="2" Content="Zarejestruj się" HorizontalContentAlignment="Center"></Label>
 
             <Label Content="Login:" Grid.Row="1"></Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterLogin, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterLogin, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource NotRoundedTextBox}"></TextBox>
 
             <Label Content="Hasło:" Grid.Row="2"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding RegisterPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
@@ -38,7 +39,7 @@
             <Label Content="Powtórz hasło:" Grid.Row="3"></Label>
             <local:BindablePasswordBox Grid.Row="3" Grid.Column="1" Password="{Binding RegisterPasswordRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
 
-            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zarejestruj" Command="{Binding Register}"
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Zarejestruj" Command="{Binding Register}"
                     Style="{StaticResource RoundedButton}"></Button>
         </Grid>
 
@@ -58,12 +59,13 @@
             <Label Grid.ColumnSpan="2" Content="Zaloguj się" HorizontalContentAlignment="Center"></Label>
 
             <Label Content="Login:" Grid.Row="1"></Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource NotRoundedTextBox}"></TextBox>
 
             <Label Content="Hasło:" Grid.Row="2"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
 
-            <Button Grid.Row="4" Grid.ColumnSpan="2" Width="100" Height="30" Content="Zaloguj" Command="{Binding SignIn}"
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Zaloguj" Command="{Binding SignIn}"
                     Style="{StaticResource RoundedButton}"></Button>
         </Grid>
 

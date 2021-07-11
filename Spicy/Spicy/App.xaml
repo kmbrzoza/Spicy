@@ -31,5 +31,74 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBoxWithoutHeight" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedComboBox" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedDatePicker" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBlockWithoutHeight" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Application.Resources>
 </Application>
