@@ -4,6 +4,155 @@
              xmlns:local="clr-namespace:Spicy"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Background" Value="#FFF0F0F0"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="14" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFDADADA"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="White"></Setter>
+                    <Setter Property="Foreground" Value="#FF5D5D5D"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RoundedRedButton" TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Background" Value="#FFFF7575"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="14" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFF4848"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FFFF4848"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RoundedGreenButton" TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Background" Value="#FF86BD86"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="14" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF699967"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FF699967"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBoxWithoutHeight" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedComboBox" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedDatePicker" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="NotRoundedTextBlockWithoutHeight" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Padding" Value="5 0 0 0"></Setter>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Application.Resources>
 </Application>

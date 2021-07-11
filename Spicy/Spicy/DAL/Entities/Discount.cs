@@ -7,13 +7,13 @@ using MySql.Data.MySqlClient;
 
 namespace Spicy.DAL.Entities
 {
-	class Discount
-	{
+    class Discount
+    {
         #region Properties
         public uint Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public float? CurrentPrice { get; set;}
+        public float? CurrentPrice { get; set; }
         public float? PreviousPrice { get; set; }
         public string Link { get; set; }
         public string Code { get; set; }
@@ -37,8 +37,8 @@ namespace Spicy.DAL.Entities
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
             End_Date = DateTime.Parse(reader["end_date"].ToString());
             Image = (byte[])(reader["image"]);
-            Id_category = uint.Parse(reader["id_category"].ToString()); 
-            Id_user = uint.Parse(reader["id_user"].ToString());     
+            Id_category = uint.Parse(reader["id_category"].ToString());
+            Id_user = uint.Parse(reader["id_user"].ToString());
         }
 
         //not nulls
@@ -120,7 +120,7 @@ namespace Spicy.DAL.Entities
         public override bool Equals(object obj)
         {
             Discount dsc = obj as Discount;
-            if ( dsc is null ) return false;
+            if (dsc is null) return false;
             if (Name.ToLower() != dsc.Name.ToLower()) return false;
 
             return true;

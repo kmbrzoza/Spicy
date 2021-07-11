@@ -29,33 +29,41 @@
         </Grid.RowDefinitions>
 
         <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"></TextBox>
+        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" 
+                 Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"
+                 Style="{StaticResource RoundedTextBox}"></TextBox>
 
         <Label Content="Url promocji:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"></TextBox>
+        <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" 
+                 Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"
+                 Style="{StaticResource RoundedTextBox}"></TextBox>
 
         <Label Content="Zdjęcie:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding ImagePath}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsEnabled="False"></TextBox>
-        <local:FileDialog Grid.Row="2" Grid.Column="2" Width="120" Height="30" 
+        <TextBox Text="{Binding ImagePath}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsEnabled="False"
+                 Style="{StaticResource RoundedTextBox}"></TextBox>
+        <local:FileDialog Grid.Row="2" Grid.Column="2" Width="120"
                           ButtonText="Dodaj zdjęcie" Extentions="{Binding ImageExtensions, Mode=OneWay}" 
                           SelectedFile="{Binding ImagePath, Mode=OneWayToSource}"></local:FileDialog>
         <Image Grid.Column="3" Grid.RowSpan="3" Source="{Binding ImageInBytes, TargetNullValue={x:Null}}"></Image>
         
         <Label Content="Aktualna cena:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBox Text="{Binding CurrentPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="170"></TextBox>
+            <TextBox Text="{Binding CurrentPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" 
+                     HorizontalAlignment="Stretch" Width="170" Style="{StaticResource RoundedTextBox}"></TextBox>
             <Label Content="zł"></Label>
         </StackPanel>
 
         <Label Content="Poprzednia cena:" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <StackPanel Grid.Row="3" Grid.Column="3"  Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBox Text="{Binding PreviousPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="170"></TextBox>
+            <TextBox Text="{Binding PreviousPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" 
+                     HorizontalAlignment="Stretch" Width="170" Style="{StaticResource RoundedTextBox}"></TextBox>
             <Label Content="zł"></Label>
         </StackPanel>
 
         <Label Content="Sklep:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <ComboBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Width="150"
-                  ItemsSource="{Binding Shops}" SelectedIndex="{Binding IndexOfSelectedShop}">
+                  ItemsSource="{Binding Shops}" SelectedIndex="{Binding IndexOfSelectedShop}"
+                  Style="{StaticResource NotRoundedComboBox}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"></TextBlock>
@@ -64,7 +72,8 @@
         </ComboBox>
         <Label Content="Kategoria:" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <ComboBox Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Width="150"
-                  ItemsSource="{Binding Categories}" SelectedIndex="{Binding IndexOfSelectedCategory}">
+                  ItemsSource="{Binding Categories}" SelectedIndex="{Binding IndexOfSelectedCategory}"
+                  Style="{StaticResource NotRoundedComboBox}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"></TextBlock>
@@ -74,22 +83,23 @@
 
         <Label Content="Od kiedy:" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <DatePicker Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center"
-                     SelectedDate="{Binding Since}"></DatePicker>
+                     SelectedDate="{Binding Since}" Style="{StaticResource NotRoundedDatePicker}"></DatePicker>
         <Label Content="Do kiedy:" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <DatePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Center"
-                    SelectedDate="{Binding To, Mode=TwoWay}"></DatePicker>
+                    SelectedDate="{Binding To, Mode=TwoWay}" Style="{StaticResource NotRoundedDatePicker}"></DatePicker>
 
         <Label Grid.Row="6" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Grid.Row="6" Grid.Column="3" VerticalAlignment="Center"></TextBox>
+        <TextBox Text="{Binding Code}" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource RoundedTextBox}"></TextBox>
         
         <Label Grid.Row="6" Content="Opis" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.ColumnSpan="4" 
-                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"></TextBox>
+                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"
+                 Style="{StaticResource NotRoundedTextBoxWithoutHeight}"></TextBox>
 
         <Button Content="Dodaj" Grid.Row="8" Grid.Column="1" Width="120" Height="30"
-                Command="{Binding Add}"></Button>
+                Command="{Binding Add}" Style="{StaticResource RoundedButton}"></Button>
         <Button Content="Anuluj" Grid.Row="8" Grid.Column="2" Width="120" Height="30"
-                Command="{Binding Cancel}"></Button>
+                Command="{Binding Cancel}" Style="{StaticResource RoundedButton}"></Button>
 
 
     </Grid>

@@ -76,11 +76,37 @@ namespace Spicy.Model
             {
                 discount.Id_category = category.Id;
                 discount.Id_user = user.Id;
-                //DiscountRepo.AddDiscount(discount);
+                //if(!DiscountRepo.AddDiscount(discount)) return false;
                 Discounts.Add(discount);
                 //var has = new Has(shop.Id, discount.Id);
-                //HasRepo.AddHas(has);
+                //if(!HasRepo.AddHas(has)) return false;
                 //ShopHasDiscount.Add(has);
+                return true;
+            }
+            return false;
+        }
+        public bool UpdateDiscount(Discount discount, Category category, Shop shop)
+        {
+            var oldDiscount = Discounts.FirstOrDefault(d => d.Id == discount.Id);
+            if (oldDiscount != null)
+            {
+                discount.Id_category = category.Id;
+                //zrobic ify ze jak sie nie uda update to return false
+                //if(!DiscountRepo.UpdateDiscount(discount)) return false;
+                oldDiscount.Name = discount.Name;
+                oldDiscount.Id_category = discount.Id_category;
+                oldDiscount.Image = discount.Image;
+                oldDiscount.Link = discount.Link;
+                oldDiscount.PreviousPrice = discount.PreviousPrice;
+                oldDiscount.Start_Date = discount.Start_Date;
+                oldDiscount.End_Date = discount.End_Date;
+                oldDiscount.Description = discount.Description;
+                oldDiscount.CurrentPrice = discount.CurrentPrice;
+                oldDiscount.Code = discount.Code;
+
+                //if(!DiscountHas.UpdateHas(new Has(discount.Id, shop.Id)) return false;
+                //ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id).Id_shop = shop.Id;
+
                 return true;
             }
             return false;
@@ -116,7 +142,7 @@ namespace Spicy.Model
             if (!ShopExists(shop))
             {
                 // ADD SHOP TO DB
-                //ShopRepo.AddShop(shop);
+                //if(!ShopRepo.AddShop(shop)) return false;
                 Shops.Add(shop);
                 return true;
             }
@@ -142,7 +168,7 @@ namespace Spicy.Model
         {
             if (!RateExists(rate))
             {
-                //RatingRepo.AddRating(rate);
+                //if(!RatingRepo.AddRating(rate)) return false;
                 Ratings.Add(rate);
                 return true;
             }
@@ -154,6 +180,7 @@ namespace Spicy.Model
             if (RateExists(rate))
             {
                 //TODO: Dodać do bazy
+                //if(!RatingRepo.UpdateRating(rate)) return false;
                 Ratings.FirstOrDefault(r => r.Id_discount == rate.Id_discount && r.Id_user == rate.Id_user).Rate = rate.Rate;
                 return true;
             }
