@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Spicy.View"
+             xmlns:model="clr-namespace:Spicy.Model"
              xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:HomeViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
     <UserControl.Resources>
+        <model:ListItemConverter x:Key="converter"/>
         <Style x:Key="Date" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"></Setter>
         </Style>
@@ -26,12 +27,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
+        <ListBox x:Name="lb" Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
                  SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay}">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="80" Width="730" Background="Transparent">
+                    <Grid Height="80" Width="{Binding ElementName=lb, Path=ActualWidth, Converter={StaticResource converter}}" Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>

@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Spicy.View"
+             xmlns:model="clr-namespace:Spicy.Model"
              xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:DiscountViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-
+    
+    <UserControl.Resources>
+        <model:ListItemConverter x:Key="converter"/>
+    </UserControl.Resources>
+    
     <Grid Margin="10 5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -94,10 +99,10 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="0.6*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListBox ItemsSource="{Binding UserCommentsOfDiscounts, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox x:Name="lb" ItemsSource="{Binding UserCommentsOfDiscounts, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="{Binding ElementName=CommentText, Path=ActualHeight}" Width="720">
+                                <Grid Width="{Binding ElementName=lb, Path=ActualWidth, Converter={StaticResource converter}}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="{Binding ElementName=Nickname, Path=Width}"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -114,7 +119,8 @@
                                         <TextBlock Text="-"></TextBlock>
                                         <TextBlock Text="{Binding Date.Day}"></TextBlock>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding CommentText}" x:Name="CommentText" Margin="10 0 0 0" Grid.Column="1" Grid.RowSpan="2"></TextBlock>
+                                    <TextBlock Text="{Binding CommentText}" x:Name="CommentText" Margin="10 0 0 0" Grid.Column="1" Grid.RowSpan="2"
+                                               TextWrapping="Wrap"></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

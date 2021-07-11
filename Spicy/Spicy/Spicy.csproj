@@ -168,6 +168,7 @@
     <Compile Include="DAL\Repositories\CommentRepo.cs" />
     <Compile Include="DAL\Repositories\DiscountRepo.cs" />
     <Compile Include="Model\DiscountItem.cs" />
+    <Compile Include="Model\ListItemConverter.cs" />
     <Compile Include="Model\UserComment.cs" />
     <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Model\Model.cs" />
