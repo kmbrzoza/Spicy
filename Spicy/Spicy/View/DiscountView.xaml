@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Button Content="&lt;--" Width="40" Height="28" Command="{Binding Back}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
 
         <Image Grid.Row="1" Grid.RowSpan="2" Source="{Binding PresentingDiscount.Image, TargetNullValue={x:Null}}"></Image>
 
@@ -38,20 +38,20 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Content="-" Width="40" Height="28" Command="{Binding AddNegativeRate}"
-                Style="{StaticResource RoundedRedButton}"></Button>
+                Style="{StaticResource RedRoundedButton}"></Button>
             <Label Grid.Column="1" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
             <Button Grid.Column="2" Content="+" Width="40" Height="28" Command="{Binding AddPositiveRate}"
-                Style="{StaticResource RoundedGreenButton}"></Button>
+                Style="{StaticResource GreenRoundedButton}"></Button>
         </Grid>
 
-        <Button Content="Edytuj" Grid.Column="3" Style="{StaticResource RoundedButton}" Height="28" 
+        <Button Content="Edytuj" Grid.Column="3" Style="{StaticResource NormalRoundedButton}" Height="28" 
                 Visibility="{Binding EditDiscountVisibility}" Command="{Binding EditDiscount}"></Button>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
                VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
 
         <Button Grid.Row="2" Grid.Column="1" Content="Idź do okazji" Width="130" Height="30"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
         <Label Grid.Row="2" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center"></TextBlock>
 
@@ -84,7 +84,7 @@
             <TabItem Header="Opis">
                 <ScrollViewer>
                     <TextBlock Margin="10" Text="{Binding PresentingDiscount.Description}"
-                               Style="{StaticResource NotRoundedTextBlockWithoutHeight}"></TextBlock>
+                               Style="{StaticResource NormalTextBlock}"></TextBlock>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Komentarze">
@@ -120,9 +120,9 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <TextBox Grid.Row="1" Text="{Binding NewCommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0 2" Style="{StaticResource NotRoundedTextBoxWithoutHeight}"></TextBox>
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="0 2" Style="{StaticResource NormalTextBox}"></TextBox>
                     <Button Grid.Row="2" Width="160" Height="30" Content="Dodaj komentarz"
-                            Command="{Binding AddComment}" Style="{StaticResource RoundedButton}"></Button>
+                            Command="{Binding AddComment}" Style="{StaticResource NormalRoundedButton}"></Button>
                 </Grid>
             </TabItem>
 

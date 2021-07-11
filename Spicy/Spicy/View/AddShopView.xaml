@@ -24,15 +24,15 @@
 
         <Label Grid.ColumnSpan="2" Content="Podaj nazwe sklepu:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <TextBox Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                 Text="{Binding ShopName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource RoundedTextBox}"></TextBox>
+                 Text="{Binding ShopName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
         <Label Grid.Row="2" Grid.ColumnSpan="2" Content="Podaj opis sklepu:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <TextBox Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ShopDescription, UpdateSourceTrigger=PropertyChanged}" 
                  TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"
-                 Style="{StaticResource NotRoundedTextBoxWithoutHeight}"></TextBox>
+                 Style="{StaticResource NormalTextBox}"></TextBox>
         <Button Content="Dodaj" Grid.Row="4" Command="{Binding Add}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
         <Button Content="Anuluj" Grid.Row="4" Grid.Column="1" Command="{Binding Cancel}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
 
     </Grid>
 </UserControl>

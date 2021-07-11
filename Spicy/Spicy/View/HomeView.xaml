@@ -64,11 +64,11 @@
         </ListBox>
 
         <Button Grid.Row="1" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
         <Button Grid.Row="1" Grid.Column="1" Width="150" Content="Dodaj Sklep" Command="{Binding AddShop}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
         <Button Grid.Row="1" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
-                Style="{StaticResource RoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}"></Button>
 
     </Grid>
 </UserControl>
