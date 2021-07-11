@@ -25,27 +25,5 @@ namespace Spicy.View
             InitializeComponent();
         }
 
-        //public static readonly RoutedEvent DblClickedEvent =
-        //EventManager.RegisterRoutedEvent("DblClicked",
-        //     RoutingStrategy.Bubble, typeof(RoutedEventHandler),
-        //     typeof(HomeView));
-
-        //public event RoutedEventHandler DblClicked
-        //{
-        //    add { AddHandler(DblClickedEvent, value); }
-        //    remove { RemoveHandler(DblClickedEvent, value); }
-        //}
-
-        //void RaiseDblClicked()
-        //{
-        //    RoutedEventArgs newEventArgs =
-        //            new RoutedEventArgs(HomeView.DblClickedEvent);
-        //    RaiseEvent(newEventArgs);
-        //}
-
-        //private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    RaiseDblClicked();
-        //}
     }
 }

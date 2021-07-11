@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Spicy.View"
              xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:HomeViewModel}"
              mc:Ignorable="d" 
@@ -28,25 +29,9 @@
         <ListBox Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
                  SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay}">
 
-            <!--TODO: Sprobowac ogarnac aby doubleclick na item dzialal prawidlowo (caly item) -->
-
-            <!--<ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"></EventSetter>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="DblClicked">
-                    <i:InvokeCommandAction Command="{Binding GoToDiscount}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
-            <!--<ListBox.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding GoToDiscount}"></MouseBinding>
-            </ListBox.InputBindings>-->
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="80" Width="730">
+                    <Grid Height="80" Width="730" Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>

@@ -100,6 +100,7 @@ namespace Spicy.ViewModel
                             var discount = model.GetDiscountById(ActualDiscounts.ElementAt(IndexOfSelectedDiscount).DiscountId);
                             if (discount != null)
                                 NavigationVM.CurrentViewModel = new DiscountViewModel(model, discount);
+                            Console.WriteLine("test2");
                         },
                         arg => true
                         );

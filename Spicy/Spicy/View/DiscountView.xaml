@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
-    <Grid Margin="10">
+    <Grid Margin="10 5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -17,10 +17,10 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.65*"></RowDefinition>
-            <RowDefinition Height="0.9*"></RowDefinition>
+            <RowDefinition Height="0.7*"></RowDefinition>
             <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="0.65*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
             <RowDefinition Height="0.65*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
@@ -38,10 +38,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Content="-" Width="40" Height="28" Command="{Binding AddNegativeRate}"
-                Style="{StaticResource RoundedButton}" Background="#FFFF7575"></Button>
+                Style="{StaticResource RoundedRedButton}"></Button>
             <Label Grid.Column="1" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
             <Button Grid.Column="2" Content="+" Width="40" Height="28" Command="{Binding AddPositiveRate}"
-                Style="{StaticResource RoundedButton}" Background="#FF76B476"></Button>
+                Style="{StaticResource RoundedGreenButton}"></Button>
         </Grid>
 
         <Button Content="Edytuj" Grid.Column="3" Style="{StaticResource RoundedButton}" Height="28" 
@@ -88,7 +88,7 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Komentarze">
-                <Grid Margin="5">
+                <Grid Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition></RowDefinition>
