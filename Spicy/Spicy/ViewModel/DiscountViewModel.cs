@@ -110,6 +110,7 @@ namespace Spicy.ViewModel
                             Comment comment = new Comment(accountManager.CurrentUser.Id, PresentingDiscount.Id, newCommentText, DateTime.Now);
                             model.AddComment(comment);
                             UserCommentsOfDiscounts.Add(new UserComment(accountManager.GetUserById(comment.Id_user).Nickname, comment.CommentText, comment.Date));
+                            onPropertyChanged(nameof(UserCommentsOfDiscounts));
                             NewCommentText = "";
                         },
                         arg => !string.IsNullOrEmpty(NewCommentText)

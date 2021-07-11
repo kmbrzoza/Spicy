@@ -27,26 +27,61 @@ namespace Spicy.ViewModel
 
         #region PUBLIC PROPERTIES
         //Login
-        public string Login { get; set; }
-        public string Password { get; set; }
+        private string login;
+        public string Login
+        {
+            get { return login; }
+            set
+            {
+                if (value.Length <= Consts.MAX_USER_NICKNAME_LENGTH)
+                    login = value;
+                onPropertyChanged(nameof(Login));
+            }
+        }
+        private string password { get; set; }
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                    password = value;
+                onPropertyChanged(nameof(Password));
+            }
+        }
         //Register
         private string registerLogin;
         public string RegisterLogin
         {
             get { return registerLogin; }
-            set { registerLogin = value; onPropertyChanged(nameof(RegisterLogin)); }
+            set
+            {
+                if (value.Length <= Consts.MAX_USER_NICKNAME_LENGTH)
+                    registerLogin = value;
+                onPropertyChanged(nameof(RegisterLogin));
+            }
         }
         private string registerPassword;
         public string RegisterPassword
         {
             get { return registerPassword; }
-            set { registerPassword = value; onPropertyChanged(nameof(RegisterPassword)); }
+            set
+            {
+                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                    registerPassword = value;
+                onPropertyChanged(nameof(RegisterPassword));
+            }
         }
         private string registerPasswordRepeat;
         public string RegisterPasswordRepeat
         {
             get { return registerPasswordRepeat; }
-            set { registerPasswordRepeat = value; onPropertyChanged(nameof(RegisterPasswordRepeat)); }
+            set
+            {
+                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                    registerPasswordRepeat = value;
+                onPropertyChanged(nameof(RegisterPasswordRepeat));
+            }
         }
 
         #endregion
