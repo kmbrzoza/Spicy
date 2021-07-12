@@ -39,6 +39,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} {discount.ToInsert()}", connection);
                 connection.Open();
+                command.ExecuteNonQuery();
                 status = true;
                 discount.Id = (uint)command.LastInsertedId;
                 connection.Close();

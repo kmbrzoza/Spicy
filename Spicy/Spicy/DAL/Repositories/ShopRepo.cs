@@ -13,7 +13,7 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_SHOPS = "SELECT * FROM shop";
-        private const string ADD_SHOP = "INSERT INTO `shop`(`name`) VALUES ";
+        private const string ADD_SHOP = "INSERT INTO `shop`(`name`, `description`) VALUES ";
         #endregion
 
         #region METHODS
@@ -39,6 +39,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_SHOP} {shop.ToInsert()}", connection);
                 connection.Open();
+                command.ExecuteNonQuery();
                 status = true;
                 shop.Id = (uint)command.LastInsertedId;
                 connection.Close();

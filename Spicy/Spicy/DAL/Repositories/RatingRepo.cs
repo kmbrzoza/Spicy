@@ -38,6 +38,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_RATING} {rating.ToInsert()}", connection);
                 connection.Open();
+                command.ExecuteNonQuery();
                 status = true;
                 connection.Close();
             }
