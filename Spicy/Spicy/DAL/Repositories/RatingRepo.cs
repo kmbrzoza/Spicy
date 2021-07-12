@@ -38,7 +38,22 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_RATING} {rating.ToInsert()}", connection);
                 connection.Open();
+                command.ExecuteNonQuery();
                 status = true;
+                connection.Close();
+            }
+            return status;
+        }
+
+        public static bool UpdateRating(Rating rating, uint id_discount, uint id_user)
+        {
+            bool status = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"UPDATE rating SET rating = '{rating.Rate}' WHERE id_discount = '{id_discount}' and id_user = '{id_user}'", connection);
+                connection.Open();
+                var n = command.ExecuteNonQuery();
+                if (n == 1) status = true;
                 connection.Close();
             }
             return status;

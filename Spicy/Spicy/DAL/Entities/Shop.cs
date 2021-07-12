@@ -12,6 +12,7 @@ namespace Spicy.DAL.Entities
         #region Properties
         public uint Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         #endregion
 
         #region Constructors
@@ -19,11 +20,13 @@ namespace Spicy.DAL.Entities
         {
             Id = uint.Parse(reader["id_shop"].ToString());
             Name = reader["name"].ToString();
+            Description = reader["description"].ToString();
         }
 
-        public Shop(string name)
+        public Shop(string name, string description)
         {
             Name = name;
+            Description = description;
         }
         #endregion
 
@@ -44,7 +47,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}')";
+            return $"('{Name}', '{Description}')";
         }
 
         #endregion

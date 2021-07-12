@@ -107,7 +107,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
+            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
         }
         #endregion
     }

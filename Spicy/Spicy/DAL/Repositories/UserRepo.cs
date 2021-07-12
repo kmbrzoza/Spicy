@@ -13,7 +13,7 @@ namespace Spicy.DAL.Repositories
     {
         #region QUERIES
         private const string GET_USERS = "SELECT * FROM user";
-        private const string ADD_USER = "INSERT INTO `user`(`name`, `password`) VALUES ";
+        private const string ADD_USER = "INSERT INTO `user`(`nickname`, `password`) VALUES ";
         #endregion
 
         #region METHODS
@@ -39,6 +39,7 @@ namespace Spicy.DAL.Repositories
             {
                 MySqlCommand command = new MySqlCommand($"{ADD_USER} {user.ToInsert()}", connection);
                 connection.Open();
+                command.ExecuteNonQuery();
                 status = true;
                 user.Id = (uint)command.LastInsertedId;
                 connection.Close();
