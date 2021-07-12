@@ -16,7 +16,7 @@ namespace Spicy.Model
         public ObservableCollection<Category> Categories { get; set; } = new ObservableCollection<Category>();
         public ObservableCollection<Comment> Comments { get; set; } = new ObservableCollection<Comment>();
         public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
-        public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
+        //public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
         public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
 
@@ -154,9 +154,9 @@ namespace Spicy.Model
         public Shop GetShopOfDiscount(Discount discount)
         {
             Shop shop = null;
-            var has = ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id);
-            if (has != null)
-                shop = Shops.FirstOrDefault(s => s.Id == has.Id_shop);
+            //var has = ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id);
+            //if (has != null)
+                //shop = Shops.FirstOrDefault(s => s.Id == has.Id_shop);
             return shop;
         }
 
@@ -254,8 +254,8 @@ namespace Spicy.Model
             Discounts.Add(discount1);
             Discounts.Add(discount2);
 
-            ShopHasDiscount.Add(new Has(1, 1));
-            ShopHasDiscount.Add(new Has(2, 2));
+            //ShopHasDiscount.Add(new Has(1, 1));
+            //ShopHasDiscount.Add(new Has(2, 2));
 
             Comments.Add(new Comment("fajny") { Date = DateTime.Now, Id_discount = 2, Id_user = 1 });
             Comments.Add(new Comment("super!\nNaprawde\nPOLECAM!!!") { Date = DateTime.Now, Id_discount = 2, Id_user = 2 });
