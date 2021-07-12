@@ -37,13 +37,14 @@ namespace Spicy.DAL.Entities
             Code = reader["discount_code"].ToString();
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
             End_Date = DateTime.Parse(reader["end_date"].ToString());
-            Image = (byte[])(reader["image"]);
+            if (reader["image"] == System.DBNull.Value) Image = null;
+            else Image = (byte[])reader["image"];
             Id_category = uint.Parse(reader["id_category"].ToString());
             Id_user = uint.Parse(reader["id_user"].ToString());
             Id_shop = uint.Parse(reader["id_shop"].ToString());
         }
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user/*, uint id_shop*/)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user, uint id_shop)
         {
             Name = name;
             Description = description;
@@ -55,7 +56,8 @@ namespace Spicy.DAL.Entities
             End_Date = end;
             Image = image;
             Id_category = id_category;
-            //Id_shop = id_shop;
+            Id_user = id_user;
+            Id_shop = id_shop;
         }
 
         public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
