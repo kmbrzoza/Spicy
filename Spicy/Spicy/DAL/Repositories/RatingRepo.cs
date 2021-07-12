@@ -44,6 +44,20 @@ namespace Spicy.DAL.Repositories
             }
             return status;
         }
+
+        public static bool UpdateRating(Rating rating, uint Id)
+        {
+            bool status = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"UPDATE rating SET rating = '{rating.Rate}' WHERE id_discount = '{Id}'", connection);
+                connection.Open();
+                var n = command.ExecuteNonQuery();
+                if (n == 1) status = true;
+                connection.Close();
+            }
+            return status;
+        }
         #endregion
     }
 }
