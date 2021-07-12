@@ -16,39 +16,34 @@ namespace Spicy.Model
         public ObservableCollection<Category> Categories { get; set; } = new ObservableCollection<Category>();
         public ObservableCollection<Comment> Comments { get; set; } = new ObservableCollection<Comment>();
         public ObservableCollection<Discount> Discounts { get; set; } = new ObservableCollection<Discount>();
-        //public ObservableCollection<Has> ShopHasDiscount { get; set; } = new ObservableCollection<Has>();
         public ObservableCollection<Rating> Ratings { get; set; } = new ObservableCollection<Rating>();
         public ObservableCollection<Shop> Shops { get; set; } = new ObservableCollection<Shop>();
 
         private AccountManager accManager = AccountManager.Instance;
         public Model()
         {
-            // get data from repository
-            //var categories = CategoryRepo.GetCategories();
-            //foreach (var category in categories)
-            //    Categories.Add(category);
+           // get data from repository
+           var categories = CategoryRepo.GetCategories();
+            foreach (var category in categories)
+                Categories.Add(category);
 
-            //var comments = CommentRepo.GetComments();
-            //foreach (var comment in comments)
-            //    Comments.Add(comment);
+            var comments = CommentRepo.GetComments();
+            foreach (var comment in comments)
+                Comments.Add(comment);
 
-            //var discounts = DiscountRepo.GetDiscounts();
-            //foreach (var discount in discounts)
-            //    Discounts.Add(discount);
+            var discounts = DiscountRepo.GetDiscounts();
+            foreach (var discount in discounts)
+                Discounts.Add(discount);
 
-            //var hases = HasRepo.GetHas();
-            //foreach (var has in hases)
-            //    ShopHasDiscount.Add(has);
+            var ratings = RatingRepo.GetRating();
+            foreach (var rating in ratings)
+                Ratings.Add(rating);
 
-            //var ratings = RatingRepo.GetRating();
-            //foreach (var rating in ratings)
-            //    Ratings.Add(rating);
+            var shops = ShopRepo.GetShops();
+            foreach (var shop in shops)
+                Shops.Add(shop);
 
-            //var shops = ShopRepo.GetShops();
-            //foreach (var shop in shops)
-            //    Shops.Add(shop);
-
-            ExampleData();
+            //ExampleData();
         }
 
         #region Users
@@ -71,16 +66,14 @@ namespace Spicy.Model
 
         public bool AddDiscount(Discount discount, Category category, Shop shop, User user)
         {
-            // TODO: dodac że dana promke dodaje uzytkownik i do jakiego sklepu i kategorii należy
             if (!DiscountExists(discount))
             {
                 discount.Id_category = category.Id;
                 discount.Id_user = user.Id;
-                //if(!DiscountRepo.AddDiscount(discount)) return false;
+                discount.Id_shop = shop.Id;
+                if(!DiscountRepo.AddDiscount(discount)) return false;
                 Discounts.Add(discount);
-                //var has = new Has(shop.Id, discount.Id);
-                //if(!HasRepo.AddHas(has)) return false;
-                //ShopHasDiscount.Add(has);
+
                 return true;
             }
             return false;
@@ -91,8 +84,7 @@ namespace Spicy.Model
             if (oldDiscount != null)
             {
                 discount.Id_category = category.Id;
-                //zrobic ify ze jak sie nie uda update to return false
-                //if(!DiscountRepo.UpdateDiscount(discount)) return false;
+                if(!DiscountRepo.UpdateDiscount(discount, discount.Id)) return false;
                 oldDiscount.Name = discount.Name;
                 oldDiscount.Id_category = discount.Id_category;
                 oldDiscount.Image = discount.Image;
@@ -103,9 +95,7 @@ namespace Spicy.Model
                 oldDiscount.Description = discount.Description;
                 oldDiscount.CurrentPrice = discount.CurrentPrice;
                 oldDiscount.Code = discount.Code;
-
-                //if(!DiscountHas.UpdateHas(new Has(discount.Id, shop.Id)) return false;
-                //ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id).Id_shop = shop.Id;
+                oldDiscount.Id_shop = shop.Id;
 
                 return true;
             }
@@ -141,8 +131,7 @@ namespace Spicy.Model
         {
             if (!ShopExists(shop))
             {
-                // ADD SHOP TO DB
-                //if(!ShopRepo.AddShop(shop)) return false;
+                if(!ShopRepo.AddShop(shop)) return false;
                 Shops.Add(shop);
                 return true;
             }
@@ -153,11 +142,7 @@ namespace Spicy.Model
 
         public Shop GetShopOfDiscount(Discount discount)
         {
-            Shop shop = null;
-            //var has = ShopHasDiscount.FirstOrDefault(h => h.Id_discount == discount.Id);
-            //if (has != null)
-                //shop = Shops.FirstOrDefault(s => s.Id == has.Id_shop);
-            return shop;
+            return Shops.FirstOrDefault(s => s.Id == discount.Id_shop);
         }
 
         #endregion
@@ -168,7 +153,7 @@ namespace Spicy.Model
         {
             if (!RateExists(rate))
             {
-                //if(!RatingRepo.AddRating(rate)) return false;
+                if(!RatingRepo.AddRating(rate)) return false;
                 Ratings.Add(rate);
                 return true;
             }
@@ -179,7 +164,6 @@ namespace Spicy.Model
         {
             if (RateExists(rate))
             {
-                //TODO: Dodać do bazy
                 //if(!RatingRepo.UpdateRating(rate)) return false;
                 Ratings.FirstOrDefault(r => r.Id_discount == rate.Id_discount && r.Id_user == rate.Id_user).Rate = rate.Rate;
                 return true;
@@ -206,7 +190,7 @@ namespace Spicy.Model
 
         public bool AddComment(Comment comment)
         {
-            //CommentRepo.AddComment(comment);
+            CommentRepo.AddComment(comment);
             Comments.Add(comment);
             return true;
         }
@@ -235,32 +219,29 @@ namespace Spicy.Model
 
         #endregion
 
-        public void ExampleData()
-        {
-            var shop1 = new Shop("x-kom") { Id = 1 };
-            var shop2 = new Shop("Media Expert") { Id = 2 };
-            Shops.Add(shop1);
-            Shops.Add(shop2);
+        //public void ExampleData()
+        //{
+        //    var shop1 = new Shop("x-kom") { Id = 1 };
+        //    var shop2 = new Shop("Media Expert") { Id = 2 };
+        //    Shops.Add(shop1);
+        //    Shops.Add(shop2);
 
-            Categories.Add(new Category("Laptopy"));
-            Categories.Add(new Category("Smartfony"));
+        //    Categories.Add(new Category("Laptopy") { Id = 1 });
+        //    Categories.Add(new Category("Smartfony") { Id = 2 });
 
-            var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f,
-            "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 1, 1)
-            { Id = 1 };
-            var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2",
-                new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 2, 2)
-            { Id = 2 };
-            Discounts.Add(discount1);
-            Discounts.Add(discount2);
+        //    var discount1 = new Discount("laptopaaaalaptopaaaalaptopaaaalaptopaaaalaptopaaaa", "fajny laptop w fajnej cenie", 120.99f, 150.99f,
+        //    "www.google.pl", "HELLO", new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 1, 1, 2)
+        //    { Id = 1 };
+        //    var discount2 = new Discount("sluchawki", "koks sluchawy", 20.99f, 50.99f, "www.google.pl", "HELLO2",
+        //        new DateTime(2021, 06, 14), new DateTime(2021, 07, 20), null, 2, 3, 1)
+        //    { Id = 2 };
+        //    Discounts.Add(discount1);
+        //    Discounts.Add(discount2);
 
-            //ShopHasDiscount.Add(new Has(1, 1));
-            //ShopHasDiscount.Add(new Has(2, 2));
+        //    Comments.Add(new Comment("fajny") { Date = DateTime.Now, Id_discount = 2, Id_user = 1 });
+        //    Comments.Add(new Comment("super!\nNaprawde\nPOLECAM!!!") { Date = DateTime.Now, Id_discount = 2, Id_user = 2 });
 
-            Comments.Add(new Comment("fajny") { Date = DateTime.Now, Id_discount = 2, Id_user = 1 });
-            Comments.Add(new Comment("super!\nNaprawde\nPOLECAM!!!") { Date = DateTime.Now, Id_discount = 2, Id_user = 2 });
-
-        }
+        //}
 
     }
 }

@@ -14,6 +14,7 @@ namespace Spicy.ViewModel
     using System.Windows.Input;
     using System.Text.RegularExpressions;
     using System.Windows.Media.Imaging;
+    using System.Windows;
 
     class AddDiscountViewModel : BaseViewModel
     {
@@ -191,7 +192,11 @@ namespace Spicy.ViewModel
                             var shop = Shops.ElementAt(IndexOfSelectedShop);
                             if (!editingMode)
                             {
-                                model.AddDiscount(discount, category, shop, accountManager.CurrentUser);
+                                if (!model.AddDiscount(discount, category, shop, accountManager.CurrentUser))
+                                {
+                                    MessageBox.Show(Consts.DISCOUNT_EXISTS, Consts.WARNING, MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return;
+                                }
                             }
                             else
                             {

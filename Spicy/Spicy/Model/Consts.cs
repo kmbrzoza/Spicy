@@ -20,5 +20,7 @@ namespace Spicy.Services
         public const string MONEY_UNIT = "zł";
         public const string DISCOUNT_CODE = "Kod rabatowy:";
         public const string DISCOUNT_ONLY_TO = "Tylko do:";
+        public const string DISCOUNT_EXISTS = "Taka promocja już istnieje!";
+        public const string WARNING = "Uwaga!";
     }
 }

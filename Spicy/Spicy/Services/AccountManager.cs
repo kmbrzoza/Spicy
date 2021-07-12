@@ -1,4 +1,5 @@
 ﻿using Spicy.DAL.Entities;
+using Spicy.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,12 +17,9 @@ namespace Spicy.Services
         {
             currentUser = null;
             //TODO: get users from DB
-            var user1 = new User("test1", "test1") { Id = 1 };
-            var user2 = new User("test210987654321", "test2") { Id = 2 };
-            var user3 = new User("test2", "test2") { Id = 3 };
-            Users.Add(user1);
-            Users.Add(user2);
-            Users.Add(user3);
+            var users = UserRepo.GetUsers();
+            foreach (var user in users)
+                Users.Add(user);
         }
 
         private ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();

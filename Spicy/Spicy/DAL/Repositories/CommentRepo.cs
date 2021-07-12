@@ -10,7 +10,7 @@ namespace Spicy.DAL.Repositories
     static class CommentRepo
     {
         #region QUERIES
-        private const string GET_COMMENTS = "SELECT c.id_comment, c.comment_text, c.id_discount, c.id_user, c.date FROM comments c";
+        private const string GET_COMMENTS = "SELECT c.comment_text, c.id_discount, c.id_user, c.date FROM comments c";
         private const string ADD_COMMENT_FOR_DISCOUNT = "INSERT INTO `comments`(`comment_text`, `id_user`, 'id_discount', 'date') VALUES ";
         #endregion
 
