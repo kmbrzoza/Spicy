@@ -22,6 +22,7 @@ namespace Spicy.DAL.Entities
         public byte[] Image { get; set; }
         public uint Id_category { get; set; }
         public uint Id_user { get; set; }
+        public uint Id_shop { get; set; }
         #endregion
 
         #region Constructors
@@ -39,11 +40,10 @@ namespace Spicy.DAL.Entities
             Image = (byte[])(reader["image"]);
             Id_category = uint.Parse(reader["id_category"].ToString());
             Id_user = uint.Parse(reader["id_user"].ToString());
+            Id_shop = uint.Parse(reader["id_shop"].ToString());
         }
 
-        //not nulls
-
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user)
+        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user/*, uint id_shop*/)
         {
             Name = name;
             Description = description;
@@ -55,7 +55,7 @@ namespace Spicy.DAL.Entities
             End_Date = end;
             Image = image;
             Id_category = id_category;
-            Id_user = id_user;
+            //Id_shop = id_shop;
         }
 
         public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
@@ -70,35 +70,7 @@ namespace Spicy.DAL.Entities
             End_Date = end;
             Image = image;
         }
-        //nullables are null
-        //public Discount(string name, string description, string link, DateTime start, DateTime end)
-        //{
-        //    Id = null;
-        //    Name = name;
-        //    Description = description;
-        //    CurrentPrice = null;
-        //    PreviousPrice = null;
-        //    Link = link;
-        //    Code = null;
-        //    Start_Date = start;
-        //    End_Date = end;
-        //}
-
-        //prices are null
-
-        //public Discount(string name, string description, string link, string code, DateTime start, DateTime end)
-        //{
-        //    Id = null;
-        //    Name = name;
-        //    Description = description;
-        //    CurrentPrice = null;
-        //    PreviousPrice = null;
-        //    Link = link;
-        //    Code = code;
-        //    Start_Date = start;
-        //    End_Date = end;
-        //}
-
+        
         public Discount(Discount discount)
         {
             Id = discount.Id;
@@ -133,7 +105,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
+            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')"; //'{Link}' bez tego narazie bo nie ma tego w bazie ://
         }
         #endregion
     }
