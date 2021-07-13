@@ -82,8 +82,7 @@ namespace Spicy.ViewModel
                     add = new RelayCommand(
                         arg =>
                         {
-                            // TODO: dodac opis do sklepu
-                            var shop = new Shop(ShopName);
+                            var shop = new Shop(ShopName, ShopDescription);
                             model.AddShop(shop);
                             NavigationVM.CurrentViewModel = new HomeViewModel(model);
                         },

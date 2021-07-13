@@ -16,7 +16,6 @@ namespace Spicy.Services
         private AccountManager()
         {
             currentUser = null;
-            //TODO: get users from DB
             var users = UserRepo.GetUsers();
             foreach (var user in users)
                 Users.Add(user);
@@ -32,7 +31,7 @@ namespace Spicy.Services
         {
             if (!UserExists(user))
             {
-                // ADD USER TO DB
+                if (!UserRepo.AddUser(user)) return false;
                 Users.Add(user);
                 return true;
             }
