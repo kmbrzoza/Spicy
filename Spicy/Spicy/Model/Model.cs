@@ -164,7 +164,7 @@ namespace Spicy.Model
         {
             if (RateExists(rate))
             {
-                //if(!RatingRepo.UpdateRating(rate)) return false;
+                if(!RatingRepo.UpdateRating(rate, rate.Id_discount, rate.Id_user)) return false;
                 Ratings.FirstOrDefault(r => r.Id_discount == rate.Id_discount && r.Id_user == rate.Id_user).Rate = rate.Rate;
                 return true;
             }
