@@ -1,4 +1,5 @@
-﻿using Spicy.Services;
+﻿using Spicy.DAL.Entities;
+using Spicy.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Spicy.Model
 {
-    class DiscountItem
+    class DiscountInfo
     {
         public uint DiscountId { get; private set; }
         public string Name { get; private set; }
@@ -24,14 +25,14 @@ namespace Spicy.Model
         }
         private DateTime end_Date;
         public string End_Date { get => Consts.DISCOUNT_ONLY_TO + " " + end_Date.Year + "-" + end_Date.Month + "-" + end_Date.Day; }
-        public DiscountItem(uint discountId, string name, byte[] image, float? currPrice, float? prevPrice, DateTime endDate)
+        public DiscountInfo(Discount discount)
         {
-            DiscountId = discountId;
-            Name = name;
-            Image = image;
-            currentPrice = currPrice;
-            previousPrice = prevPrice;
-            end_Date = endDate;
+            DiscountId = discount.Id;
+            Name = discount.Name;
+            Image = discount.Image;
+            currentPrice = discount.CurrentPrice;
+            previousPrice = discount.PreviousPrice;
+            end_Date = discount.End_Date;
         }
 
 

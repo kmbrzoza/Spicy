@@ -25,10 +25,9 @@ namespace Spicy.ViewModel
             accountManager = AccountManager.Instance;
 
             actualDiscounts = model.GetActualDiscounts();
-            ActualDiscounts = new ObservableCollection<DiscountItem>();
+            ActualDiscounts = new ObservableCollection<DiscountInfo>();
             foreach (var adiscount in actualDiscounts)
-                ActualDiscounts.Add(new DiscountItem(adiscount.Id, adiscount.Name, adiscount.Image, adiscount.CurrentPrice,
-                    adiscount.PreviousPrice, adiscount.End_Date));
+                ActualDiscounts.Add(new DiscountInfo(adiscount));
         }
 
         #region PRIVATE Components
@@ -37,8 +36,8 @@ namespace Spicy.ViewModel
         #endregion
 
         #region PROPS FOR VIEW
-        public ObservableCollection<DiscountItem> ActualDiscounts { get; set; }
-        public DiscountItem SelectedDiscount { get; set; }
+        public ObservableCollection<DiscountInfo> ActualDiscounts { get; set; }
+        public DiscountInfo SelectedDiscount { get; set; }
         public int IndexOfSelectedDiscount
         {
             get { return indexOfSelectedDiscount; }
