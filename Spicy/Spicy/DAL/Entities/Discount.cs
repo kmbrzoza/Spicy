@@ -107,7 +107,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date}', '{End_Date}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
+            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
         }
         #endregion
     }
