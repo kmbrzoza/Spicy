@@ -149,7 +149,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="DAL\Entities\Has.cs" />
     <Compile Include="DAL\Entities\Comment.cs" />
     <Compile Include="DAL\Entities\Discount.cs" />
     <Compile Include="DAL\Entities\Rating.cs" />
@@ -160,7 +159,6 @@
     <Compile Include="DAL\Repositories\UserRepo.cs" />
     <Compile Include="DAL\Repositories\ShopRepo.cs" />
     <Compile Include="DAL\Repositories\RatingRepo.cs" />
-    <Compile Include="DAL\Repositories\HasRepo.cs" />
     <Compile Include="DAL\Repositories\CommentRepo.cs" />
     <Compile Include="DAL\Repositories\DiscountRepo.cs" />
     <Compile Include="Model\DiscountInfo.cs" />

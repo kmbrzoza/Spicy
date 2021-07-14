@@ -31,8 +31,10 @@ namespace Spicy.DAL.Entities
             Id = uint.Parse(reader["id_discount"].ToString());
             Name = reader["name"].ToString();
             Description = reader["description"].ToString();
-            CurrentPrice = float.Parse(reader["curr_price"].ToString());
-            PreviousPrice = float.Parse(reader["prev_price"].ToString());
+            if (reader["curr_price"] == DBNull.Value) CurrentPrice = null;
+            else CurrentPrice = float.Parse(reader["curr_price"].ToString());
+            if (reader["prev_price"] == DBNull.Value) PreviousPrice = null;
+            else PreviousPrice = float.Parse(reader["prev_price"].ToString());
             Link = reader["link"].ToString();
             Code = reader["discount_code"].ToString();
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
@@ -72,7 +74,7 @@ namespace Spicy.DAL.Entities
             End_Date = end;
             Image = image;
         }
-        
+
         public Discount(Discount discount)
         {
             Id = discount.Id;
@@ -107,7 +109,11 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}', '{CurrentPrice}', '{PreviousPrice}', '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
+            if (PreviousPrice.HasValue == false & CurrentPrice.HasValue == false)
+            {
+                return $"('{Name}', '{Description}', '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
+            }
+            else return $"('{Name}', '{Description}', '{CurrentPrice}', {PreviousPrice}, '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
         }
         #endregion
     }
