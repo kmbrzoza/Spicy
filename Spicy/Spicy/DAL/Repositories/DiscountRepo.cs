@@ -63,13 +63,13 @@ namespace Spicy.DAL.Repositories
             MySqlCommand command = null;
             using (var connection = DBConnection.Instance.Connection)
             {
-                if (!discount.PreviousPrice.HasValue && !discount.CurrentPrice.HasValue)
+                if (discount.PreviousPrice.HasValue == false && discount.CurrentPrice.HasValue == false)
                 {
-                    command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}, link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date}, end_date = '{discount.End_Date}', image = '{discount.Image}, id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'", connection);
+                    command = new MySqlCommand($"SET foreign_key_checks = 0; UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = '{discount.Image}', id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'; SET foreign_key_checks = 1", connection) ;
                 }
                 else
                 {
-                    command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}, curr_price = '{discount.CurrentPrice}, prev_price = '{discount.PreviousPrice}, link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date}, end_date = '{discount.End_Date}', image = '{discount.Image}, id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'", connection);
+                    command = new MySqlCommand($"SET foreign_key_checks = 0; UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', curr_price = '{discount.CurrentPrice}', prev_price = '{discount.PreviousPrice}', link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = '{discount.Image}', id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'; SET foreign_key_checks = 1", connection);
                 }
                 connection.Open();
                 var n = command.ExecuteNonQuery();
