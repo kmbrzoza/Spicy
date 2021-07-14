@@ -106,15 +106,6 @@ namespace Spicy.DAL.Entities
         {
             return base.GetHashCode();
         }
-
-        public string ToInsert()
-        {
-            if (PreviousPrice.HasValue == false & CurrentPrice.HasValue == false)
-            {
-                return $"('{Name}', '{Description}', '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
-            }
-            else return $"('{Name}', '{Description}', '{CurrentPrice}', {PreviousPrice}, '{Code}', '{Start_Date.Year}-{Start_Date.Month}-{Start_Date.Day}', '{End_Date.Year}-{End_Date.Month}-{End_Date.Day}', '{Link}', '{Image}', '{Id_category}', '{Id_user}', '{Id_shop}')";
-        }
         #endregion
     }
 }
