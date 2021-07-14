@@ -83,6 +83,7 @@ namespace Spicy.Model
             if (oldDiscount != null)
             {
                 discount.Id_category = category.Id;
+                discount.Id_shop = shop.Id;
                 if(!DiscountRepo.UpdateDiscount(discount, discount.Id)) return false;
                 oldDiscount.Name = discount.Name;
                 oldDiscount.Id_category = discount.Id_category;
@@ -94,7 +95,6 @@ namespace Spicy.Model
                 oldDiscount.Description = discount.Description;
                 oldDiscount.CurrentPrice = discount.CurrentPrice;
                 oldDiscount.Code = discount.Code;
-                oldDiscount.Id_shop = shop.Id;
 
                 return true;
             }
