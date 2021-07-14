@@ -116,11 +116,59 @@ namespace Spicy.DAL.Repositories
                 {
                     if (discount.PreviousPrice.HasValue == false && discount.CurrentPrice.HasValue == false)
                     {
-                        command = new MySqlCommand($"SET foreign_key_checks = 0; UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = '{discount.Image}', id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'; SET foreign_key_checks = 1", connection);
+                        string update_discount = $"SET foreign_key_checks = 0; UPDATE discount SET name = @name , description = @description, link = @link, discount_code = @discount_code, start_date = @start_date, end_date = @end_date, image = @image, id_category = @id_category, id_shop = @id_shop WHERE id_discount = @id_discount; SET foreign_key_checks = 1";
+                        command = new MySqlCommand(update_discount, connection);
+                        command.Parameters.Add("@name", MySqlDbType.VarChar, 50);
+                        command.Parameters.Add("@description", MySqlDbType.Text);
+                        command.Parameters.Add("@discount_code", MySqlDbType.VarChar, 30);
+                        command.Parameters.Add("@start_date", MySqlDbType.DateTime);
+                        command.Parameters.Add("@end_date", MySqlDbType.DateTime);
+                        command.Parameters.Add("@link", MySqlDbType.VarChar, 2048);
+                        command.Parameters.Add("@image", MySqlDbType.Blob);
+                        command.Parameters.Add("@id_category", MySqlDbType.UInt32);
+                        command.Parameters.Add("@id_discount", MySqlDbType.UInt32);
+                        command.Parameters.Add("@id_shop", MySqlDbType.UInt32);
+
+                        command.Parameters["@name"].Value = discount.Name;
+                        command.Parameters["@description"].Value = discount.Description;
+                        command.Parameters["@discount_code"].Value = discount.Code;
+                        command.Parameters["@start_date"].Value = discount.Start_Date;
+                        command.Parameters["@end_date"].Value = discount.End_Date;
+                        command.Parameters["@link"].Value = discount.Link;
+                        command.Parameters["@image"].Value = discount.Image;
+                        command.Parameters["@id_shop"].Value = discount.Id_shop;
+                        command.Parameters["@id_discount"].Value = Id;
+                        command.Parameters["@id_category"].Value = discount.Id_category;
                     }
                     else
                     {
-                        command = new MySqlCommand($"SET foreign_key_checks = 0; UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', curr_price = '{discount.CurrentPrice}', prev_price = '{discount.PreviousPrice}', link = '{discount.Link}', discount_code = '{discount.Code}', start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = '{discount.Image}', id_category = '{discount.Id_category}', id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'; SET foreign_key_checks = 1", connection);
+                        string update_discount = $"SET foreign_key_checks = 0; UPDATE discount SET name = @name , description = @description, curr_price = @curr_price, prev_price = @prev_price, link = @link, discount_code = @discount_code, start_date = @start_date, end_date = @end_date, image = @image, id_category = @id_category, id_shop = @id_shop WHERE id_discount = @id_discount; SET foreign_key_checks = 1";
+                        command = new MySqlCommand(update_discount, connection);
+                        command.Parameters.Add("@name", MySqlDbType.VarChar, 50);
+                        command.Parameters.Add("@description", MySqlDbType.Text);
+                        command.Parameters.Add("@curr_price", MySqlDbType.Float);
+                        command.Parameters.Add("@prev_price", MySqlDbType.Float);
+                        command.Parameters.Add("@discount_code", MySqlDbType.VarChar, 30);
+                        command.Parameters.Add("@start_date", MySqlDbType.DateTime);
+                        command.Parameters.Add("@end_date", MySqlDbType.DateTime);
+                        command.Parameters.Add("@link", MySqlDbType.VarChar, 2048);
+                        command.Parameters.Add("@image", MySqlDbType.Blob);
+                        command.Parameters.Add("@id_category", MySqlDbType.UInt32);
+                        command.Parameters.Add("@id_discount", MySqlDbType.UInt32);
+                        command.Parameters.Add("@id_shop", MySqlDbType.UInt32);
+
+                        command.Parameters["@name"].Value = discount.Name;
+                        command.Parameters["@description"].Value = discount.Description;
+                        command.Parameters["@curr_price"].Value = discount.CurrentPrice;
+                        command.Parameters["@prev_price"].Value = discount.PreviousPrice;
+                        command.Parameters["@discount_code"].Value = discount.Code;
+                        command.Parameters["@start_date"].Value = discount.Start_Date;
+                        command.Parameters["@end_date"].Value = discount.End_Date;
+                        command.Parameters["@link"].Value = discount.Link;
+                        command.Parameters["@image"].Value = discount.Image;
+                        command.Parameters["@id_shop"].Value = discount.Id_shop;
+                        command.Parameters["@id_discount"].Value = Id;
+                        command.Parameters["@id_category"].Value = discount.Id_category;
                     }
                     connection.Open();
                     var n = command.ExecuteNonQuery();
