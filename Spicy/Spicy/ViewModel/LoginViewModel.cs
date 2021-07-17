@@ -98,7 +98,10 @@ namespace Spicy.ViewModel
                         arg =>
                         {
                             if (accountManager.LoginUser(new User(Login, Password)))
+                            {
+                                UserSession.NewSession();
                                 NavigationVM.CurrentViewModel = new HomeViewModel(model);
+                            }
                             else
                                 MessageBox.Show("Nieprawidłowe dane logowania!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
                         },
