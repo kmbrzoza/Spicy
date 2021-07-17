@@ -29,7 +29,7 @@ namespace Spicy.Model
         public string Start_Date { get => Constants.DISCOUNT_SINCE + " " + start_Date.Year + "-" + start_Date.Month + "-" + start_Date.Day; }
         public string Link { get; private set; }
         private string code;
-        public string Code { get => Constants.DISCOUNT_CODE + " " + code; }
+        public string Code { get => !string.IsNullOrEmpty(code) ? Constants.DISCOUNT_CODE + " " + code : ""; }
         public string Description { get; private set; }
         public DiscountInfo(Discount discount)
         {
@@ -42,6 +42,7 @@ namespace Spicy.Model
             start_Date = discount.Start_Date;
             Link = discount.Link;
             Description = discount.Description;
+            code = discount.Code;
         }
 
 

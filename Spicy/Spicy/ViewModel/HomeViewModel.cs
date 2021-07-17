@@ -18,21 +18,20 @@ namespace Spicy.ViewModel
         private readonly Navigation NavigationVM;
         private readonly Model model;
         private readonly AccountManager accountManager;
+        private readonly UserSession userSession;
         public HomeViewModel(Model model)
         {
             this.model = model;
             NavigationVM = Navigation.Instance;
             accountManager = AccountManager.Instance;
+            userSession = UserSession.Instance;
 
-            actualDiscounts = model.GetActualDiscounts();
-            ActualDiscounts = new ObservableCollection<DiscountInfo>();
-            foreach (var adiscount in actualDiscounts)
-                ActualDiscounts.Add(new DiscountInfo(adiscount));
+            SetActualDiscounts();
+            SetActualDiscountsBySearch();
         }
 
         #region PRIVATE Components
         private ObservableCollection<Discount> actualDiscounts;
-        private int indexOfSelectedDiscount = -1;
         #endregion
 
         #region PROPS FOR VIEW
@@ -40,8 +39,27 @@ namespace Spicy.ViewModel
         public DiscountInfo SelectedDiscount { get; set; }
         public int IndexOfSelectedDiscount
         {
-            get { return indexOfSelectedDiscount; }
-            set { indexOfSelectedDiscount = value; onPropertyChanged(nameof(IndexOfSelectedDiscount)); }
+            get { return userSession.Home_SelectedIndexOfDiscount; }
+            set { userSession.Home_SelectedIndexOfDiscount = value; onPropertyChanged(nameof(IndexOfSelectedDiscount)); }
+        }
+        public string Search
+        {
+            get { return userSession.Home_SearchBy; }
+            set
+            {
+                userSession.Home_SearchBy = value;
+                SetActualDiscountsBySearch();
+            }
+        }
+        public bool ShowEnded
+        {
+            get { return userSession.Home_ShowEnded; }
+            set
+            {
+                userSession.Home_ShowEnded = value;
+                SetActualDiscounts();
+                SetActualDiscountsBySearch();
+            }
         }
         #endregion
 
@@ -126,5 +144,30 @@ namespace Spicy.ViewModel
             }
         }
         #endregion
+
+        public void SetActualDiscounts()
+        {
+            if (ShowEnded)
+            {
+                actualDiscounts = new ObservableCollection<Discount>();
+                foreach (var disc in model.Discounts)
+                    actualDiscounts.Add(disc);
+            }
+            else
+                actualDiscounts = model.GetActualDiscounts();
+        }
+        public void SetActualDiscountsBySearch()
+        {
+            ActualDiscounts = new ObservableCollection<DiscountInfo>();
+
+            if (string.IsNullOrEmpty(Search))
+                foreach (var adiscount in actualDiscounts)
+                    ActualDiscounts.Add(new DiscountInfo(adiscount));
+            else
+                foreach (var adiscount in actualDiscounts.Where(d => d.Name.Contains(Search)))
+                    ActualDiscounts.Add(new DiscountInfo(adiscount));
+
+            onPropertyChanged(nameof(ActualDiscounts));
+        }
     }
 }

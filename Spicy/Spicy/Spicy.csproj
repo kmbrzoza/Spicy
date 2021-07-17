@@ -112,6 +112,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\UserSession.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="View\ShopView.xaml.cs">
       <DependentUpon>ShopView.xaml</DependentUpon>

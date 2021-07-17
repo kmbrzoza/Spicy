@@ -15,7 +15,7 @@
             <Setter Property="FontSize" Value="18"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Margin="10">
+    <Grid Margin="10 5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -23,11 +23,31 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox x:Name="lb" Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Wyszukaj:" Style="{StaticResource LabelText}" HorizontalAlignment="Right" Margin="0 0 5 0"></Label>
+            <TextBox Grid.Column="1" Style="{StaticResource RoundedTextBoxWithHight}"
+                 Text="{Binding Search, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Pokaż zakończone" Style="{StaticResource LabelText}" HorizontalAlignment="Right"></Label>
+            <CheckBox Grid.Column="1" VerticalAlignment="Center" Margin="10 0 0 0" IsChecked="{Binding ShowEnded, Mode=TwoWay}"></CheckBox>
+        </Grid>
+        
+        <ListBox x:Name="lb" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
                  SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay}">
 
             <ListBox.ItemTemplate>
@@ -64,11 +84,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="1" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
+        <Button Grid.Row="2" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
-        <Button Grid.Row="1" Grid.Column="1" Width="150" Content="Sklepy" Command="{Binding Shop}"
+        <Button Grid.Row="2" Grid.Column="1" Width="150" Content="Sklepy" Command="{Binding Shop}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
-        <Button Grid.Row="1" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
+        <Button Grid.Row="2" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
 
     </Grid>
