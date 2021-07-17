@@ -35,7 +35,7 @@ namespace Spicy.ViewModel
             get { return shopName; }
             set
             {
-                if (value.Length <= Consts.MAX_SHOP_NAME)
+                if (value.Length <= Constants.MAX_SHOP_NAME)
                     shopName = value;
                 onPropertyChanged(nameof(ShopName));
             }
@@ -45,7 +45,7 @@ namespace Spicy.ViewModel
             get { return shopDescription; }
             set
             {
-                if (value.Length <= Consts.MAX_SHOP_DESCRIPTION)
+                if (value.Length <= Constants.MAX_SHOP_DESCRIPTION)
                     shopDescription = value;
                 onPropertyChanged(nameof(ShopDescription));
             }

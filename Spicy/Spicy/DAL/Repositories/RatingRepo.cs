@@ -50,7 +50,7 @@ namespace Spicy.DAL.Repositories
             bool status = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand($"UPDATE rating SET rating = '{rating.Rate}' WHERE id_discount = '{id_discount}' and id_user = '{id_user}'", connection);
+                MySqlCommand command = new MySqlCommand($"UPDATE rating SET rate = '{rating.Rate}' WHERE id_discount = '{id_discount}' and id_user = '{id_user}'", connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) status = true;

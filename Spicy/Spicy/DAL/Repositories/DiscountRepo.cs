@@ -40,8 +40,8 @@ namespace Spicy.DAL.Repositories
             {
                 string prevPrice = "null";
                 string currPrice = "null";
-                if (discount.CurrentPrice != null) currPrice = discount.CurrentPrice.ToString();
-                if (discount.PreviousPrice != null) prevPrice = discount.PreviousPrice.ToString();
+                if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
+                if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
 
                 MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} ('{discount.Name}', '{discount.Description}', {currPrice}, {prevPrice}, " +
                 $"'{discount.Code}', '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
@@ -67,8 +67,8 @@ namespace Spicy.DAL.Repositories
             {
                 string prevPrice = "null";
                 string currPrice = "null";
-                if (discount.CurrentPrice != null) currPrice = discount.CurrentPrice.ToString();
-                if (discount.PreviousPrice != null) prevPrice = discount.PreviousPrice.ToString();
+                if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
+                if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
 
                 MySqlCommand command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', " +
                 $"curr_price = {currPrice}, prev_price = {prevPrice}, link = '{discount.Link}', discount_code = '{discount.Code}', " +

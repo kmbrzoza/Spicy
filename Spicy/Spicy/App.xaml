@@ -123,5 +123,18 @@
                 </Style>
             </Style.Resources>
         </Style>
+
+        <Style x:Key="CurrentPrice" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFF8000"></Setter>
+            <Setter Property="FontSize" Value="27"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="PreviousPrice" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Gray"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextDecorations" Value="Strikethrough"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

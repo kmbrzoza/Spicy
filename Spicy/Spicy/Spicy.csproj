@@ -166,7 +166,7 @@
     <Compile Include="Model\UserComment.cs" />
     <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Model\Model.cs" />
-    <Compile Include="Model\Consts.cs" />
+    <Compile Include="Model\Constants.cs" />
     <Compile Include="Services\ImageManager.cs" />
     <Compile Include="Services\Navigation.cs" />
     <Compile Include="ViewModel\AddDiscountViewModel.cs" />

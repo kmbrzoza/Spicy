@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Spicy.Services
 {
-    static class Consts
+    static class Constants
     {
         public const int MAX_USER_NICKNAME_LENGTH = 20;
         public const int MAX_USER_PASSWORD_LENGTH = 30;
@@ -20,6 +20,7 @@ namespace Spicy.Services
         public const string MONEY_UNIT = "zł";
         public const string DISCOUNT_CODE = "Kod rabatowy:";
         public const string DISCOUNT_ONLY_TO = "Tylko do:";
+        public const string DISCOUNT_SINCE = "Od:";
         public const string DISCOUNT_EXISTS = "Taka promocja już istnieje!";
         public const string WARNING = "Uwaga!";
     }
