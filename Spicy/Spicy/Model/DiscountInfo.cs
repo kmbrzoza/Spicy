@@ -27,11 +27,10 @@ namespace Spicy.Model
         public string End_Date { get => Constants.DISCOUNT_ONLY_TO + " " + end_Date.Year + "-" + end_Date.Month + "-" + end_Date.Day; }
         private DateTime start_Date;
         public string Start_Date { get => Constants.DISCOUNT_SINCE + " " + start_Date.Year + "-" + start_Date.Month + "-" + start_Date.Day; }
-        private string code { get; set; }
-        public string Code { get => !string.IsNullOrEmpty(code) ? Constants.DISCOUNT_CODE + " " + code : ""; }
-        public string Description { get; private set; }
         public string Link { get; private set; }
-
+        private string code;
+        public string Code { get => Constants.DISCOUNT_CODE + " " + code; }
+        public string Description { get; private set; }
         public DiscountInfo(Discount discount)
         {
             DiscountId = discount.Id;
@@ -41,9 +40,8 @@ namespace Spicy.Model
             previousPrice = discount.PreviousPrice;
             end_Date = discount.End_Date;
             start_Date = discount.Start_Date;
-            code = discount.Code;
-            Description = discount.Description;
             Link = discount.Link;
+            Description = discount.Description;
         }
 
 

@@ -7,16 +7,22 @@
              xmlns:vm="clr-namespace:Spicy.ViewModel" d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-
+    <UserControl.Resources>
+        <Style x:Key="Title" TargetType="Label">
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid Margin="20 50">
+        <Grid Margin="15 50">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="0.42*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -27,25 +33,25 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.ColumnSpan="2" Content="Zarejestruj się" HorizontalContentAlignment="Center"></Label>
+            <Label Grid.ColumnSpan="2" Content="Zarejestruj się" Style="{StaticResource Title}"></Label>
 
-            <Label Content="Login:" Grid.Row="1"></Label>
+            <Label Content="Login:" Grid.Row="1" Style="{StaticResource LabelText}"></Label>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterLogin, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource NormalTextBoxWithHeight}"></TextBox>
 
-            <Label Content="Hasło:" Grid.Row="2"></Label>
+            <Label Content="Hasło:" Grid.Row="2" Style="{StaticResource LabelText}"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding RegisterPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
 
-            <Label Content="Powtórz hasło:" Grid.Row="3"></Label>
+            <Label Content="Powtórz hasło:" Grid.Row="3" Style="{StaticResource LabelText}"></Label>
             <local:BindablePasswordBox Grid.Row="3" Grid.Column="1" Password="{Binding RegisterPasswordRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
 
             <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Zarejestruj" Command="{Binding Register}"
                     Style="{StaticResource NormalRoundedButton}"></Button>
         </Grid>
 
-        <Grid Margin="20 50" Grid.Column="1">
+        <Grid Margin="15 50" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="0.42*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -56,13 +62,13 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.ColumnSpan="2" Content="Zaloguj się" HorizontalContentAlignment="Center"></Label>
+            <Label Grid.ColumnSpan="2" Content="Zaloguj się" Style="{StaticResource Title}"></Label>
 
-            <Label Content="Login:" Grid.Row="1"></Label>
+            <Label Content="Login:" Grid.Row="1" Style="{StaticResource LabelText}"></Label>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource NormalTextBoxWithHeight}"></TextBox>
 
-            <Label Content="Hasło:" Grid.Row="2"></Label>
+            <Label Content="Hasło:" Grid.Row="2" Style="{StaticResource LabelText}"></Label>
             <local:BindablePasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></local:BindablePasswordBox>
 
             <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Zaloguj" Command="{Binding SignIn}"
