@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Spicy.Model
 {
-    static class Validation
+    static class ValidationService
     {
         public static bool IsStringLink(string link)
         {

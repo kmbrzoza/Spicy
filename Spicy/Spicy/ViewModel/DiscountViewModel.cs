@@ -210,7 +210,7 @@ namespace Spicy.ViewModel
                     gotoDiscount = new RelayCommand(
                         arg =>
                         {
-                            if(Validation.IsStringLink(presentingDiscount.Link))
+                            if(ValidationService.IsStringLink(presentingDiscount.Link))
                                 System.Diagnostics.Process.Start(presentingDiscount.Link);
                         },
                         arg => OwnerOfDiscount.Id == accountManager.CurrentUser.Id

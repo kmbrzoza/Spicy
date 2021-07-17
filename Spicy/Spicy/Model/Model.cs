@@ -125,7 +125,6 @@ namespace Spicy.Model
         #endregion
 
         #region Shops
-
         public bool AddShop(Shop shop)
         {
             if (!ShopExists(shop))

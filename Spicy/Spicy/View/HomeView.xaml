@@ -66,7 +66,7 @@
 
         <Button Grid.Row="1" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
-        <Button Grid.Row="1" Grid.Column="1" Width="150" Content="Dodaj Sklep" Command="{Binding AddShop}"
+        <Button Grid.Row="1" Grid.Column="1" Width="150" Content="Sklepy" Command="{Binding Shop}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
         <Button Grid.Row="1" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
                 Style="{StaticResource NormalRoundedButton}"></Button>

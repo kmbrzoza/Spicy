@@ -107,22 +107,22 @@ namespace Spicy.ViewModel
             }
         }
 
-        private ICommand addShop = null;
-        public ICommand AddShop
+        private ICommand shop = null;
+        public ICommand Shop
         {
             get
             {
-                if (addShop == null)
+                if (shop == null)
                 {
-                    addShop = new RelayCommand(
+                    shop = new RelayCommand(
                         arg =>
                         {
-                            NavigationVM.CurrentViewModel = new AddShopViewModel(model);
+                            NavigationVM.CurrentViewModel = new ShopViewModel(model);
                         },
                         arg => true
                         );
                 }
-                return addShop;
+                return shop;
             }
         }
         #endregion
