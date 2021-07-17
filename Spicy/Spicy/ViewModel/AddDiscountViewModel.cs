@@ -59,7 +59,7 @@ namespace Spicy.ViewModel
         private ObservableCollection<Category> categories;
         private DateTime since;
         private DateTime to;
-        private const string imageExtensions = Consts.IMAGE_EXTENSIONS;
+        private const string imageExtensions = Constants.IMAGE_EXTENSIONS;
         private string imagePath;
         private byte[] imageInBytes;
 
@@ -73,7 +73,7 @@ namespace Spicy.ViewModel
             get { return title; }
             set
             {
-                if (value.Length <= Consts.MAX_DISCOUNT_TITLE_LENGTH)
+                if (value.Length <= Constants.MAX_DISCOUNT_TITLE_LENGTH)
                     title = value;
                 onPropertyChanged(nameof(Title));
             }
@@ -155,7 +155,7 @@ namespace Spicy.ViewModel
                     ImageInBytes = ImageManager.GetBytesFromImagePath(value);
                 }
                 else
-                    imagePath = Consts.IMAGE_NOT_SELECTED;
+                    imagePath = Constants.IMAGE_NOT_SELECTED;
                 onPropertyChanged(nameof(ImagePath));
             }
         }
@@ -177,15 +177,18 @@ namespace Spicy.ViewModel
                     add = new RelayCommand(
                         arg =>
                         {
-                            float? currPrice = null;
+                            double? currPrice = null;
                             if (!string.IsNullOrEmpty(CurrentPrice))
-                                if (float.TryParse(CurrentPrice.Replace(".", ","), out float cp))
+                                if (double.TryParse(CurrentPrice.Replace(".", ","), out double cp))
                                     currPrice = cp;
 
-                            float? prevPrice = null;
+                            double? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
-                                if (float.TryParse(PreviousPrice.Replace(".", ","), out float pp))
+                                if (double.TryParse(PreviousPrice.Replace(".", ","), out double pp))
                                     prevPrice = pp;
+
+                            if (currPrice != null && prevPrice == null) prevPrice = currPrice;
+                            else if (prevPrice != null && currPrice == null) currPrice = prevPrice;
 
                             var discount = new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes);
                             var category = Categories.ElementAt(IndexOfSelectedCategory);
@@ -194,7 +197,7 @@ namespace Spicy.ViewModel
                             {
                                 if (!model.AddDiscount(discount, category, shop, accountManager.CurrentUser))
                                 {
-                                    MessageBox.Show(Consts.DISCOUNT_EXISTS, Consts.WARNING, MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    MessageBox.Show(Constants.DISCOUNT_EXISTS, Constants.WARNING, MessageBoxButton.OK, MessageBoxImage.Warning);
                                     return;
                                 }
                             }

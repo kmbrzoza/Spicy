@@ -24,14 +24,14 @@ namespace Spicy.ViewModel
             this.model = model;
             NavigationVM = Navigation.Instance;
             accountManager = AccountManager.Instance;
-            PresentingDiscount = discount;
-            CategoryOfDiscount = model.GetCategoryOfDiscount(PresentingDiscount);
-            ShopOfDiscount = model.GetShopOfDiscount(PresentingDiscount);
-            OwnerOfDiscount = model.GetOwnerOfDiscount(PresentingDiscount);
+            presentingDiscount = discount;
+            CategoryOfDiscount = model.GetCategoryOfDiscount(presentingDiscount);
+            ShopOfDiscount = model.GetShopOfDiscount(presentingDiscount);
+            OwnerOfDiscount = model.GetOwnerOfDiscount(presentingDiscount);
             LoadRatesOfDiscount();
-            UserRate = model.GetUserRateOfDiscount(accountManager.CurrentUser, PresentingDiscount);
+            UserRate = model.GetUserRateOfDiscount(accountManager.CurrentUser, presentingDiscount);
 
-            CommentsOfDiscounts = model.GetCommentsOfDiscount(PresentingDiscount);
+            CommentsOfDiscounts = model.GetCommentsOfDiscount(presentingDiscount);
             UserCommentsOfDiscounts = new ObservableCollection<UserComment>();
 
             foreach (var comment in CommentsOfDiscounts)
@@ -43,13 +43,15 @@ namespace Spicy.ViewModel
         }
 
         #region PRIVATE COMPONENTS
+        private Discount presentingDiscount;
+
         private long rates;
         private ObservableCollection<Comment> CommentsOfDiscounts { get; set; }
         private string newCommentText = "";
         #endregion
 
         #region PROP FOR VIEW
-        public Discount PresentingDiscount { get; set; }
+        public DiscountInfo PresentingDiscount { get => new DiscountInfo(presentingDiscount); }
         public Category CategoryOfDiscount { get; set; }
         public Shop ShopOfDiscount { get; set; }
         public User OwnerOfDiscount { get; set; }
@@ -65,7 +67,7 @@ namespace Spicy.ViewModel
             get { return newCommentText; }
             set
             {
-                if (value.Length <= Consts.MAX_COMMENT_LENGTH)
+                if (value.Length <= Constants.MAX_COMMENT_LENGTH)
                     newCommentText = value;
                 onPropertyChanged(nameof(NewCommentText));
             }
@@ -107,7 +109,7 @@ namespace Spicy.ViewModel
                     addComment = new RelayCommand(
                         arg =>
                         {
-                            Comment comment = new Comment(accountManager.CurrentUser.Id, PresentingDiscount.Id, newCommentText, DateTime.Now);
+                            Comment comment = new Comment(accountManager.CurrentUser.Id, PresentingDiscount.DiscountId, newCommentText, DateTime.Now);
                             model.AddComment(comment);
                             UserCommentsOfDiscounts.Add(new UserComment(accountManager.GetUserById(comment.Id_user).Nickname, comment.CommentText, comment.Date));
                             onPropertyChanged(nameof(UserCommentsOfDiscounts));
@@ -132,7 +134,7 @@ namespace Spicy.ViewModel
                         {
                             if (UserRate == null)
                             {
-                                UserRate = new Rating(Rate.positive, accountManager.CurrentUser.Id, PresentingDiscount.Id);
+                                UserRate = new Rating(Rate.positive, accountManager.CurrentUser.Id, PresentingDiscount.DiscountId);
                                 model.AddRate(UserRate);
                             }
                             else
@@ -161,7 +163,7 @@ namespace Spicy.ViewModel
                         {
                             if (UserRate == null)
                             {
-                                UserRate = new Rating(Rate.negative, accountManager.CurrentUser.Id, PresentingDiscount.Id);
+                                UserRate = new Rating(Rate.negative, accountManager.CurrentUser.Id, PresentingDiscount.DiscountId);
                                 model.AddRate(UserRate);
                             }
                             else
@@ -188,7 +190,7 @@ namespace Spicy.ViewModel
                     editDiscount = new RelayCommand(
                         arg =>
                         {
-                            NavigationVM.CurrentViewModel = new AddDiscountViewModel(model, PresentingDiscount);
+                            NavigationVM.CurrentViewModel = new AddDiscountViewModel(model, presentingDiscount);
                         },
                         arg => OwnerOfDiscount.Id == accountManager.CurrentUser.Id
                         );
@@ -201,7 +203,7 @@ namespace Spicy.ViewModel
         #region METHODS
         public void LoadRatesOfDiscount()
         {
-            Rates = model.GetOverallRateOfDiscount(PresentingDiscount);
+            Rates = model.GetOverallRateOfDiscount(presentingDiscount);
         }
         #endregion
     }

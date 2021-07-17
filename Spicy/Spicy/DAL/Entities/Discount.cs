@@ -13,8 +13,8 @@ namespace Spicy.DAL.Entities
         public uint Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public float? CurrentPrice { get; set; }
-        public float? PreviousPrice { get; set; }
+        public double? CurrentPrice { get; set; }
+        public double? PreviousPrice { get; set; }
         public string Link { get; set; }
         public string Code { get; set; }
         public DateTime Start_Date { get; set; }
@@ -32,9 +32,9 @@ namespace Spicy.DAL.Entities
             Name = reader["name"].ToString();
             Description = reader["description"].ToString();
             if (reader["curr_price"] == DBNull.Value) CurrentPrice = null;
-            else CurrentPrice = float.Parse(reader["curr_price"].ToString());
+            else CurrentPrice = double.Parse(reader["curr_price"].ToString());
             if (reader["prev_price"] == DBNull.Value) PreviousPrice = null;
-            else PreviousPrice = float.Parse(reader["prev_price"].ToString());
+            else PreviousPrice = double.Parse(reader["prev_price"].ToString());
             Link = reader["link"].ToString();
             Code = reader["discount_code"].ToString();
             Start_Date = DateTime.Parse(reader["start_date"].ToString());
@@ -46,7 +46,7 @@ namespace Spicy.DAL.Entities
             Id_shop = uint.Parse(reader["id_shop"].ToString());
         }
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user, uint id_shop)
+        public Discount(string name, string description, double? currentPrice, double? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image, uint id_category, uint id_user, uint id_shop)
         {
             Name = name;
             Description = description;
@@ -62,7 +62,7 @@ namespace Spicy.DAL.Entities
             Id_shop = id_shop;
         }
 
-        public Discount(string name, string description, float? currentPrice, float? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
+        public Discount(string name, string description, double? currentPrice, double? previousPrice, string link, string code, DateTime start, DateTime end, byte[] image)
         {
             Name = name;
             Description = description;

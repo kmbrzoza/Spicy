@@ -33,7 +33,7 @@ namespace Spicy.ViewModel
             get { return login; }
             set
             {
-                if (value.Length <= Consts.MAX_USER_NICKNAME_LENGTH)
+                if (value.Length <= Constants.MAX_USER_NICKNAME_LENGTH)
                     login = value;
                 onPropertyChanged(nameof(Login));
             }
@@ -44,7 +44,7 @@ namespace Spicy.ViewModel
             get { return password; }
             set
             {
-                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                if (value.Length <= Constants.MAX_USER_PASSWORD_LENGTH)
                     password = value;
                 onPropertyChanged(nameof(Password));
             }
@@ -56,7 +56,7 @@ namespace Spicy.ViewModel
             get { return registerLogin; }
             set
             {
-                if (value.Length <= Consts.MAX_USER_NICKNAME_LENGTH)
+                if (value.Length <= Constants.MAX_USER_NICKNAME_LENGTH)
                     registerLogin = value;
                 onPropertyChanged(nameof(RegisterLogin));
             }
@@ -67,7 +67,7 @@ namespace Spicy.ViewModel
             get { return registerPassword; }
             set
             {
-                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                if (value.Length <= Constants.MAX_USER_PASSWORD_LENGTH)
                     registerPassword = value;
                 onPropertyChanged(nameof(RegisterPassword));
             }
@@ -78,7 +78,7 @@ namespace Spicy.ViewModel
             get { return registerPasswordRepeat; }
             set
             {
-                if (value.Length <= Consts.MAX_USER_PASSWORD_LENGTH)
+                if (value.Length <= Constants.MAX_USER_PASSWORD_LENGTH)
                     registerPasswordRepeat = value;
                 onPropertyChanged(nameof(RegisterPasswordRepeat));
             }

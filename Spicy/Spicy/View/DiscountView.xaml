@@ -55,42 +55,28 @@
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="{Binding PresentingDiscount.Name}" 
                VerticalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
 
-        <Label Grid.Row="2" Grid.Column="1" Content="tutaj poprzednia cena"></Label>
-        <Label Grid.Row="2" Grid.Column="2" Content="tutaj aktualna cena"></Label>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PresentingDiscount.PreviousPrice}" Margin="5 0 0 0" Style="{StaticResource PreviousPrice}"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding PresentingDiscount.CurrentPrice}" Margin="5 0 0 0" Style="{StaticResource CurrentPrice}"></TextBlock>
 
 
         <Button Grid.Row="2" Grid.Column="3" Content="Idź do okazji" Width="130" Height="30"
                 Style="{StaticResource NormalRoundedButton}"></Button>
         
         
-        <Label Grid.Row="3" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 
-        <Label Grid.Row="3" Grid.Column="2" Content="Od kiedy:"></Label>
-        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Year}"></TextBlock>
-            <TextBlock Text="-"></TextBlock>
-            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Month}"></TextBlock>
-            <TextBlock Text="-"></TextBlock>
-            <TextBlock Text="{Binding PresentingDiscount.Start_Date.Day}"></TextBlock>
-        </StackPanel>
+        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.Start_Date}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
 
         <Label Grid.Row="4" Content="Kategoria:"></Label>
         <Label Grid.Row="4" Grid.Column="1" Content="{Binding CategoryOfDiscount.Name}"></Label>
 
-        <Label Grid.Row="4" Grid.Column="2" Content="Do kiedy:"></Label>
-        <StackPanel Grid.Row="4" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding PresentingDiscount.End_Date.Year}"></TextBlock>
-            <TextBlock Text="-"></TextBlock>
-            <TextBlock Text="{Binding PresentingDiscount.End_Date.Month}"></TextBlock>
-            <TextBlock Text="-"></TextBlock>
-            <TextBlock Text="{Binding PresentingDiscount.End_Date.Day}"></TextBlock>
-        </StackPanel>
+        <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.End_Date}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
 
         <Label Grid.Row="5" Content="Sklep:"></Label>
         <Label Grid.Row="5" Grid.Column="1" Content="{Binding ShopOfDiscount.Name}"></Label>
 
-        <Label Grid.Row="5" Grid.Column="2" Content="Kto dodał promocje:"></Label>
+        <Label Grid.Row="5" Grid.Column="2" Content="Promocja użytkownika:"></Label>
         <Label Grid.Row="5" Grid.Column="3" Content="{Binding OwnerOfDiscount.Nickname}"></Label>
 
         <TabControl Grid.Row="6" Grid.ColumnSpan="4">
