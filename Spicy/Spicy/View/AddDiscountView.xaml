@@ -28,17 +28,20 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Tytuł promocji:" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" 
                  Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"
                  Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
 
-        <Label Content="Url promocji:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" 
+        <Label Content="Url promocji:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
+        <TextBox Text="{Binding Link, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Grid.Row="1" Grid.Column="1" 
                  Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 0 10 0"
                  Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
 
-        <Label Content="Zdjęcie:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Zdjęcie:" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <TextBox Text="{Binding ImagePath}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsEnabled="False"
                  Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
         <local:FileDialog Grid.Row="2" Grid.Column="2" Width="120"
@@ -46,21 +49,24 @@
                           SelectedFile="{Binding ImagePath, Mode=OneWayToSource}"></local:FileDialog>
         <Image Grid.Column="3" Grid.RowSpan="3" Source="{Binding ImageInBytes, TargetNullValue={x:Null}}"></Image>
         
-        <Label Content="Aktualna cena:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Aktualna cena:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
             <TextBox Text="{Binding CurrentPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" 
                      HorizontalAlignment="Stretch" Width="170" Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
-            <Label Content="zł"></Label>
+            <Label Content="zł" Style="{StaticResource LabelText}"></Label>
         </StackPanel>
 
-        <Label Content="Poprzednia cena:" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Poprzednia cena:" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <StackPanel Grid.Row="3" Grid.Column="3"  Orientation="Horizontal" VerticalAlignment="Center">
             <TextBox Text="{Binding PreviousPrice, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Center" 
                      HorizontalAlignment="Stretch" Width="170" Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
-            <Label Content="zł"></Label>
+            <Label Content="zł" Style="{StaticResource LabelText}"></Label>
         </StackPanel>
 
-        <Label Content="Sklep:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Sklep:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <ComboBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Width="150"
                   ItemsSource="{Binding Shops}" SelectedIndex="{Binding IndexOfSelectedShop}"
                   Style="{StaticResource NormalComboBox}">
@@ -70,7 +76,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Label Content="Kategoria:" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Kategoria:" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <ComboBox Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Width="150"
                   ItemsSource="{Binding Categories}" SelectedIndex="{Binding IndexOfSelectedCategory}"
                   Style="{StaticResource NormalComboBox}">
@@ -81,17 +88,21 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Label Content="Od kiedy:" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Od kiedy:" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <DatePicker Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center"
                      SelectedDate="{Binding Since}" Style="{StaticResource NormalDatePicker}"></DatePicker>
-        <Label Content="Do kiedy:" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Content="Do kiedy:" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <DatePicker Grid.Row="5" Grid.Column="3" VerticalAlignment="Center"
                     SelectedDate="{Binding To, Mode=TwoWay}" Style="{StaticResource NormalDatePicker}"></DatePicker>
 
-        <Label Grid.Row="6" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-        <TextBox Text="{Binding Code}" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
+        <Label Grid.Row="6" Grid.Column="2" Content="Kod rabatowy:" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
+        <TextBox Text="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource RoundedTextBoxWithHight}"></TextBox>
         
-        <Label Grid.Row="6" Content="Opis" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Grid.Row="6" Content="Opis" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Style="{StaticResource LabelText}"></Label>
         <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.ColumnSpan="4" 
                  TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"
                  Style="{StaticResource NormalTextBox}"></TextBox>

@@ -32,7 +32,7 @@ namespace Spicy.ViewModel
             Since = DateTime.Now;
         }
 
-        public AddDiscountViewModel(Model model, Discount discount): this(model)
+        public AddDiscountViewModel(Model model, Discount discount) : this(model)
         {
             editingMode = true;
             discountToEdit = discount;
@@ -62,6 +62,7 @@ namespace Spicy.ViewModel
         private const string imageExtensions = Constants.IMAGE_EXTENSIONS;
         private string imagePath;
         private byte[] imageInBytes;
+        private string code;
 
         private bool editingMode = false;
         private Discount discountToEdit = null;
@@ -81,7 +82,12 @@ namespace Spicy.ViewModel
         public string Link
         {
             get { return link; }
-            set { link = value; onPropertyChanged(nameof(Link)); }
+            set
+            {
+                if (value.Length <= Constants.MAX_LINK_LENGTH && (Validation.IsStringLink(value) || string.IsNullOrEmpty(value) ))
+                    link = value;
+                onPropertyChanged(nameof(Link));
+            }
         }
         public string CurrentPrice
         {
@@ -141,7 +147,16 @@ namespace Spicy.ViewModel
                 onPropertyChanged(nameof(To));
             }
         }
-        public string Code { get; set; }
+        public string Code
+        {
+            get { return code; }
+            set
+            {
+                if (value.Length <= Constants.MAX_CODE_LENGTH)
+                    code = value;
+                onPropertyChanged(nameof(Code));
+            }
+        }
         public string Description { get; set; }
         public string ImageExtensions { get => imageExtensions; }
         public string ImagePath
@@ -177,18 +192,15 @@ namespace Spicy.ViewModel
                     add = new RelayCommand(
                         arg =>
                         {
-                            double? currPrice = null;
+                            float? currPrice = null;
                             if (!string.IsNullOrEmpty(CurrentPrice))
-                                if (double.TryParse(CurrentPrice.Replace(".", ","), out double cp))
+                                if (float.TryParse(CurrentPrice.Replace(".", ","), out float cp))
                                     currPrice = cp;
 
-                            double? prevPrice = null;
+                            float? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
-                                if (double.TryParse(PreviousPrice.Replace(".", ","), out double pp))
+                                if (float.TryParse(PreviousPrice.Replace(".", ","), out float pp))
                                     prevPrice = pp;
-
-                            if (currPrice != null && prevPrice == null) prevPrice = currPrice;
-                            else if (prevPrice != null && currPrice == null) currPrice = prevPrice;
 
                             var discount = new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes);
                             var category = Categories.ElementAt(IndexOfSelectedCategory);
@@ -258,7 +270,6 @@ namespace Spicy.ViewModel
                     PreviousPrice = CurrentPrice;
             }
         }
-
         #endregion
     }
 }

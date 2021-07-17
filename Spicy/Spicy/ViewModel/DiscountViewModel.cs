@@ -12,6 +12,7 @@ namespace Spicy.ViewModel
     using DAL.Entities;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using System.Text.RegularExpressions;
 
     class DiscountViewModel : BaseViewModel
     {
@@ -44,7 +45,6 @@ namespace Spicy.ViewModel
 
         #region PRIVATE COMPONENTS
         private Discount presentingDiscount;
-
         private long rates;
         private ObservableCollection<Comment> CommentsOfDiscounts { get; set; }
         private string newCommentText = "";
@@ -109,7 +109,7 @@ namespace Spicy.ViewModel
                     addComment = new RelayCommand(
                         arg =>
                         {
-                            Comment comment = new Comment(accountManager.CurrentUser.Id, PresentingDiscount.DiscountId, newCommentText, DateTime.Now);
+                            Comment comment = new Comment(accountManager.CurrentUser.Id, presentingDiscount.Id, newCommentText, DateTime.Now);
                             model.AddComment(comment);
                             UserCommentsOfDiscounts.Add(new UserComment(accountManager.GetUserById(comment.Id_user).Nickname, comment.CommentText, comment.Date));
                             onPropertyChanged(nameof(UserCommentsOfDiscounts));
@@ -134,7 +134,7 @@ namespace Spicy.ViewModel
                         {
                             if (UserRate == null)
                             {
-                                UserRate = new Rating(Rate.positive, accountManager.CurrentUser.Id, PresentingDiscount.DiscountId);
+                                UserRate = new Rating(Rate.positive, accountManager.CurrentUser.Id, presentingDiscount.Id);
                                 model.AddRate(UserRate);
                             }
                             else
@@ -163,7 +163,7 @@ namespace Spicy.ViewModel
                         {
                             if (UserRate == null)
                             {
-                                UserRate = new Rating(Rate.negative, accountManager.CurrentUser.Id, PresentingDiscount.DiscountId);
+                                UserRate = new Rating(Rate.negative, accountManager.CurrentUser.Id, presentingDiscount.Id);
                                 model.AddRate(UserRate);
                             }
                             else
@@ -196,6 +196,27 @@ namespace Spicy.ViewModel
                         );
                 }
                 return editDiscount;
+            }
+        }
+
+
+        private ICommand gotoDiscount = null;
+        public ICommand GotoDiscount
+        {
+            get
+            {
+                if (gotoDiscount == null)
+                {
+                    gotoDiscount = new RelayCommand(
+                        arg =>
+                        {
+                            if(Validation.IsStringLink(presentingDiscount.Link))
+                                System.Diagnostics.Process.Start(presentingDiscount.Link);
+                        },
+                        arg => OwnerOfDiscount.Id == accountManager.CurrentUser.Id
+                        );
+                }
+                return gotoDiscount;
             }
         }
         #endregion

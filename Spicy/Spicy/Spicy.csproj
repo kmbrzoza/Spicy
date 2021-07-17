@@ -164,6 +164,7 @@
     <Compile Include="Model\DiscountInfo.cs" />
     <Compile Include="Model\ListItemConverter.cs" />
     <Compile Include="Model\UserComment.cs" />
+    <Compile Include="Model\Validation.cs" />
     <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\Constants.cs" />

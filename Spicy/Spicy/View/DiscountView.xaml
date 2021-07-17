@@ -11,6 +11,9 @@
     
     <UserControl.Resources>
         <model:ListItemConverter x:Key="converter"/>
+        <Style x:Key="Comment" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="50"></Setter>
+        </Style>
     </UserControl.Resources>
     
     <Grid Margin="10 5">
@@ -31,7 +34,7 @@
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Content="&lt;--" Width="40" Height="28" Command="{Binding Back}"
+        <Button Content="Wróć" Width="80" Height="28" Command="{Binding Back}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
 
         <Image Grid.Row="1" Grid.RowSpan="2" Source="{Binding PresentingDiscount.Image, TargetNullValue={x:Null}}"></Image>
@@ -44,7 +47,7 @@
             </Grid.ColumnDefinitions>
             <Button Content="-" Width="40" Height="28" Command="{Binding AddNegativeRate}"
                 Style="{StaticResource RedRoundedButton}"></Button>
-            <Label Grid.Column="1" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <Label Grid.Column="1" Content="{Binding Rates}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"></Label>
             <Button Grid.Column="2" Content="+" Width="40" Height="28" Command="{Binding AddPositiveRate}"
                 Style="{StaticResource GreenRoundedButton}"></Button>
         </Grid>
@@ -60,24 +63,27 @@
 
 
         <Button Grid.Row="2" Grid.Column="3" Content="Idź do okazji" Width="130" Height="30"
-                Style="{StaticResource NormalRoundedButton}"></Button>
+                Style="{StaticResource NormalRoundedButton}" Command="{Binding GotoDiscount}"></Button>
         
         
-        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding PresentingDiscount.Code}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.Code}" 
+               VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource LabelText}"></Label>
 
-        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.Start_Date}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.Start_Date}" 
+               VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource LabelText}"></Label>
 
 
-        <Label Grid.Row="4" Content="Kategoria:"></Label>
-        <Label Grid.Row="4" Grid.Column="1" Content="{Binding CategoryOfDiscount.Name}"></Label>
+        <Label Grid.Row="4" Content="Kategoria:" Style="{StaticResource LabelText}"></Label>
+        <Label Grid.Row="4" Grid.Column="1" Content="{Binding CategoryOfDiscount.Name}" Style="{StaticResource LabelText}"></Label>
 
-        <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Content="{Binding PresentingDiscount.End_Date}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LabelText}" FontWeight="Bold"
+               Content="{Binding PresentingDiscount.End_Date}" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
 
-        <Label Grid.Row="5" Content="Sklep:"></Label>
-        <Label Grid.Row="5" Grid.Column="1" Content="{Binding ShopOfDiscount.Name}"></Label>
+        <Label Grid.Row="5" Content="Sklep:" Style="{StaticResource LabelText}"></Label>
+        <Label Grid.Row="5" Grid.Column="1" Content="{Binding ShopOfDiscount.Name}" Style="{StaticResource LabelText}"></Label>
 
-        <Label Grid.Row="5" Grid.Column="2" Content="Promocja użytkownika:"></Label>
-        <Label Grid.Row="5" Grid.Column="3" Content="{Binding OwnerOfDiscount.Nickname}"></Label>
+        <Label Grid.Row="5" Grid.Column="2" Content="Promocja użytkownika:" Style="{StaticResource LabelText}"></Label>
+        <Label Grid.Row="5" Grid.Column="3" Content="{Binding OwnerOfDiscount.Nickname}" Style="{StaticResource LabelText}"></Label>
 
         <TabControl Grid.Row="6" Grid.ColumnSpan="4">
             <TabItem Header="Opis">
