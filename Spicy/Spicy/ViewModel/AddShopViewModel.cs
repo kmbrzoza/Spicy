@@ -63,7 +63,7 @@ namespace Spicy.ViewModel
                     cancel = new RelayCommand(
                         arg =>
                         {
-                            NavigationVM.CurrentViewModel = new HomeViewModel(model);
+                            NavigationVM.CurrentViewModel = new ShopViewModel(model);
                         },
                         arg => true
                         );
@@ -84,7 +84,7 @@ namespace Spicy.ViewModel
                         {
                             var shop = new Shop(ShopName, ShopDescription);
                             model.AddShop(shop);
-                            NavigationVM.CurrentViewModel = new HomeViewModel(model);
+                            NavigationVM.CurrentViewModel = new ShopViewModel(model);
                         },
                         arg => !string.IsNullOrEmpty(ShopName) && !string.IsNullOrEmpty(ShopDescription)
                         );

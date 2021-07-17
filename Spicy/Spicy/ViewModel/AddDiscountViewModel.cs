@@ -84,7 +84,7 @@ namespace Spicy.ViewModel
             get { return link; }
             set
             {
-                if (value.Length <= Constants.MAX_LINK_LENGTH && (Validation.IsStringLink(value) || string.IsNullOrEmpty(value) ))
+                if (value.Length <= Constants.MAX_LINK_LENGTH && (ValidationService.IsStringLink(value) || string.IsNullOrEmpty(value) ))
                     link = value;
                 onPropertyChanged(nameof(Link));
             }

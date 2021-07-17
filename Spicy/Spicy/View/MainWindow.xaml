@@ -30,6 +30,9 @@
             <DataTemplate DataType="{x:Type vm:LoginViewModel}">
                 <view:LoginView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ShopViewModel}">
+                <view:ShopView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>
