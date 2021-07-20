@@ -11,6 +11,7 @@
 
     <UserControl.Resources>
         <model:ListItemConverter x:Key="converter"/>
+        <model:ComboBoxConverter x:Key="CBConverter"/>
         <Style x:Key="Date" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"></Setter>
         </Style>
@@ -23,31 +24,75 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition>
+                <RowDefinition.Style>
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height" Value="0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Filters}" Value="True">
+                                <Setter Property="Height" Value="0.6*"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.ColumnSpan="2">
+        <!-- SEARCH BAR -->
+        <Grid Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.25*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Content="Wyszukaj:" Style="{StaticResource LabelText}" HorizontalAlignment="Right" Margin="0 0 5 0"></Label>
             <TextBox Grid.Column="1" Style="{StaticResource RoundedTextBoxWithHight}"
                  Text="{Binding Search, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Column="2" Content="Filtry" Style="{StaticResource LabelText}" HorizontalAlignment="Right"></Label>
+            <CheckBox Grid.Column="3" VerticalAlignment="Center" Margin="10 0 0 0" IsChecked="{Binding Filters, Mode=TwoWay}"></CheckBox>
         </Grid>
 
-        <Grid Grid.Column="2">
+        <!-- FILTERS -->
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="Pokaż zakończone" Style="{StaticResource LabelText}" HorizontalAlignment="Right"></Label>
-            <CheckBox Grid.Column="1" VerticalAlignment="Center" Margin="10 0 0 0" IsChecked="{Binding ShowEnded, Mode=TwoWay}"></CheckBox>
+            
+            <Label Content="Wybierz kategorie:" Style="{StaticResource LabelText}" HorizontalAlignment="Center"></Label>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding CategoriesFilter, Converter={StaticResource CBConverter}}"
+                      SelectedIndex="{Binding IndexOfSelectedCategoriesFilter}" Style="{StaticResource NormalComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <Label Grid.Column="2" Content="Wybierz sklep:" Style="{StaticResource LabelText}" HorizontalAlignment="Center"></Label>
+            <ComboBox Grid.Column="3" ItemsSource="{Binding ShopsFilter, Converter={StaticResource CBConverter}}"
+                      SelectedIndex="{Binding IndexOfSelectedShopsFilter}" Style="{StaticResource NormalComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <Label Grid.Column="4" Content="Pokaż zakończone" Style="{StaticResource LabelText}" HorizontalAlignment="Right"></Label>
+            <CheckBox Grid.Column="5" VerticalAlignment="Center" Margin="10 0 0 0" IsChecked="{Binding ShowEnded, Mode=TwoWay}"></CheckBox>
         </Grid>
-        
-        <ListBox x:Name="lb" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ActualDiscounts}" SelectedItem="{Binding SelectedDiscount}"
+
+        <!-- DISCOUNTS -->
+        <ListBox x:Name="lb" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentDiscountsInfo}" SelectedItem="{Binding SelectedDiscount}"
                  SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay}">
 
             <ListBox.ItemTemplate>
@@ -84,11 +129,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="2" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
+        <!-- BUTTONS -->
+        <Button Grid.Row="3" Width="150" Content="Dodaj promocje" Command="{Binding AddDiscount}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
-        <Button Grid.Row="2" Grid.Column="1" Width="150" Content="Sklepy" Command="{Binding Shop}"
+        <Button Grid.Row="3" Grid.Column="1" Width="150" Content="Sklepy" Command="{Binding Shop}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
-        <Button Grid.Row="2" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
+        <Button Grid.Row="3" Grid.Column="2" Width="150" Content="Wyloguj" Command="{Binding LogOut}"
                 Style="{StaticResource NormalRoundedButton}"></Button>
 
     </Grid>

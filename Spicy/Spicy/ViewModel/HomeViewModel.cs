@@ -26,16 +26,18 @@ namespace Spicy.ViewModel
             accountManager = AccountManager.Instance;
             userSession = UserSession.Instance;
 
-            SetActualDiscounts();
-            SetActualDiscountsBySearch();
+            LoadShopsFilter();
+            LoadCategoriesFilter();
+
+            LoadCurrentDiscountsInfoOverall();
         }
 
         #region PRIVATE Components
-        private ObservableCollection<Discount> actualDiscounts;
+        private ObservableCollection<Discount> currentDiscounts;
         #endregion
 
         #region PROPS FOR VIEW
-        public ObservableCollection<DiscountInfo> ActualDiscounts { get; set; }
+        public ObservableCollection<DiscountInfo> CurrentDiscountsInfo { get; set; }
         public DiscountInfo SelectedDiscount { get; set; }
         public int IndexOfSelectedDiscount
         {
@@ -48,17 +50,50 @@ namespace Spicy.ViewModel
             set
             {
                 userSession.Home_SearchBy = value;
-                SetActualDiscountsBySearch();
+                LoadCurrentDiscountsInfoOverall();
             }
         }
+        public bool Filters
+        {
+            get { return userSession.Home_Filters; }
+            set
+            {
+                userSession.Home_Filters = value;
+                onPropertyChanged(nameof(Filters));
+            }
+        }
+
+        public ObservableCollection<Category> CategoriesFilter { get; set; }
+        public int IndexOfSelectedCategoriesFilter
+        {
+            get { return userSession.Home_CategoriesFilter; }
+            set
+            {
+                userSession.Home_CategoriesFilter = value;
+                onPropertyChanged(nameof(IndexOfSelectedCategoriesFilter));
+                LoadCurrentDiscountsInfoOverall();
+            }
+        }
+
+        public ObservableCollection<Shop> ShopsFilter { get; set; }
+        public int IndexOfSelectedShopsFilter
+        {
+            get { return userSession.Home_ShopsFilter; }
+            set
+            {
+                userSession.Home_ShopsFilter = value;
+                onPropertyChanged(nameof(IndexOfSelectedShopsFilter));
+                LoadCurrentDiscountsInfoOverall();
+            }
+        }
+
         public bool ShowEnded
         {
             get { return userSession.Home_ShowEnded; }
             set
             {
                 userSession.Home_ShowEnded = value;
-                SetActualDiscounts();
-                SetActualDiscountsBySearch();
+                LoadCurrentDiscountsInfoOverall();
             }
         }
         #endregion
@@ -114,7 +149,7 @@ namespace Spicy.ViewModel
                         arg =>
                         {
                             //if(IndexOfSelectedDiscount > -1)
-                            var discount = model.GetDiscountById(ActualDiscounts.ElementAt(IndexOfSelectedDiscount).DiscountId);
+                            var discount = model.GetDiscountById(CurrentDiscountsInfo.ElementAt(IndexOfSelectedDiscount).DiscountId);
                             if (discount != null)
                                 NavigationVM.CurrentViewModel = new DiscountViewModel(model, discount);
                         },
@@ -145,29 +180,78 @@ namespace Spicy.ViewModel
         }
         #endregion
 
-        public void SetActualDiscounts()
+        public void LoadShopsFilter()
+        {
+            ShopsFilter = new ObservableCollection<Shop>();
+            ShopsFilter.Add(null);
+            foreach (var shop in model.Shops)
+                ShopsFilter.Add(shop);
+        }
+        public void LoadCategoriesFilter()
+        {
+            CategoriesFilter = new ObservableCollection<Category>();
+            CategoriesFilter.Add(null);
+            foreach (var category in model.Categories)
+                CategoriesFilter.Add(category);
+        }
+
+        public void SetCurrentDiscountsByEndDate()
         {
             if (ShowEnded)
             {
-                actualDiscounts = new ObservableCollection<Discount>();
+                currentDiscounts = new ObservableCollection<Discount>();
                 foreach (var disc in model.Discounts)
-                    actualDiscounts.Add(disc);
+                    currentDiscounts.Add(disc);
             }
             else
-                actualDiscounts = model.GetActualDiscounts();
+                currentDiscounts = model.GetActualDiscounts();
         }
-        public void SetActualDiscountsBySearch()
+        public void SetCurrentDiscountsBySearch()
         {
-            ActualDiscounts = new ObservableCollection<DiscountInfo>();
+            if (string.IsNullOrEmpty(Search)) return;
 
-            if (string.IsNullOrEmpty(Search))
-                foreach (var adiscount in actualDiscounts)
-                    ActualDiscounts.Add(new DiscountInfo(adiscount));
-            else
-                foreach (var adiscount in actualDiscounts.Where(d => d.Name.Contains(Search)))
-                    ActualDiscounts.Add(new DiscountInfo(adiscount));
+            var searchedDiscounts = currentDiscounts.Where(d => d.Name.ToLower().Contains(Search.ToLower()));
+            currentDiscounts = new ObservableCollection<Discount>();
+            foreach (var disc in searchedDiscounts)
+                currentDiscounts.Add(disc);
+        }
+        public void SetCurrentDiscountsByCategoriesFilter()
+        {
+            var selectedCategory = CategoriesFilter.ElementAt(IndexOfSelectedCategoriesFilter);
+            if (selectedCategory == null) return;
 
-            onPropertyChanged(nameof(ActualDiscounts));
+            var filteredDiscounts = currentDiscounts.Where(d => d.Id_category == selectedCategory.Id);
+            currentDiscounts = new ObservableCollection<Discount>();
+            foreach (var disc in filteredDiscounts)
+                currentDiscounts.Add(disc);
+        }
+
+        public void SetCurrentDiscountsByShopsFilter()
+        {
+            var selectedShop = ShopsFilter.ElementAt(IndexOfSelectedShopsFilter);
+            if (selectedShop == null) return;
+
+            var filteredDiscounts = currentDiscounts.Where(d => d.Id_shop == selectedShop.Id);
+            currentDiscounts = new ObservableCollection<Discount>();
+            foreach (var disc in filteredDiscounts)
+                currentDiscounts.Add(disc);
+        }
+
+        public void LoadCurrentDiscountsInfo()
+        {
+            CurrentDiscountsInfo = new ObservableCollection<DiscountInfo>();
+            foreach (var currDisc in currentDiscounts)
+                CurrentDiscountsInfo.Add(new DiscountInfo(currDisc));
+            onPropertyChanged(nameof(CurrentDiscountsInfo));
+        }
+
+        public void LoadCurrentDiscountsInfoOverall()
+        {
+            SetCurrentDiscountsByEndDate();
+            SetCurrentDiscountsBySearch();
+            SetCurrentDiscountsByCategoriesFilter();
+            SetCurrentDiscountsByShopsFilter();
+            LoadCurrentDiscountsInfo();
         }
     }
 }

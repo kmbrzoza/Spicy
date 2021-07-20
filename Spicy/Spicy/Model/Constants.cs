@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spicy.Services
+namespace Spicy.Model
 {
     static class Constants
     {
@@ -26,5 +26,6 @@ namespace Spicy.Services
         public const string DISCOUNT_SINCE = "Od:";
         public const string DISCOUNT_EXISTS = "Taka promocja już istnieje!";
         public const string WARNING = "Uwaga!";
+        public const string NOT_SELECTED = "<Nie wybrano>";
     }
 }

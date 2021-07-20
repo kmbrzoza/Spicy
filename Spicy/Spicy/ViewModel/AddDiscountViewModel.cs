@@ -192,15 +192,15 @@ namespace Spicy.ViewModel
                     add = new RelayCommand(
                         arg =>
                         {
-                            float? currPrice = null;
+                            double? currPrice = null;
                             if (!string.IsNullOrEmpty(CurrentPrice))
-                                if (float.TryParse(CurrentPrice.Replace(".", ","), out float cp))
-                                    currPrice = cp;
+                                if (double.TryParse(CurrentPrice.Replace(".", ","), out double cp))
+                                    currPrice = Math.Round(cp, 2);
 
-                            float? prevPrice = null;
+                            double? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
-                                if (float.TryParse(PreviousPrice.Replace(".", ","), out float pp))
-                                    prevPrice = pp;
+                                if (double.TryParse(PreviousPrice.Replace(".", ","), out double pp))
+                                    prevPrice = Math.Round(pp, 2);
 
                             var discount = new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes);
                             var category = Categories.ElementAt(IndexOfSelectedCategory);
