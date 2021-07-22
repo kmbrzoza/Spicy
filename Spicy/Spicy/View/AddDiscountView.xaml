@@ -103,7 +103,7 @@
         
         <Label Grid.Row="6" Content="Opis" VerticalAlignment="Center" HorizontalAlignment="Center"
                Style="{StaticResource LabelText}"></Label>
-        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.ColumnSpan="4" 
+        <TextBox Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.ColumnSpan="4" 
                  TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"
                  Style="{StaticResource NormalTextBox}"></TextBox>
 
