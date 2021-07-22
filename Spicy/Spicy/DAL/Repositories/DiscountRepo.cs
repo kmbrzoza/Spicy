@@ -69,11 +69,13 @@ namespace Spicy.DAL.Repositories
             {
                 string prevPrice = "null";
                 string currPrice = "null";
+                string code = null;
                 if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
                 if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
+                if (discount.Code != null) code = $"'{discount.Code.ToString().Replace(",", ".")}'";
 
                 MySqlCommand command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name.Replace("'", "`")}', description = '{discount.Description.Replace("'", "`")}', " +
-                $"curr_price = {currPrice}, prev_price = {prevPrice}, link = '{discount.Link.Replace("'", "`")}', discount_code = '{discount.Code.Replace("'", "`")}', " +
+                $"curr_price = {currPrice}, prev_price = {prevPrice}, link = '{discount.Link.Replace("'", "`")}', discount_code = '{code}', " +
                 $"start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
                 $"end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = {ImageParam}, id_category = '{discount.Id_category}', " +
                 $"id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'", connection);
