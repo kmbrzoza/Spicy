@@ -1,5 +1,6 @@
 ﻿using Spicy.DAL.Entities;
 using Spicy.DAL.Repositories;
+using Spicy.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,7 +32,8 @@ namespace Spicy.Services
         {
             if (!UserExists(user))
             {
-                if (!UserRepo.AddUser(user)) return false;
+                if (user.Nickname.Contains("'") || user.Password.Contains("'")) throw new Exception(Constants.USER_NICK_PASSWORD_INCORRECT);
+                if (!UserRepo.AddUser(user)) throw new Exception(Constants.USER_CONNECTION_ERROR); ;
                 Users.Add(user);
                 return true;
             }

@@ -16,12 +16,12 @@ namespace Spicy.Model
         private double? currentPrice;
         public string CurrentPrice
         {
-            get => currentPrice == null ? "" : currentPrice + " " + Constants.MONEY_UNIT;
+            get => currentPrice == null ? "" : $"{currentPrice} {Constants.MONEY_UNIT}";
         }
         private double? previousPrice;
         public string PreviousPrice
         {
-            get => previousPrice == null ? "" : previousPrice + " " + Constants.MONEY_UNIT;
+            get => previousPrice == null ? "" : $"{previousPrice} {Constants.MONEY_UNIT}";
         }
         private DateTime end_Date;
         public string End_Date { get => Constants.DISCOUNT_ONLY_TO + " " + end_Date.Year + "-" + end_Date.Month + "-" + end_Date.Day; }

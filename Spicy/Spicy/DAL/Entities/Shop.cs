@@ -47,7 +47,7 @@ namespace Spicy.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{Name}', '{Description}')";
+            return $"('{Name.Replace("'", "`")}', '{Description.Replace("'", "`")}')";
         }
 
         #endregion

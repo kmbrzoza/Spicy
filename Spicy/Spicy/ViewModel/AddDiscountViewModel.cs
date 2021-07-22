@@ -63,6 +63,7 @@ namespace Spicy.ViewModel
         private string imagePath;
         private byte[] imageInBytes;
         private string code;
+        private string description;
 
         private bool editingMode = false;
         private Discount discountToEdit = null;
@@ -74,7 +75,7 @@ namespace Spicy.ViewModel
             get { return title; }
             set
             {
-                if (value.Length <= Constants.MAX_DISCOUNT_TITLE_LENGTH)
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_DISCOUNT_TITLE_LENGTH)
                     title = value;
                 onPropertyChanged(nameof(Title));
             }
@@ -84,7 +85,7 @@ namespace Spicy.ViewModel
             get { return link; }
             set
             {
-                if (value.Length <= Constants.MAX_LINK_LENGTH && (ValidationService.IsStringLink(value) || string.IsNullOrEmpty(value) ))
+                if (string.IsNullOrEmpty(value) || (value.Length <= Constants.MAX_LINK_LENGTH && ValidationService.IsStringLink(value)))
                     link = value;
                 onPropertyChanged(nameof(Link));
             }
@@ -152,12 +153,22 @@ namespace Spicy.ViewModel
             get { return code; }
             set
             {
-                if (value.Length <= Constants.MAX_CODE_LENGTH)
+
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_CODE_LENGTH)
                     code = value;
                 onPropertyChanged(nameof(Code));
             }
         }
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_DISCOUNT_DESCRIPTION_LENGTH)
+                    description = value;
+                onPropertyChanged(nameof(Code));
+            }
+        }
         public string ImageExtensions { get => imageExtensions; }
         public string ImagePath
         {
@@ -192,15 +203,15 @@ namespace Spicy.ViewModel
                     add = new RelayCommand(
                         arg =>
                         {
-                            float? currPrice = null;
+                            double? currPrice = null;
                             if (!string.IsNullOrEmpty(CurrentPrice))
-                                if (float.TryParse(CurrentPrice.Replace(".", ","), out float cp))
-                                    currPrice = cp;
+                                if (double.TryParse(CurrentPrice.Replace(".", ","), out double cp))
+                                    currPrice = Math.Round(cp, 2);
 
-                            float? prevPrice = null;
+                            double? prevPrice = null;
                             if (!string.IsNullOrEmpty(PreviousPrice))
-                                if (float.TryParse(PreviousPrice.Replace(".", ","), out float pp))
-                                    prevPrice = pp;
+                                if (double.TryParse(PreviousPrice.Replace(".", ","), out double pp))
+                                    prevPrice = Math.Round(pp, 2);
 
                             var discount = new Discount(Title, Description, currPrice, prevPrice, Link, Code, Since, To, ImageInBytes);
                             var category = Categories.ElementAt(IndexOfSelectedCategory);

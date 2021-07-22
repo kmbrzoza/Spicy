@@ -46,7 +46,7 @@ namespace Spicy.DAL.Entities
         #region Methods
         public string ToInsert()
         {
-            return $"('{CommentText}', '{Id_user}', '{Id_discount}', '{Date.Year}-{Date.Month}-{Date.Day}')";
+            return $"('{CommentText.Replace("'", "`")}', '{Id_user}', '{Id_discount}', '{Date.Year}-{Date.Month}-{Date.Day}')";
         }
         #endregion
     }
