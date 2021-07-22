@@ -43,10 +43,10 @@ namespace Spicy.DAL.Repositories
                 if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
                 if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
 
-                MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} ('{discount.Name}', '{discount.Description}', {currPrice}, {prevPrice}, " +
-                $"'{discount.Code}', '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
+                MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} ('{discount.Name.Replace("'", "`")}', '{discount.Description.Replace("'","`")}', {currPrice}, {prevPrice}, " +
+                $"'{discount.Code.Replace("'", "`")}', '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
                 $"'{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', " +
-                $"'{discount.Link}', {ImageParam}, '{discount.Id_category}', '{discount.Id_user}', '{discount.Id_shop}')", connection);
+                $"'{discount.Link.Replace("'", "`")}', {ImageParam}, '{discount.Id_category}', '{discount.Id_user}', '{discount.Id_shop}')", connection);
 
                 command.Parameters.Add(ImageParam, MySqlDbType.MediumBlob);
                 command.Parameters[ImageParam].Value = discount.Image;
@@ -70,8 +70,8 @@ namespace Spicy.DAL.Repositories
                 if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
                 if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
 
-                MySqlCommand command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name}', description = '{discount.Description}', " +
-                $"curr_price = {currPrice}, prev_price = {prevPrice}, link = '{discount.Link}', discount_code = '{discount.Code}', " +
+                MySqlCommand command = new MySqlCommand($"UPDATE discount SET name = '{discount.Name.Replace("'", "`")}', description = '{discount.Description.Replace("'", "`")}', " +
+                $"curr_price = {currPrice}, prev_price = {prevPrice}, link = '{discount.Link.Replace("'", "`")}', discount_code = '{discount.Code.Replace("'", "`")}', " +
                 $"start_date = '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
                 $"end_date = '{discount.End_Date.Year}-{discount.End_Date.Month}-{discount.End_Date.Day}', image = {ImageParam}, id_category = '{discount.Id_category}', " +
                 $"id_shop = '{discount.Id_shop}' WHERE id_discount = '{Id}'", connection);

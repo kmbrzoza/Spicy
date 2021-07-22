@@ -127,7 +127,19 @@ namespace Spicy.ViewModel
                                 MessageBox.Show("Hasła muszą być takie same!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 return;
                             }
-                            if (accountManager.RegisterUser(new User(RegisterLogin, RegisterPassword)))
+
+                            bool result = false;
+                            try
+                            {
+                                result = accountManager.RegisterUser(new User(RegisterLogin, RegisterPassword));
+                            }
+                            catch(Exception e)
+                            {
+                                MessageBox.Show(e.Message, "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
+                            }
+
+                            if (result)
                             {
                                 MessageBox.Show("Rejestracja udana!\nMożesz się teraz zalogować.", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
                                 ClearRegisterInputs();

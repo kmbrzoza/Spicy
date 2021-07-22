@@ -63,6 +63,7 @@ namespace Spicy.ViewModel
         private string imagePath;
         private byte[] imageInBytes;
         private string code;
+        private string description;
 
         private bool editingMode = false;
         private Discount discountToEdit = null;
@@ -74,7 +75,7 @@ namespace Spicy.ViewModel
             get { return title; }
             set
             {
-                if (value.Length <= Constants.MAX_DISCOUNT_TITLE_LENGTH)
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_DISCOUNT_TITLE_LENGTH)
                     title = value;
                 onPropertyChanged(nameof(Title));
             }
@@ -84,7 +85,7 @@ namespace Spicy.ViewModel
             get { return link; }
             set
             {
-                if (value.Length <= Constants.MAX_LINK_LENGTH && (ValidationService.IsStringLink(value) || string.IsNullOrEmpty(value) ))
+                if (string.IsNullOrEmpty(value) || (value.Length <= Constants.MAX_LINK_LENGTH && ValidationService.IsStringLink(value)))
                     link = value;
                 onPropertyChanged(nameof(Link));
             }
@@ -152,12 +153,22 @@ namespace Spicy.ViewModel
             get { return code; }
             set
             {
-                if (value.Length <= Constants.MAX_CODE_LENGTH)
+
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_CODE_LENGTH)
                     code = value;
                 onPropertyChanged(nameof(Code));
             }
         }
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (string.IsNullOrEmpty(value) || value.Length <= Constants.MAX_DISCOUNT_DESCRIPTION_LENGTH)
+                    description = value;
+                onPropertyChanged(nameof(Code));
+            }
+        }
         public string ImageExtensions { get => imageExtensions; }
         public string ImagePath
         {
