@@ -40,10 +40,8 @@ namespace Spicy.DAL.Repositories
             {
                 string prevPrice = "null";
                 string currPrice = "null";
-                string code = "null";
                 if (discount.CurrentPrice != null) currPrice = $"'{discount.CurrentPrice.ToString().Replace(",", ".")}'";
                 if (discount.PreviousPrice != null) prevPrice = $"'{discount.PreviousPrice.ToString().Replace(",", ".")}'";
-                if (discount.Code != null) code = $"'{discount.Code.ToString().Replace(",", ".")}'";
    
                 MySqlCommand command = new MySqlCommand($"{ADD_DISCOUNT} ('{discount.Name.Replace("'", "`")}', '{discount.Description.Replace("'","`")}', {currPrice}, {prevPrice}, " +
                 $"'{discount.Code.Replace("'", "`")}', '{discount.Start_Date.Year}-{discount.Start_Date.Month}-{discount.Start_Date.Day}', " +
