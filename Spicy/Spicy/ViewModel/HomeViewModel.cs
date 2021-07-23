@@ -148,10 +148,12 @@ namespace Spicy.ViewModel
                     goToDiscount = new RelayCommand(
                         arg =>
                         {
-                            //if(IndexOfSelectedDiscount > -1)
-                            var discount = model.GetDiscountById(CurrentDiscountsInfo.ElementAt(IndexOfSelectedDiscount).DiscountId);
-                            if (discount != null)
-                                NavigationVM.CurrentViewModel = new DiscountViewModel(model, discount);
+                            if (IndexOfSelectedDiscount > -1)
+                            {
+                                var discount = model.GetDiscountById(CurrentDiscountsInfo.ElementAt(IndexOfSelectedDiscount).DiscountId);
+                                if (discount != null)
+                                    NavigationVM.CurrentViewModel = new DiscountViewModel(model, discount);
+                            }
                         },
                         arg => true
                         );

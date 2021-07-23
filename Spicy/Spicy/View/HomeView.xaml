@@ -93,7 +93,7 @@
 
         <!-- DISCOUNTS -->
         <ListBox x:Name="lb" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentDiscountsInfo}" SelectedItem="{Binding SelectedDiscount}"
-                 SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay}">
+                 SelectedIndex="{Binding IndexOfSelectedDiscount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
